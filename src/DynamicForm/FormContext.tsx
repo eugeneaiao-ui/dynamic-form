@@ -2,10 +2,12 @@ import { createContext } from 'react'
 import { FormInstance } from 'antd'
 
 export type DynamicFormContextValue = {
-    form: FormInstance
+    form: FormInstance,
+    displayMode: 'preview' | 'edit',
+    permission: string[]
 }
 
-export const FormContext = createContext<DynamicFormContextValue | any>({})
+export const FormContext = createContext<DynamicFormContextValue>({ permission: [], displayMode: 'edit', form: {} as FormInstance })
 
 
 export const FormProvider = FormContext.Provider

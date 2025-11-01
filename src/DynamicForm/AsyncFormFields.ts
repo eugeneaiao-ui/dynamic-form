@@ -1,16 +1,21 @@
+import { FormItemProps } from "antd"
 import { FormFields } from "./FormTemplate"
 
-export const AsyncFormFields: Record<FormFields, object> = {
+export interface FormFieldsParams extends FormItemProps {
+    triggerField?: string
+    condition?: { operator: 'eq', value: 'admin' },
+    componentProps?: Record<string, any>
+}
+
+export const AsyncFormFields: Record<FormFields, FormFieldsParams> = {
     [FormFields.name]: {
         label: 'Full Name',
-        disabled: false,
         componentProps: {
             placeholder: 'Enter your name'
         }
     },
     [FormFields.school]: {
         label: 'School Name',
-        disabled: false,
         componentProps: {
             placeholder: 'Enter your school'
         }
@@ -56,6 +61,7 @@ export const AsyncFormFields: Record<FormFields, object> = {
     },
     [FormFields.address]: {
         label: 'Address',
+        hidden: true,
         componentProps: {
             placeholder: 'Enter your address'
         }

@@ -6,13 +6,13 @@ import renderFormComponent from './renderField'
 import { AsyncFormFields } from './AsyncFormFields'
 
 export const FormConsumer: React.FC = () => {
-    const { form } = useDynamicForm({
+    const { form, formConfig } = useDynamicForm({
         template: BasicTemplate,
         fields: AsyncFormFields
     })
 
     return <Form form={form}>
-        {renderFormComponent(BasicTemplate)}
+        {renderFormComponent(formConfig)}
     </Form>
 }
 
