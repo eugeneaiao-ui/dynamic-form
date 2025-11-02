@@ -17,7 +17,7 @@ export const renderField = (field: any) => {
 }
 
 export const renderFormField = (field: FormConfig) => {
-  const { type, componentProps = {}, ...rest } = field;
+  const { type, dataSource, componentProps = {}, ...rest } = field;
   return (
     <Form.Item {...rest}>{renderField(field)}</Form.Item>
   )
