@@ -5,10 +5,10 @@ export type DynamicFormContextValue = {
     form: FormInstance,
     displayMode: 'preview' | 'edit',
     permission: string[],
-    dataSource?: any
+    disabled: boolean
 }
 
-export const FormContext = createContext<DynamicFormContextValue>({ permission: [], displayMode: 'edit', form: {} as FormInstance })
+export const FormContext = createContext<DynamicFormContextValue>({ permission: [], displayMode: 'edit', form: {} as FormInstance, disabled: false })
 
 
 export const FormProvider = FormContext.Provider

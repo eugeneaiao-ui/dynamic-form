@@ -1,22 +1,43 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Form } from 'antd'
-import { FormProvider } from './FormContext'
+import FormContext, { FormProvider } from './FormContext'
 import FormConSumer from './FormConsumer'
+
+export enum FormMode {
+    edit = 'edit',
+    preview = 'preview'
+}
 
 interface DynamicFormProps {
     children: React.ReactNode;
+    displayMode?: FormMode;
+    permission?: string[],
+    disabled?: boolean
 }
 
-const DynamicForm: React.FC<DynamicFormProps> = (props) => {
-    const [form] = Form.useForm()
-
+const DynamicForm: React.FC<DynamicFormProps> = ({ children }) => {
+    const ctx = useContext(FormContext)
     return (
-        <FormProvider value={{ form, displayMode: 'edit', permission: ['read'] }}>
-            <Form form={form} layout="vertical">
-                {props.children}
-            </Form>
-        </FormProvider>
+        <Form form={ctx.form} layout="vertical">
+            {children}
+        </Form>
     )
+}
+
+
+export const withDynamicForm = (options: any) => {
+    const { displayMode = FormMode.edit, permission = [], disabled = false } = options
+    return (Component: React.ComponentType) => {
+        const WrappedComponent = (props: any) => {
+            const [form] = Form.useForm()
+            return (
+                <FormProvider value={{ disabled, displayMode, permission, form }}>
+                    <Component {...props} />
+                </FormProvider>
+            )
+        }
+        return WrappedComponent
+    }
 }
 
 export { DynamicForm, FormConSumer }

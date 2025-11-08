@@ -1,19 +1,19 @@
-import { useContext, useEffect, useMemo, useRef } from "react";
-import { BasicTemplateProps, FormFields, FormConfig } from "./FormTemplate"
+import { useContext, useMemo, useRef } from "react";
+import { BasicTemplateProps, FormConfig } from "./FormTemplate"
 import useGetFormInstance from "./useGetForminstance"
 import { EventEmitter } from 'events';
 import MiniMiddleware, { Middleware } from "../abstract/MiniMiddleware";
 import FormContext, { DynamicFormContextValue } from "./FormContext";
 import { FormFieldsParams } from "./AsyncFormFields";
-import { Form } from "antd";
 
 type FormFieldsProps = Record<string, object>
-type middlewareCtx = DynamicFormContextValue & DynamicFormOptions
+export type middlewareCtx = DynamicFormContextValue & DynamicFormOptions
 
 interface DynamicFormOptions {
     template: BasicTemplateProps[]
     fields: FormFieldsProps;
     fieldProps?: FormFieldsParams
+    dataSource?: any;
 }
 
 interface DynamicForm {
@@ -21,57 +21,6 @@ interface DynamicForm {
     fields: FormFieldsProps
     dataSource?: any,
     middlewares?: Middleware<middlewareCtx>[]
-}
-
-// 中间件定义, 守卫负责鉴权
-const guideMiddleware: Middleware<middlewareCtx> = (ctx, next) => {
-    const { permission, fieldProps } = ctx
-    if (!permission.length) {
-        ctx.fieldProps = {
-            ...fieldProps,
-            componentProps: {
-                disabled: true
-            }
-        }
-    }
-    next()
-}
-
-// 中间件定义，负责展示模式字段控制
-const displayModeMiddleware: Middleware<middlewareCtx> = (ctx, next) => {
-    const { fieldProps, displayMode } = ctx;
-    if (displayMode === 'preview') {
-        ctx.fieldProps = {
-            ...fieldProps,
-            hidden: false,
-            componentProps: {
-                disabled: false
-            }
-        }
-    }
-    next();
-}
-
-const dataSourceMiddleware: Middleware<middlewareCtx> = (ctx, next) => {
-    const { dataSource, fieldProps } = ctx;
-    if (!fieldProps?.dataSource) {
-        next();
-        return;
-    }
-    const type = fieldProps?.dataSource?.type
-
-    if (type === 'store') {
-        const storeKey = fieldProps?.dataSource?.storeKey;
-        ctx.fieldProps = {
-            ...fieldProps,
-            componentProps: {
-                ...fieldProps.componentProps,
-                options: dataSource?.[storeKey] || []
-            }
-        }
-        next()
-    }
-    next();
 }
 
 class FormConfigBuilder extends MiniMiddleware<middlewareCtx> {
