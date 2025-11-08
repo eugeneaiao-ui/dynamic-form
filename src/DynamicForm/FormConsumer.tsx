@@ -1,29 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import { Form } from 'antd'
-import useDynamicForm from './useDynamicForm'
-import { BasicTemplate } from './FormTemplate'
+import React from 'react'
 import renderFormComponent from './renderField'
-import { AsyncFormFields, OptionsMap } from './AsyncFormFields'
+import { FormConfig } from './FormTemplate';
 
-export const FormConsumer: React.FC = () => {
-    const [options, setOptions] = useState({})
+interface FormConsumerProps {
+    formConfig: FormConfig[];
+}
 
-    const { form, formConfig } = useDynamicForm({
-        template: BasicTemplate,
-        fields: AsyncFormFields,
-        dataSource: options,
-    })
-
-    useEffect(() => {
-        // 模拟异步获取数据源
-        setTimeout(() => {
-            setOptions(OptionsMap)
-        }, 2000)
-    }, [])
-
-    return <Form form={form}>
+export const FormConsumer: React.FC<FormConsumerProps> = ({ formConfig = [] }) => {
+    return <>
         {renderFormComponent(formConfig)}
-    </Form>
+    </>
 }
 
 export default FormConsumer

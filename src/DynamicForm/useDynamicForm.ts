@@ -7,7 +7,7 @@ import FormContext, { DynamicFormContextValue } from "./FormContext";
 import { FormFieldsParams } from "./AsyncFormFields";
 import { Form } from "antd";
 
-type FormFieldsProps = Record<FormFields, object>
+type FormFieldsProps = Record<string, object>
 type middlewareCtx = DynamicFormContextValue & DynamicFormOptions
 
 interface DynamicFormOptions {
@@ -20,6 +20,7 @@ interface DynamicForm {
     template: FormConfig[]
     fields: FormFieldsProps
     dataSource?: any,
+    middlewares?: Middleware<middlewareCtx>[]
 }
 
 // 中间件定义, 守卫负责鉴权
@@ -73,49 +74,6 @@ const dataSourceMiddleware: Middleware<middlewareCtx> = (ctx, next) => {
     next();
 }
 
-const linkageMiddleware: Middleware<middlewareCtx> = function (this: FormConfigBuilder, ctx, next) {
-    const { fieldProps = {}, form } = ctx;
-    // 联动逻辑处理
-    if (!fieldProps.triggerField || !fieldProps.condition) {
-        next();
-        return;
-    }
-
-    const { triggerField, condition } = fieldProps;
-
-    const triggerValue = form.getFieldValue(triggerField);
-
-    let shouldShow = false;
-    switch (condition.operator) {
-        case "hasValue":
-            shouldShow = triggerValue !== undefined && triggerValue !== null && triggerValue !== '';
-            break;
-        case "eq":
-            shouldShow = triggerValue === condition.value;
-            break;
-        case "neq":
-            shouldShow = triggerValue !== condition.value;
-            break;
-        case "in":
-            shouldShow = Array.isArray(condition.value) && condition.value.includes(triggerValue);
-            break;
-        default:
-            break;
-    }
-
-    this.emitter.removeAllListeners('formValueChange');
-    this.emitter.addListener('formValueChange', (value) => {
-        console.log('formValueChange in useDynamicForm', value);
-    });
-
-    ctx.fieldProps = {
-        ...fieldProps,
-        hidden: !shouldShow
-    };
-
-    next();
-}
-
 class FormConfigBuilder extends MiniMiddleware<middlewareCtx> {
     #config: FormConfig[] = [];
     #context: any = {};
@@ -153,8 +111,9 @@ class FormConfigBuilder extends MiniMiddleware<middlewareCtx> {
     }
 
     // 新增：存储全局上下文（从外部传入，如FormContext的值）
-    setGlobalCtx(ctx: Partial<DynamicFormContextValue>): this {
+    setGlobalCtx(ctx: Partial<DynamicFormContextValue>, fields?: FormFieldsProps): this {
         this.#context = ctx;
+        fields && (this.fields = fields);
         return this;
     }
 
@@ -163,42 +122,32 @@ class FormConfigBuilder extends MiniMiddleware<middlewareCtx> {
         this.use(middleware);
         return this;
     }
+
+    addMiddlewares(middlewares: Middleware<middlewareCtx>[]): this {
+        middlewares.forEach(mw => this.use(mw));
+        return this;
+    }
 }
 
 // 同时修改useDynamicForm Hook，传入全局上下文
 export function useDynamicForm(options: DynamicForm) {
-    const { template, fields, dataSource } = options;
+    const { template, fields, dataSource, middlewares = [] } = options;
     const globalCtx = useContext(FormContext); // 获取全局上下文
     const form = useGetFormInstance();
     // 构造Builder时，通过setGlobalCtx传入全局上下文
     const builderRef = useRef<FormConfigBuilder>(
-        new FormConfigBuilder(template, fields)
+        new FormConfigBuilder(template, fields).addMiddlewares(middlewares)
     );
-    const fieldsValue = Form.useWatch([FormFields.city], form);
 
     const formConfig = useMemo(() => {
         const builder = builderRef.current;
 
         return builder
-            .setGlobalCtx(Object.assign({ dataSource }, globalCtx))
-            .addMiddleware(guideMiddleware)
-            .addMiddleware(displayModeMiddleware)
-            .addMiddleware(dataSourceMiddleware)
-            .addMiddleware(linkageMiddleware)
+            .setGlobalCtx(Object.assign({ dataSource }, globalCtx), fields)
             .build();
 
-    }, [globalCtx, dataSource]);
+    }, [globalCtx, dataSource, fields]);
 
-    useEffect(() => {
-        builderRef.current.emitter.emit('formValueChange', fieldsValue);
-    }, [fieldsValue]);
-
-    useEffect(() => {
-        return () => {
-            // 组件卸载时清理事件监听器
-            builderRef.current.emitter.removeAllListeners();
-        }
-    }, [])
 
     return { form, formConfig, builderRef };
 }

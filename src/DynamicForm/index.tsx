@@ -3,14 +3,20 @@ import { Form } from 'antd'
 import { FormProvider } from './FormContext'
 import FormConSumer from './FormConsumer'
 
-export const DynamicForm: React.FC = () => {
+interface DynamicFormProps {
+    children: React.ReactNode;
+}
+
+const DynamicForm: React.FC<DynamicFormProps> = (props) => {
     const [form] = Form.useForm()
 
     return (
-        <FormProvider value={{ form, displayMode: 'preview', permission: ['read'] }}>
-            <FormConSumer />
+        <FormProvider value={{ form, displayMode: 'edit', permission: ['read'] }}>
+            <Form form={form} layout="vertical">
+                {props.children}
+            </Form>
         </FormProvider>
     )
 }
 
-export default DynamicForm
+export { DynamicForm, FormConSumer }

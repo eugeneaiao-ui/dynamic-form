@@ -1,11 +1,11 @@
-import DynamicForm from './DynamicForm'
 import './App.css'
+import HomePage from './pages/home'
 
 function App() {
 
   return (
     <>
-      <DynamicForm />
+      <HomePage />
     </>
   )
 }
