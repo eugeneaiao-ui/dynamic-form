@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Form } from 'antd'
 import FormContext, { FormProvider } from './FormContext'
 import FormConSumer from './FormConsumer'
@@ -26,12 +26,23 @@ const DynamicForm: React.FC<DynamicFormProps> = ({ children }) => {
 
 
 export const withDynamicForm = (options: any) => {
-    const { displayMode = FormMode.edit, permission = [], disabled = false } = options
     return (Component: React.ComponentType) => {
         const WrappedComponent = (props: any) => {
             const [form] = Form.useForm()
+            const [displayMode, setDisplayMode] = useState<FormMode>(options.displayMode || 'edit')
+            const [permission, setPermission] = useState<string[]>(options.permission || [])
+            const [disabled, setDisabled] = useState<boolean>(options.disabled || false)
+
             return (
-                <FormProvider value={{ disabled, displayMode, permission, form }}>
+                <FormProvider value={{
+                    disabled,
+                    displayMode,
+                    permission,
+                    form,
+                    setDisplayMode,
+                    setPermission,
+                    setDisabled
+                }}>
                     <Component {...props} />
                 </FormProvider>
             )

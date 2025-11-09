@@ -1,5 +1,5 @@
 import { FormItemProps } from "antd"
-import { ConditionOperator, FormFieldCondition, FormFields } from "./FormTemplate"
+import { FormConfig, FormFields } from "./FormTemplate"
 
 enum DataSourceType {
     API = 'api',
@@ -21,11 +21,28 @@ interface StoreDataSource {
 
 type DataSource = ApiDataSource | StoreDataSource
 
+export type DependentType = 'compute' | 'fetch';
+
 export interface FormFieldsParams extends FormItemProps {
-    triggerField?: FormFields,
-    condition?: FormFieldCondition,
     componentProps?: Record<string, any>
     dataSource?: DataSource
+    dependentConfig?: {
+        type: DependentType,
+        relyOn: string[],
+        computeFn?: (
+            relyValues: Record<string, any>, // 所有依赖字段的键值对
+            currentField: FormConfig, // 当前字段配置
+            getFieldValue: (name: string) => any // Form的取值方法
+        ) => {
+            rest?: Partial<FormConfig>; // 要覆盖的当前字段rest属性（如rules）
+            componentProps?: Record<string, any>; // 要覆盖的组件属性（如disabled）
+        };
+        fetchFn?: (
+            relyValues: Record<string, any>,
+            currentField: FormConfig,
+            getFieldValue: (name: string) => any
+        ) => Promise<any>; // 返回请求到的数据（如Select的dataSource）
+    }
 }
 
 export const OptionsMap = {
@@ -46,26 +63,35 @@ export const OptionsMap = {
     ]
 }
 
+export const AsyncParams: Partial<Record<keyof typeof FormFields, any>> = {
+    [FormFields.gender]: OptionsMap[FormFields.gender],
+    [FormFields.country]: OptionsMap[FormFields.country]
+}
+
 export const AsyncFormFields: Record<FormFields, FormFieldsParams> = {
     [FormFields.name]: {
+        name: FormFields.name,
         label: 'Full Name',
         componentProps: {
             placeholder: 'Enter your name'
         }
     },
     [FormFields.school]: {
+        name: FormFields.school,
         label: 'School Name',
         componentProps: {
             placeholder: 'Enter your school'
         }
     },
     [FormFields.age]: {
+        name: FormFields.age,
         label: 'Age',
         componentProps: {
             placeholder: 'Enter your age'
         }
     },
     [FormFields.gender]: {
+        name: FormFields.gender,
         label: 'Gender',
         componentProps: {
             options: [],
@@ -78,13 +104,8 @@ export const AsyncFormFields: Record<FormFields, FormFieldsParams> = {
         }
     },
     [FormFields.country]: {
+        name: FormFields.country,
         label: 'Country',
-        hidden: true,
-        triggerField: FormFields.city,
-        condition: {
-            operator: ConditionOperator.HAS_VALUE,
-            triggerField: FormFields.city,
-        },
         componentProps: {
             options: [],
             placeholder: 'Select your country'
@@ -96,7 +117,9 @@ export const AsyncFormFields: Record<FormFields, FormFieldsParams> = {
         }
     },
     [FormFields.city]: {
+        name: FormFields.city,
         label: 'City',
+        hidden: false,
         componentProps: {
             options: [],
             placeholder: 'Select your city'
@@ -105,10 +128,15 @@ export const AsyncFormFields: Record<FormFields, FormFieldsParams> = {
             type: DataSourceType.STORE,
             module: 'common',
             storeKey: FormFields.city
+        },
+        dependentConfig: {
+            type: 'fetch',
+            relyOn: [FormFields.country]
         }
     },
     [FormFields.address]: {
-        label: 'Address',
+        name: FormFields.address,
+        label: 'Hiden Address',
         hidden: true,
         componentProps: {
             placeholder: 'Enter your address'

@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "ahooks": "^3.9.6",
     "antd": "^5.27.6",
     "events": "^3.3.0",
     "lodash": "^4.17.21",
