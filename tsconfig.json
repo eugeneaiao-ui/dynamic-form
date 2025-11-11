@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "useDefineForClassFields": true,
+        "lib": [
+            "ESNext",
+            "DOM",
+            "DOM.Iterable"
+        ],
+        "module": "ESNext",
+        "moduleResolution": "Bundler", // 适配 Vite 等打包工具（关键）
+        "jsx": "react-jsx", // 支持 React JSX/TSX（关键）
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "composite": true,
+        "strict": true,
+        "skipLibCheck": true
+    },
+    "include": [
+        "src"
+    ],
+}
