@@ -1,30 +1,13 @@
-# 1. 工作流名称（在 GitHub 仓库的 Actions 页面显示）
-name: 自动部署项目
-
-# 2. 触发条件：什么时候执行这个工作流（关键！）
-on:
-  push:  # 推送代码时触发
-    branches: [ main ] 
-  # 可选：手动触发（在 GitHub 页面点击“Run workflow”）
-  workflow_dispatch:
-
-# 3. 定义任务（Jobs）
+name: learn-github-actions
+run-name: ${{ github.actor }} is learning GitHub Actions
+on: [push]
 jobs:
-  # 任务 1：部署到服务器（Job 名称可自定义）
-  deploy-to-server:
-    # 运行环境：GitHub 提供的免费虚拟机（可选 Ubuntu/macOS/Windows）
+  check-bats-version:
     runs-on: ubuntu-latest
-
-    # 4. 任务的步骤（Step）
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v5
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install -g bats
+      - run: bats -v
