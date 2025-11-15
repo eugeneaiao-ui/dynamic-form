@@ -14,11 +14,6 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x, 22.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
     - uses: actions/checkout@v5
     - name: Use Node.js
@@ -27,10 +22,5 @@ jobs:
         node-version: '20.x'
     - name: Install dependencies
       run: npm ci
-    - name: 部署到 GitHub Pages
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        # 构建产物目录（改为你的项目构建后的目录，如 dist、build）
-        publish_dir: ./dist
-        # GitHub 令牌（自动生成，无需修改，用于授权部署）
-        github_token: ${{ secrets.GH_PAGES_TOKEN }}
+    - name: Build app
+      run: npm run build
