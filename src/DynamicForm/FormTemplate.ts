@@ -7,12 +7,14 @@ export enum FormFields {
   gender = 'gender',
   country = 'country',
   city = 'city',
-  address = 'address'
+  address = 'address',
+  custom = 'custom'
 }
 
 export enum FormFieldsType {
   Input = 'Input',
   Select = 'Select',
+  Custom = 'Custom'
 }
 
 export interface BasicTemplateProps {
@@ -86,4 +88,7 @@ export const BasicTemplate: Array<BasicTemplateProps> = [{
 }, {
   type: FormFieldsType.Input,
   name: FormFields.address
+}, {
+  type: FormFieldsType.Custom,
+  name: FormFields.custom
 }]

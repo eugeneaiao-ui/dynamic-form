@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Form } from 'antd'
+import { Form, FormProps } from 'antd'
 import FormContext, { FormProvider } from './FormContext'
 import FormConSumer from './FormConsumer'
 
@@ -15,10 +15,10 @@ interface DynamicFormProps {
     disabled?: boolean
 }
 
-const DynamicForm: React.FC<DynamicFormProps> = ({ children }) => {
+const DynamicForm: React.FC<DynamicFormProps & FormProps> = ({ children, ...rest }) => {
     const ctx = useContext(FormContext)
     return (
-        <Form form={ctx.form} layout="vertical">
+        <Form form={ctx.form} layout="vertical" {...rest}>
             {children}
         </Form>
     )

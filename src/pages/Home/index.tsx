@@ -5,6 +5,7 @@ import { BasicTemplate, FormFields } from "../../DynamicForm/FormTemplate";
 import { AsyncFormFields, AsyncParams } from "../../DynamicForm/AsyncFormFields";
 import { Middleware } from "../../abstract/MiniMiddleware";
 import FormContext from "../../DynamicForm/FormContext";
+import { Button } from "antd";
 
 // 中间件定义, 守卫负责鉴权
 const guideMiddleware: Middleware<middlewareCtx> = (ctx, next) => {
@@ -13,7 +14,8 @@ const guideMiddleware: Middleware<middlewareCtx> = (ctx, next) => {
         return ctx.fieldProps = {
             ...fieldProps,
             componentProps: {
-                disabled: true
+                ...fieldProps?.componentProps,
+                disabled: true,
             }
         }
     }
@@ -81,7 +83,24 @@ function useInitialData(id: string) {
             [FormFields.name]: "Eugene",
             [FormFields.age]: "27",
             [FormFields.school]: "SZU",
-            [FormFields.gender]: "Man"
+            [FormFields.gender]: "Man",
+            [FormFields.custom]: [{
+                title: 'test',
+                key: '1',
+                impact: '',
+            }, {
+                title: 'test',
+                key: '2',
+                impact: '',
+            }, {
+                title: 'test',
+                key: '3',
+                impact: '',
+            }, {
+                title: 'test',
+                key: '4',
+                impact: '',
+            }]
         })
     }, [id])
 
@@ -126,14 +145,19 @@ const HomePage: React.FC = () => {
         }
     }
 
+    const handleSubmit = (v: any) => {
+        console.log(v)
+    }
+
     return (
         <div>
             <h1>Welcome to the Home Page</h1>
-            <DynamicForm>
+            <DynamicForm onFinish={handleSubmit}>
                 <p>This is a dynamic form inside the home page.</p>
                 <p>Display Mode: {displayMode} <button onClick={handleChangeMode}>Change Mode</button></p>
                 <p>Permissions {permission} <button onClick={handlePermission}>Set Permission</button></p>
                 <FormConSumer formConfig={formConfig} />
+                <Button htmlType="submit" >Submit</Button>
             </DynamicForm>
         </div>
     );

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, FormInstance, FormItemProps, Input, Select } from 'antd';
 import { useUpdateEffect, useRequest } from 'ahooks'
 import { FormConfig, FormFieldsType } from './FormTemplate';
+import { TableForm } from '../component/TableForm'
 
 export const renderField = (field: FormConfig) => {
   const { type, componentProps = {} } = field
@@ -12,6 +13,12 @@ export const renderField = (field: FormConfig) => {
       return (
         <Select {...componentProps} />
       );
+    case FormFieldsType.Custom: {
+      return (
+        <TableForm name={field.name} {...componentProps} />
+      )
+    }
+
     default:
       return null;
   }

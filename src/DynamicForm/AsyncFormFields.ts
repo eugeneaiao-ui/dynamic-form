@@ -141,5 +141,28 @@ export const AsyncFormFields: Record<FormFields, FormFieldsParams> = {
         componentProps: {
             placeholder: 'Enter your address'
         }
+    },
+    [FormFields.custom]: {
+        label: 'Custom',
+        componentProps: {
+            tableConfig: [{
+                dataIndex: 'key',
+                title: 'No',
+            }, {
+                dataIndex: 'title',
+                title: 'Title',
+            }, {
+                dataIndex: 'impact',
+                title: 'Impact',
+                type: 'Select',
+                props: {
+                    options: [{value: '123', label: 'Test'}],
+                }
+            }, {
+                dataIndex: 'justification',
+                title: 'Justification',
+                type: 'Input'
+            }]
+        }
     }
 }
