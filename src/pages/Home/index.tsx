@@ -5,6 +5,7 @@ import { BasicTemplate, FormFields } from "../../DynamicForm/FormTemplate";
 import { AsyncFormFields, AsyncParams } from "../../DynamicForm/AsyncFormFields";
 import { Middleware } from "../../abstract/MiniMiddleware";
 import FormContext from "../../DynamicForm/FormContext";
+import { DataSourceManager } from '../../DynamicForm/DatasourceManagement'
 import { Button } from "antd";
 
 // 中间件定义, 守卫负责鉴权
@@ -54,10 +55,17 @@ const dataSourceMiddleware: Middleware<middlewareCtx> = (ctx, next) => {
         next();
         return;
     }
-    const type = fieldProps?.dataSource?.type
+
+    let dataSourceConf = fieldProps?.dataSource
+
+    if (typeof dataSourceConf === 'string') {
+        dataSourceConf = DataSourceManager.getDataSource(fieldProps.dataSource)
+    };
+
+    const type = dataSourceConf.type
 
     if (type === 'store') {
-        const storeKey = fieldProps?.dataSource?.storeKey;
+        const storeKey = dataSourceConf.storeKey;
         ctx.fieldProps = {
             ...fieldProps,
             componentProps: {
@@ -67,7 +75,6 @@ const dataSourceMiddleware: Middleware<middlewareCtx> = (ctx, next) => {
         }
         next()
     }
-    next();
 }
 
 // 字段模板分离

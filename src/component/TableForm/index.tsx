@@ -46,7 +46,6 @@ export const TableForm: React.FC<TableFormProps> = ({ name, value, onChange }) =
                             const fieldKey = record.key;
                             return <Form.Item dependencies={[[fieldKey, 'impact']]} rules={[({ getFieldValue }) => {
                                 const impactValue = getFieldValue([name, fieldKey, 'impact']);
-                                console.log(impactValue)
                                 return {}
                             }]} name={[fieldKey, item.dataIndex]}>
                                 <Input />

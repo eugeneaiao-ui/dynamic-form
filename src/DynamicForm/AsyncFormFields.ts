@@ -1,7 +1,7 @@
 import { FormItemProps } from "antd"
 import { FormConfig, FormFields } from "./FormTemplate"
 
-enum DataSourceType {
+export enum DataSourceType {
     API = 'api',
     STORE = 'store'
 }
@@ -19,7 +19,7 @@ interface StoreDataSource {
     storeKey: string;
 }
 
-type DataSource = ApiDataSource | StoreDataSource
+type DataSource = ApiDataSource | StoreDataSource | string
 
 export type DependentType = 'compute' | 'fetch';
 
@@ -110,11 +110,7 @@ export const AsyncFormFields: Record<FormFields, FormFieldsParams> = {
             options: [],
             placeholder: 'Select your country'
         },
-        dataSource: {
-            type: DataSourceType.STORE,
-            module: 'common',
-            storeKey: FormFields.country
-        }
+        dataSource:  FormFields.country
     },
     [FormFields.city]: {
         name: FormFields.city,
@@ -156,7 +152,7 @@ export const AsyncFormFields: Record<FormFields, FormFieldsParams> = {
                 title: 'Impact',
                 type: 'Select',
                 props: {
-                    options: [{value: '123', label: 'Test'}],
+                    options: [{ value: '123', label: 'Test' }],
                 }
             }, {
                 dataIndex: 'justification',

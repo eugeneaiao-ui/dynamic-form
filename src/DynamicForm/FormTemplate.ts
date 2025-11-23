@@ -40,7 +40,7 @@ interface StoreDataSource {
   storeKey: string;
 }
 
-type DataSource = ApiDataSource | StoreDataSource
+export type DataSource = ApiDataSource | StoreDataSource
 
 export interface DependentConfig {
   relyOn: string[]
