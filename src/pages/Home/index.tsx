@@ -56,10 +56,10 @@ const dataSourceMiddleware: Middleware<middlewareCtx> = (ctx, next) => {
         return;
     }
 
-    let dataSourceConf = fieldProps?.dataSource
+    let dataSourceConf: any = fieldProps?.dataSource
 
     if (typeof dataSourceConf === 'string') {
-        dataSourceConf = DataSourceManager.getDataSource(fieldProps.dataSource)
+        dataSourceConf = DataSourceManager.getDataSource(dataSourceConf)
     };
 
     const type = dataSourceConf.type
