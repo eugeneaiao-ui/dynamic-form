@@ -13,6 +13,7 @@ import {
   useDynamicConfig,
 } from '../../src';
 import type { FormConfigFields, FormTemplate } from '../../src';
+import { JsonFormExample } from '../ai/JsonFormExample';
 
 interface Values {
   name?: string;
@@ -178,6 +179,7 @@ export function Playground() {
           </Typography.Paragraph>
         )}
       </Card>
+      <JsonFormExample />
       <footer>Try switching countries, changing modes, or adding a field without remounting the form.</footer>
     </main>
   );

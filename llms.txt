@@ -1,0 +1,32 @@
+# Dynamic Form
+
+> MIT-licensed TypeScript dynamic form engine for React and Ant Design. Supports schema-driven forms, low-code applications, and AI-assisted form development.
+
+Repository: https://github.com/eugeneaiao-ui/dynamic-form
+Package name: @eugeneaiao-ui/dynamic-form
+Status: source and tarball installation; not published to npm.
+Core has no React or Ant Design imports. UI adapters support edit, preview, snapshot, validation, dependent fields, async options, and custom controls.
+
+## Start here
+
+- [English overview](https://raw.githubusercontent.com/eugeneaiao-ui/dynamic-form/main/README.en.md): capabilities, installation, minimal example.
+- [Chinese overview](https://raw.githubusercontent.com/eugeneaiao-ui/dynamic-form/main/README.md): documentation index.
+- [AI and low-code integration](https://raw.githubusercontent.com/eugeneaiao-ui/dynamic-form/main/docs/AI_INTEGRATION.md): JSON generation, validation, renderer, limitations.
+- [Configuration JSON Schema](https://raw.githubusercontent.com/eugeneaiao-ui/dynamic-form/main/schemas/form-definition.schema.json): version 1 serializable configuration subset, not a schema for submitted values.
+- [JSON example](https://raw.githubusercontent.com/eugeneaiao-ui/dynamic-form/main/examples/ai/service-request.json): runnable service request form.
+
+## Reference
+
+- [Configuration](https://raw.githubusercontent.com/eugeneaiao-ui/dynamic-form/main/docs/CONFIGURATION.md): template, fields, middleware, data sources and dependencies.
+- [API](https://raw.githubusercontent.com/eugeneaiao-ui/dynamic-form/main/docs/API.md): exported interfaces.
+- [Recipes](https://raw.githubusercontent.com/eugeneaiao-ui/dynamic-form/main/docs/RECIPES.md): common application patterns.
+- [Quick start](https://raw.githubusercontent.com/eugeneaiao-ui/dynamic-form/main/docs/GETTING_STARTED.md): complete typechecked example.
+- [Example JSON adapter](https://raw.githubusercontent.com/eugeneaiao-ui/dynamic-form/main/examples/ai/parse-definition.ts): Ajv validation plus field/source checks; example code, not a package export.
+
+## Integration boundaries
+
+- The JSON contract covers built-in controls and serializable properties only. It does not execute JavaScript, import components, or accept arbitrary API URLs.
+- Host-approved data-source names may be referenced; application code owns network access and authorization.
+- Advanced calculations, custom controls and renderers use the TypeScript API, registered by the host.
+- The library is a form engine, not a complete visual drag-and-drop builder, LLM service, or general-purpose JSON Schema form renderer.
+- llms.txt is a documentation index, not a search-indexing or AI-recommendation guarantee.

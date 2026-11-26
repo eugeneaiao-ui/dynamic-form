@@ -1,0 +1,18 @@
+{
+  "description": "TypeScript dynamic form engine for React and Ant Design, with schema-driven configuration for low-code apps and AI-assisted form development.",
+  "homepage": "https://github.com/eugeneaiao-ui/dynamic-form#readme",
+  "topics": [
+    "dynamic-form",
+    "form-builder",
+    "react",
+    "antd",
+    "typescript",
+    "low-code",
+    "schema-driven",
+    "ai-assisted-development",
+    "json-schema",
+    "form-validation",
+    "config-driven",
+    "react-forms"
+  ]
+}

@@ -1,71 +1,88 @@
-# Dynamic Form
+# Dynamic Form — 低代码与 AI 辅助开发的动态表单引擎
 
-独立的 TypeScript 动态表单库：纯配置引擎 + React / Ant Design 渲染适配器。支持模板与字段配置合并、中间件、字段联动、异步选项、编辑 / 预览 / 快照，以及自定义控件。
+[English](README.en.md) · [快速开始](docs/GETTING_STARTED.md) · [配置手册](docs/CONFIGURATION.md) · [常用场景](docs/RECIPES.md) · [API](docs/API.md)
 
-业务接口、状态管理、上传组件和权限服务通过适配器注入，不包含具体业务模块。
+面向 React / Ant Design 的 TypeScript 动态表单引擎，支持低代码应用的表单渲染和 AI 辅助生成配置。用 TypeScript 或受约束的 JSON 配置表单结构、校验、选项和字段联动。独立 core 引擎负责生成配置，React / Ant Design 适配器负责渲染编辑、预览与快照。
 
-## 本地运行
+- **结构与规则分离**：template 定义字段顺序和布局，fields 定义标签、校验和控件属性。
+- **适配现有项目**：支持自定义组件、业务请求客户端、状态数据和日期适配器。
+- **可独立使用**：core 无 React / Ant Design 依赖；库提供 ESM、CommonJS 及类型声明。
+- **动态更新**：配置变更立即生效，异步联动会丢弃过期结果。
 
-开发环境：Node.js 20.19+ 或 22.12+。
+## 低代码与 AI 开发
+
+- 低代码平台：保存 JSON 配置，接入表单渲染、校验和提交。
+- AI 生成表单：提供 [配置 Schema](schemas/form-definition.schema.json)，先校验输出，再渲染。
+- AI 编程助手：使用 [llms.txt](llms.txt)、API 和示例作为上下文，生成 TypeScript 表单。
+
+运行 npm run dev 可体验 JSON 编辑、校验和预览。详见 [AI / 低代码接入指南](docs/AI_INTEGRATION.md)和[项目发现说明](docs/DISCOVERY.md)。这是表单引擎及接入示例，不包含完整拖拽编辑器或 LLM 服务。
+
+## 先看哪个文档？
+
+| 我想做什么                             | 文档                                |
+| -------------------------------------- | ----------------------------------- |
+| 从零安装并显示第一个表单               | [快速开始](docs/GETTING_STARTED.md) |
+| 查字段、表单、数据源和联动怎么配置     | [配置手册](docs/CONFIGURATION.md)   |
+| 做级联选项、自动计算、自定义组件、快照 | [常用场景](docs/RECIPES.md)         |
+| 查完整接口和默认值                     | [API](docs/API.md)                  |
+| 将现有动态表单迁移进来                 | [迁移指南](docs/MIGRATION.md)       |
+| 排查不刷新、校验、样式和日期问题       | [常见问题](docs/FAQ.md)             |
+| 本地开发、提 PR、构建和准备发布        | [贡献指南](CONTRIBUTING.md)         |
+
+## 运行示例
+
+开发环境使用 Node.js 22.12+；Node.js 20.19+ 也满足当前构建工具的要求。
 
 ```bash
+git clone https://github.com/eugeneaiao-ui/dynamic-form.git
+cd dynamic-form
 npm ci
 npm run dev
-npm run check
-npm run test:package
 ```
 
-演示包含异步级联选项、属性联动、运行时增删字段、三种表单模式与提交校验。
+当前 AI / 低代码补充 PR 合并前，请先检出 `codex/ai-low-code-discovery` 分支查看新增示例。
 
-## 构建与安装
+运行后打开终端显示的地址，可以切换 edit / preview / snapshot、切换国家加载城市、添加字段并提交校验。[最小表单源码](examples/quick-start/ProfileForm.tsx)和[进阶配置源码](examples/configuration/recipes.tsx)参与严格类型检查。
+
+## 安装到自己的项目
+
+当前版本尚未发布到 npm，请先从源码打包：
 
 ```bash
+# 在本仓库
 npm run build
 npm pack
-# 在使用方项目中安装生成的 .tgz
+
+# 在使用方项目，路径替换为实际生成的安装包位置
 npm install /absolute/path/eugeneaiao-ui-dynamic-form-0.1.0.tgz
 ```
 
-包名预设为 `@eugeneaiao-ui/dynamic-form`，尚未发布到 npm。支持 ESM / CommonJS，两个格式均提供类型声明。
+使用 UI 入口时，需要宿主已安装 React、ReactDOM 和 Ant Design。新项目可使用已验证的 React 18 + AntD 5 组合：
 
-| 入口                                    | 用途                                 | 依赖                        |
-| --------------------------------------- | ------------------------------------ | --------------------------- |
-| `@eugeneaiao-ui/dynamic-form/core`      | 配置生成、布局、依赖计算、数据源管理 | 无 React / Ant Design 依赖  |
-| `@eugeneaiao-ui/dynamic-form`           | React hooks 和 Ant Design 组件       | React、ReactDOM、Ant Design |
-| `@eugeneaiao-ui/dynamic-form/antd`      | 同上，显式适配器入口                 | 同上                        |
-| `@eugeneaiao-ui/dynamic-form/style.css` | 库自身的布局与快照样式               | 显式导入                    |
+```bash
+npm install react@18.3.1 react-dom@18.3.1 antd@5.27.6
+```
 
-UI 适配器支持 React 16.14 / 18 / 19、Ant Design 4.24 / 5；具体配对验证见下方。UI peer dependencies 标记为 optional，以便只使用 core 的项目无需安装 UI 框架；使用 UI 入口时需自行安装三个 peer。Ant Design 4 的日期控件需要注入 moment 适配器，见[迁移指南](docs/MIGRATION.md)。
+已有项目沿用自己的兼容版本即可。只使用 `core` 不需要 UI 依赖。AntD 4 日期控件需要注入 moment 适配器，见[迁移指南](docs/MIGRATION.md#ant-design-4-日期适配)。
 
-## 基础示例
+## 最小用法
 
 ```tsx
+import React from 'react';
 import { DynamicForm, FormComponent, FormFieldType, useDynamicConfig } from '@eugeneaiao-ui/dynamic-form';
-import type { FormConfigFields, FormTemplate } from '@eugeneaiao-ui/dynamic-form';
 import '@eugeneaiao-ui/dynamic-form/style.css';
 
-interface Values {
-  name: string;
-  amount: number;
-}
-
-const template: FormTemplate<Values> = [
-  { type: FormFieldType.Input, name: 'name', span: 12 },
-  { type: FormFieldType.NumberInput, name: 'amount', span: 12 },
-];
-const fields: Record<string, FormConfigFields<Values>> = {
-  name: { label: 'Name', rules: [{ required: true }] },
-  amount: { label: 'Amount', componentProps: { min: 0 } },
-};
+const template = [{ name: 'name', type: FormFieldType.Input }];
+const fields = { name: { label: 'Name', rules: [{ required: true }] } };
 
 function Fields() {
-  const { formConfig } = useDynamicConfig<Values>({ template, fields });
+  const { formConfig } = useDynamicConfig({ template, fields });
   return <FormComponent formConfig={formConfig} />;
 }
 
 export function Example() {
   return (
-    <DynamicForm<Values> onFinish={(values) => console.log(values)}>
+    <DynamicForm onFinish={(values) => console.log(values)}>
       <Fields />
       <button type="submit">Submit</button>
     </DynamicForm>
@@ -73,66 +90,32 @@ export function Example() {
 }
 ```
 
-Hooks 需在 Provider 之下执行。外部页面需要提前获取配置或 form 时，可使用 `DynamicFormProvider` 包裹页面，再在页面内渲染 `DynamicForm`。也保留 `withDynamicForm` 用法。
+将 `Example` 挂载到你的 React 页面即可。Hook 在 `DynamicForm` 内的子组件中执行；表单校验成功才调用 onFinish。[完整教程](docs/GETTING_STARTED.md)继续说明 TypeScript 类型、样式、默认值和提交。
 
-`FormFieldType` 包括 Input、NumberInput、Select、RichTextSelect、TextArea、Date、Custom、Span、Title。Span 只占栅格位置，不生成表单字段。RichTextSelect 默认使用标准 Select，可注册专用控件覆盖。
+## 支持范围
 
-## 联动与数据源
+| 项目              | 当前验证                                               |
+| ----------------- | ------------------------------------------------------ |
+| React / AntD      | React 16.14 + AntD 4.24；React 18.3 / 19.1 + AntD 5.27 |
+| 使用方 TypeScript | React 16 组合使用 TS 4.9.5；现代组合使用 TS 5.9.3      |
+| 包入口            | 根入口、`/antd`、`/core`、`/style.css`                 |
+| 输出              | ESM / CommonJS，各自带类型声明                         |
+| 运行场景          | React 客户端、服务端渲染、纯 TypeScript 配置生成       |
 
-```tsx
-import { DataSourceManager, DataSourceType, DependentTypeEnum } from '@eugeneaiao-ui/dynamic-form';
+peer dependencies 标记为 optional 是为了支持 core-only 安装；使用 UI 入口仍需安装 UI 依赖。日期、上传、富文本等扩展方式见配置和迁移文档。
 
-const sources = new DataSourceManager();
-sources.register('countries', {
-  type: DataSourceType.INLINE,
-  options: [{ label: 'Singapore', value: 'SG' }],
-});
+## 验证与贡献
 
-const address = {
-  label: 'Address',
-  dependenciesConfig: {
-    type: DependentTypeEnum.ATTRIBUTE,
-    dependsOn: ['country'],
-    calculate: ([country]: unknown[]) => ({ disabled: !country }),
-  },
-};
+```bash
+npm run check
+npm run test:package
+npm run check:docs
 ```
 
-将 `dataSources={sources}` 传给 Provider / DynamicForm；字段通过 `dataSource: 'countries'` 使用注册项。支持 INLINE、API、STORE、CEPT 数据源。API 默认为 fetch，业务请求客户端通过构造参数覆盖；STORE / CEPT 分别读取注入的 `dataContext.store` / `dataContext.enums`。
+check 包括类型、ESLint、格式、回归测试及库和演示构建；test:package 将实际 tarball 安装到隔离项目，检查各组合的导入、SSR 和使用方类型；check:docs 检查本地文档链接和基础发布信息。
 
-`dependsOn` 的顺序与 calculate 参数顺序一致；空字符串、false、0 和 null 都会触发联动。异步选项和依赖计算会取消旧请求、丢弃旧结果。API 参数引用其他字段时，必须显式声明 `dependsOn`。
+欢迎通过 [Issues](https://github.com/eugeneaiao-ui/dynamic-form/issues) 反馈问题，通过 PR 贡献代码。请先阅读[贡献指南](CONTRIBUTING.md)。版本变化记录在 [CHANGELOG](CHANGELOG.md)。
 
-## 模式和自定义组件
+## License
 
-`displayMode={FormMode.edit | preview | snapshot}` 控制模式。快照通过 `createSnapshotMiddleware(before, after)` 注入前后值。预览优先使用 `previewRender`，快照优先使用 `snapshotRender`。
-
-`ComponentRegistry` 可为控件分别注册 edit / preview / snapshot 实现，使用 `registry` 注入。上传、富文本、金额等业务控件由宿主注册。单个组件注册会在三种模式复用；只读模式会传入 disabled，控件应遵守它。
-
-详细用法见[API 说明](docs/API.md)和[迁移指南](docs/MIGRATION.md)。
-
-## 引擎改进
-
-- core 独立于 React、Ant Design、状态管理和请求 SDK。
-- 配置生成不修改输入对象；模板、字段、中间件更新立即生效。
-- 权限 false、数值 0、空字符串与 null 保留原意。
-- 数据源和自定义组件可按表单实例隔离，注册项支持释放。
-- 异步任务支持 AbortSignal，避免旧响应覆盖新值和卸载后更新。
-- 同步中间件防止重复 next；异步业务逻辑移到数据源或依赖计算。
-- 严格类型声明、嵌套字段路径、安全路径检查、完整的双模块输出。
-- 默认完整渲染，避免分批挂载时遗漏尚未挂载字段的校验；长表单可显式开启 progressive。
-
-## 验证
-
-`npm run check` 执行严格类型检查、ESLint、核心与 React 回归测试、库构建和演示构建。
-
-`npm run test:package` 将实际 tarball 安装到隔离项目，验证：
-
-- core-only 安装无 React / Ant Design；
-- React 16.14 + Ant Design 4.24、React 18.3 + Ant Design 5.27、React 19.1 + Ant Design 5.27；
-- ESM / CommonJS 导入、服务端渲染、两种模块格式的使用方类型检查、CSS 入口。
-
-CI 执行相同检查并上传构建产物，不自动发布 npm。
-
-## 许可
-
-仓库尚未选定开源许可证，当前包标记为 UNLICENSED。
+[MIT](LICENSE)。许可证标准文本见 [SPDX](https://spdx.org/licenses/MIT.html)。

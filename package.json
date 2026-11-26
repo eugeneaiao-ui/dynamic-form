@@ -1,9 +1,9 @@
 {
   "name": "@eugeneaiao-ui/dynamic-form",
   "version": "0.1.0",
-  "description": "Typed configurable forms with an independent engine and an Ant Design adapter.",
+  "description": "TypeScript dynamic form engine for React and Ant Design, with schema-driven configuration for low-code apps and AI-assisted form development.",
   "type": "module",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -33,12 +33,22 @@
       "require": "./dist/antd.cjs"
     },
     "./style.css": "./dist/style.css",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./schemas/form-definition.schema.json": "./schemas/form-definition.schema.json"
   },
   "files": [
     "dist",
     "README.md",
-    "docs"
+    "README.en.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "docs",
+    "CONTRIBUTING.md",
+    "examples/quick-start",
+    "examples/configuration",
+    "llms.txt",
+    "schemas",
+    "examples/ai"
   ],
   "sideEffects": [
     "**/*.css"
@@ -58,10 +68,12 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "eslint .",
-    "check": "npm run typecheck && npm run lint && npm run format:check && npm test && npm run build && npm run build:demo",
+    "check": "npm run typecheck && npm run lint && npm run format:check && npm run check:docs && npm test && npm run build && npm run build:demo",
     "test:package": "node scripts/package-smoke.mjs",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "check:docs": "node scripts/check-docs.mjs",
+    "prepack": "npm run build"
   },
   "engines": {
     "node": ">=20.19.0"
@@ -93,6 +105,7 @@
     "@types/react": "^19.1.16",
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^5.1.0",
+    "ajv": "8.17.1",
     "antd": "5.27.6",
     "eslint": "^9.36.0",
     "eslint-plugin-react-hooks": "^5.2.0",
@@ -106,5 +119,24 @@
     "typescript-eslint": "^8.46.0",
     "vite": "^7.1.7",
     "vitest": "^3.2.4"
+  },
+  "homepage": "https://github.com/eugeneaiao-ui/dynamic-form#readme",
+  "keywords": [
+    "dynamic-form",
+    "form-builder",
+    "react",
+    "antd",
+    "typescript",
+    "schema",
+    "validation",
+    "low-code",
+    "schema-driven",
+    "ai-assisted-development",
+    "json-schema",
+    "config-driven",
+    "react-forms"
+  ],
+  "publishConfig": {
+    "access": "public"
   }
 }

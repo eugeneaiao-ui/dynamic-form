@@ -1,0 +1,64 @@
+{
+  "$schema": "../../schemas/form-definition.schema.json",
+  "schemaVersion": 1,
+  "template": [
+    {
+      "type": "Title",
+      "label": "AI-generated service request"
+    },
+    {
+      "name": "name",
+      "type": "Input",
+      "span": 12
+    },
+    {
+      "name": "country",
+      "type": "Select",
+      "span": 12
+    },
+    {
+      "name": "description",
+      "type": "TextArea"
+    }
+  ],
+  "fields": {
+    "name": {
+      "label": "Name",
+      "rules": [
+        {
+          "required": true,
+          "message": "Please enter your name."
+        }
+      ]
+    },
+    "country": {
+      "label": "Country",
+      "rules": [
+        {
+          "required": true,
+          "message": "Please choose a country."
+        }
+      ],
+      "componentProps": {
+        "options": [
+          {
+            "label": "Singapore",
+            "value": "SG"
+          },
+          {
+            "label": "Philippines",
+            "value": "PH"
+          }
+        ]
+      }
+    },
+    "description": {
+      "label": "Request description",
+      "componentProps": {
+        "rows": 3,
+        "maxLength": 500,
+        "showCount": true
+      }
+    }
+  }
+}
