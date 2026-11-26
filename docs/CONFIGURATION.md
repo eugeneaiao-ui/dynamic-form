@@ -21,8 +21,8 @@ DynamicForm   维护表单数据、模式并处理校验和提交
 ### 模板与字段如何合并？
 
 ```tsx
-import { FormFieldType } from '@eugenedfsfsvg/dynamic-form';
-import type { FormConfigFields, FormTemplate } from '@eugenedfsfsvg/dynamic-form';
+import { FormFieldType } from 'formino';
+import type { FormConfigFields, FormTemplate } from 'formino';
 
 interface Values {
   name: string;
@@ -78,7 +78,7 @@ TextArea 配置 maxLength 后按 UTF-16 计数，避免截断 emoji 的代理对
 ### 布局和嵌套名称
 
 ```tsx
-import { fieldKey } from '@eugenedfsfsvg/dynamic-form/core';
+import { fieldKey } from 'formino/core';
 
 const emailPath = ['profile', 'email'];
 // 模板项：{ name: emailPath, type: FormFieldType.Input, span: 16 }
@@ -199,7 +199,7 @@ ATTRIBUTE 的第二个参数是当前 componentProps；COMPUTE / FETCH / STORE �
 ## 6. 中间件
 
 ```tsx
-import type { FormMiddlewareContext, Middleware } from '@eugenedfsfsvg/dynamic-form';
+import type { FormMiddlewareContext, Middleware } from 'formino';
 
 const compact: Middleware<FormMiddlewareContext> = (context, next) => {
   context.fieldProps.componentProps = { size: 'small', ...context.fieldProps.componentProps };

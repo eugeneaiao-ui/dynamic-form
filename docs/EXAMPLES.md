@@ -13,12 +13,12 @@ npm run dev
 
 打开终端地址，通过顶部标签选择。也可以在该地址后加 ?example=basic、?example=long、?example=linked 或 ?example=ai。
 
-| 示例                 | 核心能力                                                   | 源码                                                                                                    |
-| -------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| Basics & snapshots   | 编辑、预览、字段差异与配置更新                             | [Playground.tsx](https://github.com/eugeneaiao-ui/dynamic-form/blob/main/examples/basic/Playground.tsx) |
-| Long forms           | 100 / 300 / 1000 字段、三列布局、完整 / 分批挂载、整表校验 | [LongFormExample.tsx](../examples/advanced/LongFormExample.tsx)                                         |
-| Complex dependencies | 异步级联、多级计算、动态禁用、条件校验                     | [ComplexDependenciesExample.tsx](../examples/advanced/ComplexDependenciesExample.tsx)                   |
-| AI / JSON            | JSON 校验后渲染、修改配置、校验及提交                      | [JsonFormExample.tsx](../examples/ai/JsonFormExample.tsx)                                               |
+| 示例                 | 核心能力                                                   | 源码                                                                                               |
+| -------------------- | ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| Basics & snapshots   | 编辑、预览、字段差异与配置更新                             | [Playground.tsx](https://github.com/eugeneaiao-ui/formino/blob/main/examples/basic/Playground.tsx) |
+| Long forms           | 100 / 300 / 1000 字段、三列布局、完整 / 分批挂载、整表校验 | [LongFormExample.tsx](../examples/advanced/LongFormExample.tsx)                                    |
+| Complex dependencies | 异步级联、多级计算、动态禁用、条件校验                     | [ComplexDependenciesExample.tsx](../examples/advanced/ComplexDependenciesExample.tsx)              |
+| AI / JSON            | JSON 校验后渲染、修改配置、校验及提交                      | [JsonFormExample.tsx](../examples/ai/JsonFormExample.tsx)                                          |
 
 ## 1. 长表单：300 字段仍是一张表单
 

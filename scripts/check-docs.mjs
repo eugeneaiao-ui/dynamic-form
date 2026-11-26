@@ -34,7 +34,7 @@ function canonical(source) {
 }
 const llms = readFileSync(path.join(root, 'llms.txt'), 'utf8');
 for (const match of llms.matchAll(
-  /https:\/\/raw\.githubusercontent\.com\/eugeneaiao-ui\/dynamic-form\/(?:main|v\d+\.\d+\.\d+)\/([^\s)]+)/g,
+  /https:\/\/raw\.githubusercontent\.com\/eugeneaiao-ui\/formino\/(?:main|(?:formino-)?v\d+\.\d+\.\d+)\/([^\s)]+)/g,
 )) {
   assert(existsSync(path.join(root, match[1])), 'Broken llms.txt target: ' + match[1]);
 }
@@ -57,10 +57,7 @@ for (const file of files) {
     links++;
   }
   for (const match of markdown.matchAll(/<!-- example: ([^ ]+) -->\s*```tsx\n([\s\S]*?)\n```/g)) {
-    const source = readFileSync(path.join(root, match[1]), 'utf8').replaceAll(
-      "from '../../src'",
-      "from '@eugenedfsfsvg/dynamic-form'",
-    );
+    const source = readFileSync(path.join(root, match[1]), 'utf8').replaceAll("from '../../src'", "from 'formino'");
     assert.equal(canonical(match[2]), canonical(source), 'Quick-start snippet is out of sync with ' + match[1]);
     examples++;
   }

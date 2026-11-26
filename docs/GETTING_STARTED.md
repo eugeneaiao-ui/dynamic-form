@@ -9,10 +9,10 @@
 在使用方 React / TypeScript 项目运行：
 
 ```bash
-npm install @eugenedfsfsvg/dynamic-form
+npm install formino
 ```
 
-npm 包作用域是当前维护者账号 eugenedfsfsvg，与 GitHub 仓库拥有者名称不同。
+Formino 使用无作用域包名 formino；无需在安装命令中添加维护者账号。
 
 已有 React / AntD 的项目沿用兼容版本。新项目可安装已验证组合：
 
@@ -21,7 +21,7 @@ npm install react@18.3.1 react-dom@18.3.1 antd@5.27.6
 npm install --save-dev typescript@5.9.3 @types/react@18 @types/react-dom@18
 ```
 
-只用纯 TypeScript 引擎时，从 `@eugenedfsfsvg/dynamic-form/core` 导入，无需安装 UI peer。
+只用纯 TypeScript 引擎时，从 `formino/core` 导入，无需安装 UI peer。
 
 ## 第二步：导入样式
 
@@ -31,7 +31,7 @@ npm install --save-dev typescript@5.9.3 @types/react@18 @types/react-dom@18
 // AntD 5 的可选全局 reset；若宿主已有 reset，可沿用宿主设置。
 import 'antd/dist/reset.css';
 // 必须导入本库样式，供预览、快照等使用。
-import '@eugenedfsfsvg/dynamic-form/style.css';
+import 'formino/style.css';
 ```
 
 AntD 4 使用 `antd/dist/antd.css`，而不是上述 reset 路径。
@@ -45,8 +45,8 @@ AntD 4 使用 `antd/dist/antd.css`，而不是上述 reset 路径。
 ```tsx
 import React from 'react';
 import { Button } from 'antd';
-import { DynamicForm, FormComponent, FormFieldType, useDynamicConfig } from '@eugenedfsfsvg/dynamic-form';
-import type { FormConfigFields, FormTemplate } from '@eugenedfsfsvg/dynamic-form';
+import { DynamicForm, FormComponent, FormFieldType, useDynamicConfig } from 'formino';
+import type { FormConfigFields, FormTemplate } from 'formino';
 
 export interface ProfileValues {
   name: string;

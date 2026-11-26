@@ -1,14 +1,14 @@
 # Contributing
 
-欢迎通过 Issue 或 Pull Request 改进 Dynamic Form。
+欢迎通过 Issue 或 Pull Request 改进 Formino。
 
 ## 开发环境
 
 使用 Node.js 22.12+ 和 npm。克隆仓库后安装依赖。
 
 ```bash
-git clone https://github.com/eugeneaiao-ui/dynamic-form.git
-cd dynamic-form
+git clone https://github.com/eugeneaiao-ui/formino.git
+cd formino
 npm ci
 npm run dev
 ```
@@ -52,12 +52,12 @@ PR 应描述问题、变更后的行为、验证命令及涉及的兼容性。�
 
 ## 维护者发布准备
 
-npm 包名为 @eugenedfsfsvg/dynamic-form。这些步骤由维护者手动执行，不会由 CI 自动发布。
+npm 包名为 formino。这些步骤由维护者手动执行，不会由 CI 自动发布。
 
-1. 更新版本和 CHANGELOG，确认包名的 npm scope 可用且当前账号有发布权限。
+1. 更新版本和 CHANGELOG，确认 npm 包名可用且当前账号有发布权限。
 2. 执行 npm ci、npm run check、npm run test:package。
 3. 执行 npm pack --dry-run，检查 dist、类型声明、文档、LICENSE。
 4. 执行 npm pack，在使用方实际安装生成的 tarball。
-5. 确认后手动执行 npm publish --access public，并创建对应版本的 Git tag / release。
+5. 确认后手动执行 npm publish --access public，并创建对应版本的 Git tag / release。Formino 首次发布使用 formino-v0.1.0，旧 scoped 包的 v0.1.0 标签保留。
 
-本仓库已有 publishConfig.access=public，仅配置作用域包的公开访问级别，不会自动触发发布。发布记录应注明验证结果。远程 CI 因账号级限制无法启动时，应记录限制和本地验证结果，不能将未启动视作通过。
+本仓库已有 publishConfig.access=public，明确使用公开访问级别，不会自动触发发布。发布记录应注明验证结果。远程 CI 因账号级限制无法启动时，应记录限制和本地验证结果，不能将未启动视作通过。

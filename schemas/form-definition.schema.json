@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/eugeneaiao-ui/dynamic-form/main/schemas/form-definition.schema.json",
-  "title": "Dynamic Form serializable configuration v1",
-  "description": "JSON subset of Dynamic Form configuration for low-code applications and AI-assisted form generation. This describes configuration, not submitted form data.",
+  "$id": "https://raw.githubusercontent.com/eugeneaiao-ui/formino/main/schemas/form-definition.schema.json",
+  "title": "Formino serializable configuration v1",
+  "description": "JSON subset of Formino configuration for low-code applications and AI-assisted form generation. This describes configuration, not submitted form data.",
   "type": "object",
   "additionalProperties": false,
   "required": ["schemaVersion", "template"],

@@ -2,7 +2,14 @@
 
 ## Unreleased
 
-## 0.1.0 — 2026-11-26
+## formino 0.1.0 — 2026-11-26
+
+- Rename the project and GitHub repository to Formino; publish the unscoped package formino.
+- Update installation, import paths, documentation, AI discovery metadata and illustrated examples.
+- Keep the public API unchanged and preserve the previous scoped package and its v0.1.0 source tag.
+- Use source tag formino-v0.1.0 for this package; historical benchmark measurements are unchanged.
+
+## @eugenedfsfsvg/dynamic-form 0.1.0 — 2026-11-26
 
 Initial public npm release: @eugenedfsfsvg/dynamic-form.
 

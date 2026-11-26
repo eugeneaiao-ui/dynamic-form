@@ -1,35 +1,35 @@
-# Dynamic Form
+# Formino
 
 > MIT-licensed TypeScript dynamic form engine for React and Ant Design. Supports schema-driven forms, low-code applications, and AI-assisted form development.
 
-Repository: https://github.com/eugeneaiao-ui/dynamic-form
-Package name: @eugenedfsfsvg/dynamic-form
-Install: npm install @eugenedfsfsvg/dynamic-form
+Repository: https://github.com/eugeneaiao-ui/formino
+Package name: formino
+Install: npm install formino
 Release: 0.1.0
-npm: https://www.npmjs.com/package/@eugenedfsfsvg/dynamic-form
+npm: https://www.npmjs.com/package/formino
 Core has no React or Ant Design imports. UI adapters support edit, preview, snapshot, validation, dependent fields, async options, and custom controls.
 
 ## Start here
 
-- [English overview](https://raw.githubusercontent.com/eugeneaiao-ui/dynamic-form/v0.1.0/README.en.md): capabilities, installation, minimal example.
-- [Chinese overview](https://raw.githubusercontent.com/eugeneaiao-ui/dynamic-form/v0.1.0/README.md): documentation index.
-- [AI and low-code integration](https://raw.githubusercontent.com/eugeneaiao-ui/dynamic-form/v0.1.0/docs/AI_INTEGRATION.md): JSON generation, validation, renderer, limitations.
-- [Configuration JSON Schema](https://raw.githubusercontent.com/eugeneaiao-ui/dynamic-form/v0.1.0/schemas/form-definition.schema.json): version 1 serializable configuration subset, not a schema for submitted values.
-- [JSON example](https://raw.githubusercontent.com/eugeneaiao-ui/dynamic-form/v0.1.0/examples/ai/service-request.json): runnable service request form.
+- [English overview](https://raw.githubusercontent.com/eugeneaiao-ui/formino/formino-v0.1.0/README.en.md): capabilities, installation, minimal example.
+- [Chinese overview](https://raw.githubusercontent.com/eugeneaiao-ui/formino/formino-v0.1.0/README.md): documentation index.
+- [AI and low-code integration](https://raw.githubusercontent.com/eugeneaiao-ui/formino/formino-v0.1.0/docs/AI_INTEGRATION.md): JSON generation, validation, renderer, limitations.
+- [Configuration JSON Schema](https://raw.githubusercontent.com/eugeneaiao-ui/formino/formino-v0.1.0/schemas/form-definition.schema.json): version 1 serializable configuration subset, not a schema for submitted values.
+- [JSON example](https://raw.githubusercontent.com/eugeneaiao-ui/formino/formino-v0.1.0/examples/ai/service-request.json): runnable service request form.
 
 ## Long forms and dependencies
 
-- [Illustrated examples](https://raw.githubusercontent.com/eugeneaiao-ui/dynamic-form/v0.1.0/docs/EXAMPLES.md): 100/300/1000-field demo, asynchronous cascade, multi-stage calculations, dynamic attributes, conditional validation, snapshots.
-- [Measured browser performance](https://raw.githubusercontent.com/eugeneaiao-ui/dynamic-form/v0.1.0/docs/PERFORMANCE.md): production-build measurements, environment, raw samples and reproducible scripts.
+- [Illustrated examples](https://raw.githubusercontent.com/eugeneaiao-ui/formino/formino-v0.1.0/docs/EXAMPLES.md): 100/300/1000-field demo, asynchronous cascade, multi-stage calculations, dynamic attributes, conditional validation, snapshots.
+- [Measured browser performance](https://raw.githubusercontent.com/eugeneaiao-ui/formino/formino-v0.1.0/docs/PERFORMANCE.md): production-build measurements, environment, raw samples and reproducible scripts.
 - Progressive mounting renders batches but retains the complete DOM afterwards. Full-form validation must wait until every field is registered.
 
 ## Reference
 
-- [Configuration](https://raw.githubusercontent.com/eugeneaiao-ui/dynamic-form/v0.1.0/docs/CONFIGURATION.md): template, fields, middleware, data sources and dependencies.
-- [API](https://raw.githubusercontent.com/eugeneaiao-ui/dynamic-form/v0.1.0/docs/API.md): exported interfaces.
-- [Recipes](https://raw.githubusercontent.com/eugeneaiao-ui/dynamic-form/v0.1.0/docs/RECIPES.md): common application patterns.
-- [Quick start](https://raw.githubusercontent.com/eugeneaiao-ui/dynamic-form/v0.1.0/docs/GETTING_STARTED.md): complete typechecked example.
-- [Example JSON adapter](https://raw.githubusercontent.com/eugeneaiao-ui/dynamic-form/v0.1.0/examples/ai/parse-definition.ts): Ajv validation plus field/source checks; example code, not a package export.
+- [Configuration](https://raw.githubusercontent.com/eugeneaiao-ui/formino/formino-v0.1.0/docs/CONFIGURATION.md): template, fields, middleware, data sources and dependencies.
+- [API](https://raw.githubusercontent.com/eugeneaiao-ui/formino/formino-v0.1.0/docs/API.md): exported interfaces.
+- [Recipes](https://raw.githubusercontent.com/eugeneaiao-ui/formino/formino-v0.1.0/docs/RECIPES.md): common application patterns.
+- [Quick start](https://raw.githubusercontent.com/eugeneaiao-ui/formino/formino-v0.1.0/docs/GETTING_STARTED.md): complete typechecked example.
+- [Example JSON adapter](https://raw.githubusercontent.com/eugeneaiao-ui/formino/formino-v0.1.0/examples/ai/parse-definition.ts): Ajv validation plus field/source checks; example code, not a package export.
 
 ## Integration boundaries
 

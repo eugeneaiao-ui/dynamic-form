@@ -2,6 +2,16 @@
 
 本库从现有动态表单实现抽离并整理。原业务项目暂不替换依赖；先以 tarball 在使用方验证，再逐步替换引擎导入。配置中的业务枚举、接口、权限判断和专用控件仍由使用方维护。
 
+## 从旧 npm 包迁移到 Formino
+
+旧包 @eugenedfsfsvg/dynamic-form@0.1.0 仍可使用；新包名为 formino。
+
+1. 卸载 @eugenedfsfsvg/dynamic-form，安装 formino。
+2. 将根入口和 /core、/antd、/style.css、/schemas/form-definition.schema.json 的包名前缀改为 formino。
+3. 组件、Hook、类型、字段配置及数据源 API 保持不变，无需重写表单。
+
+GitHub 仓库改名为 eugeneaiao-ui/formino，旧链接由 GitHub 重定向。新包源码标签为 formino-v0.1.0；旧包标签 v0.1.0 保留。
+
 ## 导入映射
 
 | 原有能力                                  | 独立库                                               |
@@ -20,7 +30,7 @@
 
 ## 替换步骤
 
-1. 在使用方安装 npm 包 @eugenedfsfsvg/dynamic-form；验证未发布源码时，可 npm run build、npm pack 后安装 tarball。
+1. 在使用方安装 npm 包 formino；验证未发布源码时，可 npm run build、npm pack 后安装 tarball。
 2. 替换引擎 import，显式导入库的 style.css。现有 Ant Design 全局样式仍由宿主加载。
 3. 将专用控件注册到 ComponentRegistry，将请求、枚举、状态数据注入 DataSourceManager / dataContext。
 4. 对照下述差异调整配置，并验证新增、编辑、预览、快照、校验及异步联动。
@@ -29,8 +39,8 @@
 ## 业务请求适配
 
 ```tsx
-import { DataSourceManager, DataSourceType } from '@eugenedfsfsvg/dynamic-form';
-import type { SelectOption } from '@eugenedfsfsvg/dynamic-form';
+import { DataSourceManager, DataSourceType } from 'formino';
+import type { SelectOption } from 'formino';
 
 interface Values {
   country: string;
@@ -77,7 +87,7 @@ Ant Design 5 默认使用库内 dayjs 适配器。Ant Design 4 默认 DatePicker
 
 ```tsx
 import moment from 'moment';
-import type { DateAdapter } from '@eugenedfsfsvg/dynamic-form';
+import type { DateAdapter } from 'formino';
 
 const dateAdapter: DateAdapter = {
   parse: (value, format) => moment(value as moment.MomentInput, format),

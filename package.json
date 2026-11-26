@@ -1,7 +1,7 @@
 {
-  "name": "@eugenedfsfsvg/dynamic-form",
+  "name": "formino",
   "version": "0.1.0",
-  "description": "TypeScript dynamic form engine for React and Ant Design: long forms, complex field dependencies, low-code apps and AI-assisted development.",
+  "description": "Formino: a TypeScript dynamic form engine for React and Ant Design, with long forms, complex dependencies, low-code and AI-assisted development.",
   "type": "module",
   "license": "MIT",
   "main": "./dist/index.cjs",
@@ -57,10 +57,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/eugeneaiao-ui/dynamic-form.git"
+    "url": "https://github.com/eugeneaiao-ui/formino.git"
   },
   "bugs": {
-    "url": "https://github.com/eugeneaiao-ui/dynamic-form/issues"
+    "url": "https://github.com/eugeneaiao-ui/formino/issues"
   },
   "scripts": {
     "dev": "vite --config vite.demo.config.ts",
@@ -126,8 +126,9 @@
     "vite": "^7.1.7",
     "vitest": "^3.2.4"
   },
-  "homepage": "https://github.com/eugeneaiao-ui/dynamic-form#readme",
+  "homepage": "https://github.com/eugeneaiao-ui/formino#readme",
   "keywords": [
+    "formino",
     "dynamic-form",
     "form-builder",
     "react",

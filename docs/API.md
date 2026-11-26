@@ -7,7 +7,7 @@
 `FormConfigBuilder<Values, Field>` 是纯 TypeScript 引擎，接受 template 与 fields。template 决定顺序、类型和栅格；fields 按字段 key 合并，字段定义优先于模板默认属性。中间件最终修改 context.fieldProps。
 
 ```ts
-import { FormConfigBuilder, FormFieldType } from '@eugenedfsfsvg/dynamic-form/core';
+import { FormConfigBuilder, FormFieldType } from 'formino/core';
 
 const config = new FormConfigBuilder([{ type: FormFieldType.Input, name: 'name', span: 12 }], {
   name: { label: 'Name' },
