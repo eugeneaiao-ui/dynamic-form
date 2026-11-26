@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Add illustrated examples for long forms, multi-stage dependencies, conditional validation, snapshots and AI-generated configuration.
+- Add production Chrome benchmarks with raw measurements, environment metadata and reproducible screenshot generation.
+
 - Add a JSON configuration schema, validated low-code/AI form example, integration guide, and llms.txt documentation index.
 - Clarify low-code and AI-assisted development use cases in repository/package metadata and both READMEs.
 
