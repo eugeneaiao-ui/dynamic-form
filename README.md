@@ -1,13 +1,21 @@
-# Dynamic Form
+# Dynamic Form — 低代码与 AI 辅助开发的动态表单引擎
 
 [English](README.en.md) · [快速开始](docs/GETTING_STARTED.md) · [配置手册](docs/CONFIGURATION.md) · [常用场景](docs/RECIPES.md) · [API](docs/API.md)
 
-用 TypeScript 配置表单结构、校验、选项和字段联动。独立 core 引擎负责生成配置，React / Ant Design 适配器负责渲染编辑、预览与快照。
+面向 React / Ant Design 的 TypeScript 动态表单引擎，支持低代码应用的表单渲染和 AI 辅助生成配置。用 TypeScript 或受约束的 JSON 配置表单结构、校验、选项和字段联动。独立 core 引擎负责生成配置，React / Ant Design 适配器负责渲染编辑、预览与快照。
 
 - **结构与规则分离**：template 定义字段顺序和布局，fields 定义标签、校验和控件属性。
 - **适配现有项目**：支持自定义组件、业务请求客户端、状态数据和日期适配器。
 - **可独立使用**：core 无 React / Ant Design 依赖；库提供 ESM、CommonJS 及类型声明。
 - **动态更新**：配置变更立即生效，异步联动会丢弃过期结果。
+
+## 低代码与 AI 开发
+
+- 低代码平台：保存 JSON 配置，接入表单渲染、校验和提交。
+- AI 生成表单：提供 [配置 Schema](schemas/form-definition.schema.json)，先校验输出，再渲染。
+- AI 编程助手：使用 [llms.txt](llms.txt)、API 和示例作为上下文，生成 TypeScript 表单。
+
+运行 npm run dev 可体验 JSON 编辑、校验和预览。详见 [AI / 低代码接入指南](docs/AI_INTEGRATION.md)和[项目发现说明](docs/DISCOVERY.md)。这是表单引擎及接入示例，不包含完整拖拽编辑器或 LLM 服务。
 
 ## 先看哪个文档？
 
@@ -32,7 +40,7 @@ npm ci
 npm run dev
 ```
 
-迁移 PR 合并前，请先检出 `codex/extract-dynamic-form-library` 分支，再安装依赖。
+当前 AI / 低代码补充 PR 合并前，请先检出 `codex/ai-low-code-discovery` 分支查看新增示例。
 
 运行后打开终端显示的地址，可以切换 edit / preview / snapshot、切换国家加载城市、添加字段并提交校验。[最小表单源码](examples/quick-start/ProfileForm.tsx)和[进阶配置源码](examples/configuration/recipes.tsx)参与严格类型检查。
 

@@ -1,7 +1,7 @@
 {
   "name": "@eugeneaiao-ui/dynamic-form",
   "version": "0.1.0",
-  "description": "Typed configurable forms with an independent engine and an Ant Design adapter.",
+  "description": "TypeScript dynamic form engine for React and Ant Design, with schema-driven configuration for low-code apps and AI-assisted form development.",
   "type": "module",
   "license": "MIT",
   "main": "./dist/index.cjs",
@@ -33,7 +33,8 @@
       "require": "./dist/antd.cjs"
     },
     "./style.css": "./dist/style.css",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./schemas/form-definition.schema.json": "./schemas/form-definition.schema.json"
   },
   "files": [
     "dist",
@@ -44,7 +45,10 @@
     "docs",
     "CONTRIBUTING.md",
     "examples/quick-start",
-    "examples/configuration"
+    "examples/configuration",
+    "llms.txt",
+    "schemas",
+    "examples/ai"
   ],
   "sideEffects": [
     "**/*.css"
@@ -101,6 +105,7 @@
     "@types/react": "^19.1.16",
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^5.1.0",
+    "ajv": "8.17.1",
     "antd": "5.27.6",
     "eslint": "^9.36.0",
     "eslint-plugin-react-hooks": "^5.2.0",
@@ -123,7 +128,13 @@
     "antd",
     "typescript",
     "schema",
-    "validation"
+    "validation",
+    "low-code",
+    "schema-driven",
+    "ai-assisted-development",
+    "json-schema",
+    "config-driven",
+    "react-forms"
   ],
   "publishConfig": {
     "access": "public"

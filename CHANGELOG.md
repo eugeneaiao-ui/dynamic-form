@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Add a JSON configuration schema, validated low-code/AI form example, integration guide, and llms.txt documentation index.
+- Clarify low-code and AI-assisted development use cases in repository/package metadata and both READMEs.
+
 - Adopt the MIT license and add contribution and issue templates.
 - Add a guided quick start, field/data-source/dependency configuration manual, recipes, and troubleshooting.
 - Add typechecked documentation examples and local documentation checks.

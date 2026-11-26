@@ -32,6 +32,12 @@ function canonical(source) {
     .createPrinter({ removeComments: true })
     .printFile(ts.createSourceFile('example.tsx', source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX));
 }
+const llms = readFileSync(path.join(root, 'llms.txt'), 'utf8');
+for (const match of llms.matchAll(
+  /https:\/\/raw\.githubusercontent\.com\/eugeneaiao-ui\/dynamic-form\/main\/([^\s)]+)/g,
+)) {
+  assert(existsSync(path.join(root, match[1])), 'Broken llms.txt target: ' + match[1]);
+}
 let links = 0,
   examples = 0;
 const files = markdownFiles(root);

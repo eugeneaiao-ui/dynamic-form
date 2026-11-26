@@ -4,7 +4,7 @@
 
 ## 开发环境
 
-使用 Node.js 22.12+ 和 npm。克隆仓库后安装依赖；当前迁移 PR 未合并时，请先切换到 codex/extract-dynamic-form-library 分支。
+使用 Node.js 22.12+ 和 npm。克隆仓库后安装依赖；当前文档与 AI 接入 PR 未合并时，请先切换到 codex/ai-low-code-discovery 分支。
 
 ```bash
 git clone https://github.com/eugeneaiao-ui/dynamic-form.git

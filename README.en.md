@@ -1,8 +1,14 @@
-# Dynamic Form
+# Dynamic Form — schema-driven forms for low-code and AI-assisted development
 
 [中文](README.md) · [Quick start](docs/GETTING_STARTED.md) · [Configuration](docs/CONFIGURATION.md) · [Recipes](docs/RECIPES.md) · [API](docs/API.md)
 
 A TypeScript form library with an independent configuration engine and a React / Ant Design adapter. Configure field order, layout, validation, data sources, dependencies, and edit / preview / snapshot rendering.
+
+## Low-code and AI integration
+
+Use Dynamic Form as a rendering layer for stored form definitions, validate AI-generated JSON before rendering, or give a coding assistant the typed API and examples. The repository includes a [configuration JSON Schema](schemas/form-definition.schema.json), a working [JSON form example](examples/ai/JsonFormExample.tsx), and [llms.txt](llms.txt). See the [AI integration guide](docs/AI_INTEGRATION.md) for the full workflow and supported subset.
+
+This is a form engine, not a complete drag-and-drop builder or an LLM backend. It does not render arbitrary JSON Schema documents.
 
 ## Try the playground
 
@@ -15,7 +21,7 @@ npm ci
 npm run dev
 ```
 
-Until the extraction PR is merged, check out `codex/extract-dynamic-form-library` before installing dependencies.
+Until the AI integration PR is merged, check out `codex/ai-low-code-discovery` for the new JSON example.
 
 ## Install in an application
 

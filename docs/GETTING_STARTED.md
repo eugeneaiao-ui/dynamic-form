@@ -11,7 +11,7 @@
 ```bash
 git clone https://github.com/eugeneaiao-ui/dynamic-form.git
 cd dynamic-form
-# 迁移 PR 合并前，先执行：git checkout codex/extract-dynamic-form-library
+# 文档与 AI 接入 PR 合并前，先执行：git checkout codex/ai-low-code-discovery
 npm ci
 npm run build
 npm pack

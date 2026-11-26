@@ -30,6 +30,10 @@ const packed = JSON.parse(
 assert(packed.files.some(({ path: name }) => name === 'dist/core.d.cts'));
 for (const name of [
   'LICENSE',
+  'llms.txt',
+  'schemas/form-definition.schema.json',
+  'examples/ai/service-request.json',
+  'examples/ai/parse-definition.ts',
   'README.en.md',
   'CONTRIBUTING.md',
   'docs/CONFIGURATION.md',
@@ -92,6 +96,8 @@ try {
       const require = createRequire(import.meta.url);
       const esm = await import('@eugeneaiao-ui/dynamic-form/core');
       const cjs = require('@eugeneaiao-ui/dynamic-form/core');
+      const schema = require('@eugeneaiao-ui/dynamic-form/schemas/form-definition.schema.json');
+      assert.equal(schema.$defs.templateField.properties.type.enum.includes('Input'), true);
       for (const engine of [esm, cjs]) {
         const result = new engine.FormConfigBuilder([{ type: engine.FormFieldType.Input, name: 'name' }], { name: { label: 'Name' } }).build();
         assert.equal(result[0].label, 'Name');
