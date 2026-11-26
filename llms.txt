@@ -3,10 +3,10 @@
 > MIT-licensed TypeScript dynamic form engine for React and Ant Design. Supports schema-driven forms, low-code applications, and AI-assisted form development.
 
 Repository: https://github.com/eugeneaiao-ui/formino
-Package name: formino
-Install: npm install formino
+Package name: forminojs
+Install: npm install forminojs
 Release: 0.1.0
-npm: https://www.npmjs.com/package/formino
+npm: https://www.npmjs.com/package/forminojs
 Core has no React or Ant Design imports. UI adapters support edit, preview, snapshot, validation, dependent fields, async options, and custom controls.
 
 ## Start here

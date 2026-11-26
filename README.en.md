@@ -32,10 +32,10 @@ npm run dev
 ## Install in an application
 
 ```bash
-npm install formino
+npm install forminojs
 ```
 
-Formino is published as formino@0.1.0. The previous @eugenedfsfsvg/dynamic-form package remains available. To migrate, replace the package name and import paths; public APIs are unchanged. For local development, build this repository and use npm pack to install a tarball.
+Formino is published as forminojs@0.1.0. The previous @eugenedfsfsvg/dynamic-form package remains available. To migrate, replace the package name and import paths; public APIs are unchanged. For local development, build this repository and use npm pack to install a tarball.
 
 The UI adapter requires React, ReactDOM, and Ant Design in the host application. Verified combinations are React 16.14 + AntD 4.24, React 18.3 + AntD 5.27, and React 19.1 + AntD 5.27. AntD 4 requires a moment date adapter; AntD 5 uses dayjs by default.
 
@@ -43,8 +43,8 @@ The UI adapter requires React, ReactDOM, and Ant Design in the host application.
 
 ```tsx
 import React from 'react';
-import { DynamicForm, FormComponent, FormFieldType, useDynamicConfig } from 'formino';
-import 'formino/style.css';
+import { DynamicForm, FormComponent, FormFieldType, useDynamicConfig } from 'forminojs';
+import 'forminojs/style.css';
 
 const template = [{ name: 'name', type: FormFieldType.Input }];
 const fields = { name: { label: 'Name', rules: [{ required: true }] } };

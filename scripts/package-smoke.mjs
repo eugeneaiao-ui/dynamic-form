@@ -94,9 +94,9 @@ try {
       import assert from 'node:assert/strict';
       import { createRequire } from 'node:module';
       const require = createRequire(import.meta.url);
-      const esm = await import('formino/core');
-      const cjs = require('formino/core');
-      const schema = require('formino/schemas/form-definition.schema.json');
+      const esm = await import('forminojs/core');
+      const cjs = require('forminojs/core');
+      const schema = require('forminojs/schemas/form-definition.schema.json');
       assert.equal(schema.$defs.templateField.properties.type.enum.includes('Input'), true);
       for (const engine of [esm, cjs]) {
         const result = new engine.FormConfigBuilder([{ type: engine.FormFieldType.Input, name: 'name' }], { name: { label: 'Name' } }).build();
@@ -117,7 +117,7 @@ try {
         const { renderToString } = require('react-dom/server');
         const moment = ${variant.antd.startsWith('4') ? "require('moment')" : 'null'};
         const adapter = moment ? { parse: (value, format) => moment(value, format), format: (value, format) => moment(value).format(format) } : undefined;
-        const modules = [require('formino'), require('formino/antd'), await import('formino')];
+        const modules = [require('forminojs'), require('forminojs/antd'), await import('forminojs')];
         for (const lib of modules) {
           const html = renderToString(React.createElement(lib.DynamicForm, { initialValues: { name: 'Installed', date: '2025-01-01' }, dateAdapter: adapter },
             React.createElement(lib.FormComponent, { formConfig: [
@@ -135,8 +135,8 @@ try {
       run(process.execPath, ['ui.mjs'], cwd);
       const fixture = `
         import * as React from 'react';
-        import { DynamicForm, FormComponent, FormFieldType, FormConfigBuilder, guideMiddleware } from 'formino';
-        import type { FormTemplate, FormConfigFields } from 'formino';
+        import { DynamicForm, FormComponent, FormFieldType, FormConfigBuilder, guideMiddleware } from 'forminojs';
+        import type { FormTemplate, FormConfigFields } from 'forminojs';
         interface Values { name: string; count: number }
         const template: FormTemplate<Values> = [{ type: FormFieldType.Input, name: 'name' }];
         const fields: Record<string, FormConfigFields<Values>> = { name: { label: 'Name', rules: [{ required: true }] } };
@@ -167,7 +167,7 @@ try {
         ],
         cwd,
       );
-      assert(existsSync(path.join(cwd, 'node_modules/formino/dist/style.css')));
+      assert(existsSync(path.join(cwd, 'node_modules/forminojs/dist/style.css')));
     }
     console.log(
       'PASS ' +

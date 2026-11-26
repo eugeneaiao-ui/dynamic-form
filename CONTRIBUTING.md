@@ -52,7 +52,7 @@ PR 应描述问题、变更后的行为、验证命令及涉及的兼容性。�
 
 ## 维护者发布准备
 
-npm 包名为 formino。这些步骤由维护者手动执行，不会由 CI 自动发布。
+npm 包名为 forminojs。这些步骤由维护者手动执行，不会由 CI 自动发布。
 
 1. 更新版本和 CHANGELOG，确认 npm 包名可用且当前账号有发布权限。
 2. 执行 npm ci、npm run check、npm run test:package。

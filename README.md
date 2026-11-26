@@ -53,10 +53,10 @@ npm run dev
 ## 安装到自己的项目
 
 ```bash
-npm install formino
+npm install forminojs
 ```
 
-Formino 的 npm 包名为 formino，版本为 0.1.0。原 @eugenedfsfsvg/dynamic-form 包保留；迁移时替换安装包名与 import 路径，公开 API 不变。需要本地使用未发布改动时，可运行 npm run build 和 npm pack，再安装生成的 .tgz。
+Formino 的 npm 包名为 forminojs，版本为 0.1.0。原 @eugenedfsfsvg/dynamic-form 包保留；迁移时替换安装包名与 import 路径，公开 API 不变。需要本地使用未发布改动时，可运行 npm run build 和 npm pack，再安装生成的 .tgz。
 
 使用 UI 入口时，需要宿主已安装 React、ReactDOM 和 Ant Design。新项目可使用已验证的 React 18 + AntD 5 组合：
 
@@ -70,8 +70,8 @@ npm install react@18.3.1 react-dom@18.3.1 antd@5.27.6
 
 ```tsx
 import React from 'react';
-import { DynamicForm, FormComponent, FormFieldType, useDynamicConfig } from 'formino';
-import 'formino/style.css';
+import { DynamicForm, FormComponent, FormFieldType, useDynamicConfig } from 'forminojs';
+import 'forminojs/style.css';
 
 const template = [{ name: 'name', type: FormFieldType.Input }];
 const fields = { name: { label: 'Name', rules: [{ required: true }] } };

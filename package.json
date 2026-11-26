@@ -1,5 +1,5 @@
 {
-  "name": "formino",
+  "name": "forminojs",
   "version": "0.1.0",
   "description": "Formino: a TypeScript dynamic form engine for React and Ant Design, with long forms, complex dependencies, low-code and AI-assisted development.",
   "type": "module",
@@ -128,6 +128,7 @@
   },
   "homepage": "https://github.com/eugeneaiao-ui/formino#readme",
   "keywords": [
+    "forminojs",
     "formino",
     "dynamic-form",
     "form-builder",

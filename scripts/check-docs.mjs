@@ -57,7 +57,7 @@ for (const file of files) {
     links++;
   }
   for (const match of markdown.matchAll(/<!-- example: ([^ ]+) -->\s*```tsx\n([\s\S]*?)\n```/g)) {
-    const source = readFileSync(path.join(root, match[1]), 'utf8').replaceAll("from '../../src'", "from 'formino'");
+    const source = readFileSync(path.join(root, match[1]), 'utf8').replaceAll("from '../../src'", "from 'forminojs'");
     assert.equal(canonical(match[2]), canonical(source), 'Quick-start snippet is out of sync with ' + match[1]);
     examples++;
   }
