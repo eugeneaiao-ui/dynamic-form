@@ -1,5 +1,7 @@
 # API
 
+[配置手册](CONFIGURATION.md) · [常用场景](RECIPES.md) · [返回首页](../README.md)
+
 ## 配置生成
 
 `FormConfigBuilder<Values, Field>` 是纯 TypeScript 引擎，接受 template 与 fields。template 决定顺序、类型和栅格；fields 按字段 key 合并，字段定义优先于模板默认属性。中间件最终修改 context.fieldProps。
@@ -52,7 +54,7 @@ const config = new FormConfigBuilder([{ type: FormFieldType.Input, name: 'name',
 
 `parseFormLayout(fields, columns = 24)` 返回行数组；`splitIntoBatches(fields, title?, rowsPerBatch = 3)` 返回分批布局。非法 span 或批次大小会报错。
 
-`name` 顶层字段受 Values 泛型约束；数组路径支持嵌套数据。使用 fieldKey(name) 生成嵌套 fields 字典 key。getValue / setValue 安全读取、不可变写入，拒绝 **proto**、constructor、prototype 等路径。
+`name` 顶层字段受 Values 泛型约束；数组路径支持嵌套数据。使用 fieldKey(name) 生成嵌套 fields 字典 key。getValue / setValue 安全读取、不可变写入，拒绝 `__proto__`、`constructor`、`prototype` 等路径。
 
 ## 依赖计算
 
@@ -73,7 +75,7 @@ dependenciesConfig 可以是单个对象或数组：
 | ATTRIBUTE               | (依赖值数组, 当前 componentProps) => 属性补丁                       |
 | COMPUTE / FETCH / STORE | (依赖值数组, dependencyData 或 store, signal) => 新字段值或 Promise |
 
-applyTo 默认当前字段，triggerValidate 可以为 true 或需要校验的字段路径数组。undefined 不写入，false / 0 / null / 空字符串正常写入。异步计算完成后才应用结果，取消后不写入。纯 core 使用 resolveDependencies，React 使用 useDependencies。
+applyTo 默认当前字段，triggerValidate 可以为 true 或需要校验的字段路径数组。undefined 不写入，false / 0 / null / 空字符串正常写入。异步计算完成后才应用结果，取消后不写入。纯 core 使用 resolveDependencies；React 渲染适配器内部负责订阅和执行联动。
 
 ## 数据源
 

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Typed configurable forms with an independent engine and an Ant Design adapter.",
   "type": "module",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -38,7 +38,13 @@
   "files": [
     "dist",
     "README.md",
-    "docs"
+    "README.en.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "docs",
+    "CONTRIBUTING.md",
+    "examples/quick-start",
+    "examples/configuration"
   ],
   "sideEffects": [
     "**/*.css"
@@ -58,10 +64,12 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "eslint .",
-    "check": "npm run typecheck && npm run lint && npm run format:check && npm test && npm run build && npm run build:demo",
+    "check": "npm run typecheck && npm run lint && npm run format:check && npm run check:docs && npm test && npm run build && npm run build:demo",
     "test:package": "node scripts/package-smoke.mjs",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "check:docs": "node scripts/check-docs.mjs",
+    "prepack": "npm run build"
   },
   "engines": {
     "node": ">=20.19.0"
@@ -106,5 +114,18 @@
     "typescript-eslint": "^8.46.0",
     "vite": "^7.1.7",
     "vitest": "^3.2.4"
+  },
+  "homepage": "https://github.com/eugeneaiao-ui/dynamic-form#readme",
+  "keywords": [
+    "dynamic-form",
+    "form-builder",
+    "react",
+    "antd",
+    "typescript",
+    "schema",
+    "validation"
+  ],
+  "publishConfig": {
+    "access": "public"
   }
 }
