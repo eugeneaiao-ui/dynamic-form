@@ -28,7 +28,20 @@ const packed = JSON.parse(
   run(process.execPath, [npm, 'pack', '--ignore-scripts', '--json', '--pack-destination', artifacts], root),
 )[0];
 assert(packed.files.some(({ path: name }) => name === 'dist/core.d.cts'));
-assert(!packed.files.some(({ path: name }) => /^(src|tests|examples|node_modules)\//.test(name)));
+for (const name of [
+  'LICENSE',
+  'README.en.md',
+  'CONTRIBUTING.md',
+  'docs/CONFIGURATION.md',
+  'examples/quick-start/ProfileForm.tsx',
+  'examples/configuration/recipes.tsx',
+]) {
+  assert(
+    packed.files.some((file) => file.path === name),
+    'Missing documentation artifact: ' + name,
+  );
+}
+assert(!packed.files.some(({ path: name }) => /^(src|tests|node_modules)\//.test(name)));
 const tarball = path.join(artifacts, packed.filename);
 const temporaryRoot = realpathSync(tmpdir());
 const directory = mkdtempSync(path.join(temporaryRoot, 'dynamic-form-smoke-'));
