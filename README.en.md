@@ -1,6 +1,6 @@
 # Dynamic Form — schema-driven forms for low-code and AI-assisted development
 
-[中文](README.md) · [Quick start](docs/GETTING_STARTED.md) · [Configuration](docs/CONFIGURATION.md) · [Recipes](docs/RECIPES.md) · [API](docs/API.md)
+[中文](https://github.com/eugeneaiao-ui/dynamic-form/blob/v0.1.0/README.md) · [Quick start](https://github.com/eugeneaiao-ui/dynamic-form/blob/v0.1.0/docs/GETTING_STARTED.md) · [Configuration](https://github.com/eugeneaiao-ui/dynamic-form/blob/v0.1.0/docs/CONFIGURATION.md) · [Recipes](https://github.com/eugeneaiao-ui/dynamic-form/blob/v0.1.0/docs/RECIPES.md) · [API](https://github.com/eugeneaiao-ui/dynamic-form/blob/v0.1.0/docs/API.md)
 
 A TypeScript form library with an independent configuration engine and a React / Ant Design adapter. Configure field order, layout, validation, data sources, dependencies, and edit / preview / snapshot rendering.
 
@@ -8,13 +8,13 @@ A TypeScript form library with an independent configuration engine and a React /
 
 - Try 100, 300 or 1,000 fields with complete or progressive mounting and full-form validation.
 - Combine asynchronous dependent options, multi-stage calculations, dynamic attributes and conditional validation.
-- Read the [illustrated examples](docs/EXAMPLES.md), [browser benchmark report](docs/PERFORMANCE.md) and raw samples. Progressive mounting trades first-batch latency against total completion time; it is not virtualization.
+- Read the [illustrated examples](https://github.com/eugeneaiao-ui/dynamic-form/blob/v0.1.0/docs/EXAMPLES.md), [browser benchmark report](https://github.com/eugeneaiao-ui/dynamic-form/blob/v0.1.0/docs/PERFORMANCE.md) and raw samples. Progressive mounting trades first-batch latency against total completion time; it is not virtualization.
 
-![Long form with 300 mounted fields](docs/images/long.png)
+![Long form with 300 mounted fields](https://raw.githubusercontent.com/eugeneaiao-ui/dynamic-form/v0.1.0/docs/images/long.png)
 
 ## Low-code and AI integration
 
-Use Dynamic Form as a rendering layer for stored form definitions, validate AI-generated JSON before rendering, or give a coding assistant the typed API and examples. The repository includes a [configuration JSON Schema](schemas/form-definition.schema.json), a working [JSON form example](examples/ai/JsonFormExample.tsx), and [llms.txt](llms.txt). See the [AI integration guide](docs/AI_INTEGRATION.md) for the full workflow and supported subset.
+Use Dynamic Form as a rendering layer for stored form definitions, validate AI-generated JSON before rendering, or give a coding assistant the typed API and examples. The repository includes a [configuration JSON Schema](https://github.com/eugeneaiao-ui/dynamic-form/blob/v0.1.0/schemas/form-definition.schema.json), a working [JSON form example](https://github.com/eugeneaiao-ui/dynamic-form/blob/v0.1.0/examples/ai/JsonFormExample.tsx), and [llms.txt](https://github.com/eugeneaiao-ui/dynamic-form/blob/v0.1.0/llms.txt). See the [AI integration guide](https://github.com/eugeneaiao-ui/dynamic-form/blob/v0.1.0/docs/AI_INTEGRATION.md) for the full workflow and supported subset.
 
 This is a form engine, not a complete drag-and-drop builder or an LLM backend. It does not render arbitrary JSON Schema documents.
 
@@ -29,18 +29,13 @@ npm ci
 npm run dev
 ```
 
-Until the illustrated examples and performance PR is merged, check out `codex/examples-performance` for these additions.
-
 ## Install in an application
 
-The package has **not been published to npm**. Build and pack this repository first:
-
 ```bash
-npm run build
-npm pack
-# Run in your application, using the actual tarball path:
-npm install /absolute/path/eugeneaiao-ui-dynamic-form-0.1.0.tgz
+npm install @eugenedfsfsvg/dynamic-form
 ```
+
+The initial release is 0.1.0 under npm user eugenedfsfsvg. The GitHub repository remains eugeneaiao-ui/dynamic-form. For local development, build this repository and use npm pack to install a tarball.
 
 The UI adapter requires React, ReactDOM, and Ant Design in the host application. Verified combinations are React 16.14 + AntD 4.24, React 18.3 + AntD 5.27, and React 19.1 + AntD 5.27. AntD 4 requires a moment date adapter; AntD 5 uses dayjs by default.
 
@@ -48,8 +43,8 @@ The UI adapter requires React, ReactDOM, and Ant Design in the host application.
 
 ```tsx
 import React from 'react';
-import { DynamicForm, FormComponent, FormFieldType, useDynamicConfig } from '@eugeneaiao-ui/dynamic-form';
-import '@eugeneaiao-ui/dynamic-form/style.css';
+import { DynamicForm, FormComponent, FormFieldType, useDynamicConfig } from '@eugenedfsfsvg/dynamic-form';
+import '@eugenedfsfsvg/dynamic-form/style.css';
 
 const template = [{ name: 'name', type: FormFieldType.Input }];
 const fields = { name: { label: 'Name', rules: [{ required: true }] } };
@@ -85,7 +80,7 @@ Field definitions override template properties with a shallow merge; middleware 
 
 The `/core` entry has no React or AntD imports. Root and `/antd` exports provide the UI adapter. All JavaScript entries support ESM / CommonJS with matching declarations.
 
-The detailed guides are currently in Chinese. The [quick-start source](examples/quick-start/ProfileForm.tsx) and [configuration recipes](examples/configuration/recipes.tsx) are typechecked examples with English field labels.
+The detailed guides are currently in Chinese. The [quick-start source](https://github.com/eugeneaiao-ui/dynamic-form/blob/v0.1.0/examples/quick-start/ProfileForm.tsx) and [configuration recipes](https://github.com/eugeneaiao-ui/dynamic-form/blob/v0.1.0/examples/configuration/recipes.tsx) are typechecked examples with English field labels.
 
 ## Development
 
@@ -95,8 +90,8 @@ npm run check:docs
 npm run test:package
 ```
 
-See [CONTRIBUTING](CONTRIBUTING.md) for the development and manual release process, and [CHANGELOG](CHANGELOG.md) for changes. CI does not publish npm packages.
+See [CONTRIBUTING](https://github.com/eugeneaiao-ui/dynamic-form/blob/v0.1.0/CONTRIBUTING.md) for the development and manual release process, and [CHANGELOG](https://github.com/eugeneaiao-ui/dynamic-form/blob/v0.1.0/CHANGELOG.md) for changes. CI does not publish npm packages.
 
 ## License
 
-[MIT](LICENSE).
+[MIT](https://github.com/eugeneaiao-ui/dynamic-form/blob/v0.1.0/LICENSE).

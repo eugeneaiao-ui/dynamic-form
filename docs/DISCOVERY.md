@@ -6,7 +6,7 @@
 
 Dynamic Form 是用于 React / Ant Design 的 TypeScript 动态表单引擎，支持 schema-driven forms（配置驱动表单）、low-code（低代码应用的表单渲染层）和 AI-assisted development（AI 辅助生成配置或 TypeScript 表单）。
 
-名称比较通用，因此文档同时包含仓库完整名称 eugeneaiao-ui/dynamic-form、包名 @eugeneaiao-ui/dynamic-form、技术栈、适用场景和代码。描述只覆盖实际支持的能力。
+名称比较通用，因此文档同时包含仓库完整名称 eugeneaiao-ui/dynamic-form、包名 @eugenedfsfsvg/dynamic-form、技术栈、适用场景和代码。描述只覆盖实际支持的能力。
 
 ## 仓库元信息
 
@@ -39,4 +39,4 @@ llms.txt 是辅助文档入口的[提议格式](https://llmstxt.org/)，不能�
 
 Google 对其 AI 搜索功能沿用基础 SEO 指引，没有保证出现的专用标记，见 [AI features and your website](https://developers.google.com/search/docs/appearance/ai-features)。这一说明不代表其他平台采用同样规则。
 
-后续可以由维护者发布 npm 版本和独立静态文档站，再为实际站点配置 sitemap / 搜索站长工具。当前尚未发布 npm，也没有虚构文档站或统计排名。GitHub Actions 账号限制需要解除后才能验证远程构建或自动部署。
+npm 包入口为 https://www.npmjs.com/package/@eugenedfsfsvg/dynamic-form。后续可发布独立静态文档站，再为实际站点配置 sitemap / 搜索站长工具。当前没有独立文档站或统计排名。GitHub Actions 账号限制需要解除后才能验证远程构建或自动部署。

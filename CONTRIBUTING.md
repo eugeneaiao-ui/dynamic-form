@@ -4,7 +4,7 @@
 
 ## 开发环境
 
-使用 Node.js 22.12+ 和 npm。克隆仓库后安装依赖；当前文档与 AI 接入 PR 未合并时，请先切换到 codex/ai-low-code-discovery 分支。
+使用 Node.js 22.12+ 和 npm。克隆仓库后安装依赖。
 
 ```bash
 git clone https://github.com/eugeneaiao-ui/dynamic-form.git
@@ -52,7 +52,7 @@ PR 应描述问题、变更后的行为、验证命令及涉及的兼容性。�
 
 ## 维护者发布准备
 
-仓库当前尚未发布 npm；这些步骤由维护者在决定发布时手动执行，不会由 CI 自动发布。
+npm 包名为 @eugenedfsfsvg/dynamic-form。这些步骤由维护者手动执行，不会由 CI 自动发布。
 
 1. 更新版本和 CHANGELOG，确认包名的 npm scope 可用且当前账号有发布权限。
 2. 执行 npm ci、npm run check、npm run test:package。
@@ -60,4 +60,4 @@ PR 应描述问题、变更后的行为、验证命令及涉及的兼容性。�
 4. 执行 npm pack，在使用方实际安装生成的 tarball。
 5. 确认后手动执行 npm publish --access public，并创建对应版本的 Git tag / release。
 
-本仓库已有 publishConfig.access=public，仅配置作用域包的公开访问级别，不会自动触发发布。正式发布前应先解除 GitHub Actions 的账号级运行限制并确认远程 CI 通过。
+本仓库已有 publishConfig.access=public，仅配置作用域包的公开访问级别，不会自动触发发布。发布记录应注明验证结果。远程 CI 因账号级限制无法启动时，应记录限制和本地验证结果，不能将未启动视作通过。

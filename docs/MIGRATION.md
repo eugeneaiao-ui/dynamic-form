@@ -20,7 +20,7 @@
 
 ## 替换步骤
 
-1. 构建本仓库并通过 `npm pack` 生成安装包；在使用方安装该 tarball。
+1. 在使用方安装 npm 包 @eugenedfsfsvg/dynamic-form；验证未发布源码时，可 npm run build、npm pack 后安装 tarball。
 2. 替换引擎 import，显式导入库的 style.css。现有 Ant Design 全局样式仍由宿主加载。
 3. 将专用控件注册到 ComponentRegistry，将请求、枚举、状态数据注入 DataSourceManager / dataContext。
 4. 对照下述差异调整配置，并验证新增、编辑、预览、快照、校验及异步联动。
@@ -29,8 +29,8 @@
 ## 业务请求适配
 
 ```tsx
-import { DataSourceManager, DataSourceType } from '@eugeneaiao-ui/dynamic-form';
-import type { SelectOption } from '@eugeneaiao-ui/dynamic-form';
+import { DataSourceManager, DataSourceType } from '@eugenedfsfsvg/dynamic-form';
+import type { SelectOption } from '@eugenedfsfsvg/dynamic-form';
 
 interface Values {
   country: string;
@@ -77,7 +77,7 @@ Ant Design 5 默认使用库内 dayjs 适配器。Ant Design 4 默认 DatePicker
 
 ```tsx
 import moment from 'moment';
-import type { DateAdapter } from '@eugeneaiao-ui/dynamic-form';
+import type { DateAdapter } from '@eugenedfsfsvg/dynamic-form';
 
 const dateAdapter: DateAdapter = {
   parse: (value, format) => moment(value as moment.MomentInput, format),

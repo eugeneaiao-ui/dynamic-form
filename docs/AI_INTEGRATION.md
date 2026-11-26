@@ -73,7 +73,7 @@ JSON Schema dialects and model provider subsets vary. A provider's structured-ou
 
 ### Use in your application
 
-Install the library tarball as described in the [quick start](GETTING_STARTED.md). Copy parse-definition.ts and JsonFormExample.tsx from the example, replace their local ../../src imports with the package root and ../../src/core with the /core entry. Install Ajv in the host:
+Install @eugenedfsfsvg/dynamic-form as described in the [quick start](GETTING_STARTED.md). Copy parse-definition.ts and JsonFormExample.tsx from the example, replace their local ../../src imports with the package root and ../../src/core with the /core entry. Install Ajv in the host:
 
 ```bash
 npm install ajv@8.17.1
@@ -82,7 +82,7 @@ npm install ajv@8.17.1
 The schema is included in the package:
 
 ```tsx
-import schema from '@eugeneaiao-ui/dynamic-form/schemas/form-definition.schema.json';
+import schema from '@eugenedfsfsvg/dynamic-form/schemas/form-definition.schema.json';
 ```
 
 This JSON import example assumes a bundler / TypeScript configuration with resolveJsonModule. Adapt JSON loading to the host module system. The example adapter is **not exported by the library**; copy it as application code and adjust its schema import to the package path.
@@ -126,4 +126,4 @@ Handle an unsupported-requirement response separately from a successful JSON res
 - [Public API](API.md): typed API reference.
 - [Discoverability notes](DISCOVERY.md): repository metadata, indexing and remaining publication steps.
 
-Raw main-branch URLs become available when this PR is merged. These documents help retrieval and integration; they do not guarantee that any search engine or AI assistant will index or recommend the project.
+These documents help retrieval and integration; they do not guarantee that any search engine or AI assistant will index or recommend the project.

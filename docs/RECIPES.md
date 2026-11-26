@@ -7,8 +7,8 @@
 ## 1. 数量 × 单价自动计算
 
 ```tsx
-import { DependentTypeEnum } from '@eugeneaiao-ui/dynamic-form';
-import type { FormConfigFields } from '@eugeneaiao-ui/dynamic-form';
+import { DependentTypeEnum } from '@eugenedfsfsvg/dynamic-form';
+import type { FormConfigFields } from '@eugenedfsfsvg/dynamic-form';
 
 const fields: Record<string, FormConfigFields> = {
   quantity: { label: 'Quantity', componentProps: { min: 0 } },
@@ -32,7 +32,7 @@ const fields: Record<string, FormConfigFields> = {
 创建并注入 DataSourceManager，国家使用内联选项，城市配置 API 数据源：
 
 ```tsx
-import { DataSourceManager, DataSourceType } from '@eugeneaiao-ui/dynamic-form';
+import { DataSourceManager, DataSourceType } from '@eugenedfsfsvg/dynamic-form';
 
 interface Values {
   country?: string;
@@ -129,7 +129,7 @@ useEffect(() => {
 ```tsx
 import React, { useMemo } from 'react';
 import { Checkbox } from 'antd';
-import { ComponentRegistry, FormFieldType } from '@eugeneaiao-ui/dynamic-form';
+import { ComponentRegistry, FormFieldType } from '@eugenedfsfsvg/dynamic-form';
 
 function ConsentEditor(props: React.ComponentProps<typeof Checkbox>) {
   return <Checkbox {...props}>I agree</Checkbox>;
@@ -209,7 +209,7 @@ Values 需要声明 notes 字段。AntD 默认保留卸载字段值；希望卸�
 ## 7. 只使用 core
 
 ```ts
-import { FormConfigBuilder, FormFieldType } from '@eugeneaiao-ui/dynamic-form/core';
+import { FormConfigBuilder, FormFieldType } from '@eugenedfsfsvg/dynamic-form/core';
 
 const config = new FormConfigBuilder([{ type: FormFieldType.Input, name: 'name', span: 12 }], {
   name: { label: 'Name' },

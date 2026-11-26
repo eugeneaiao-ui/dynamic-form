@@ -94,9 +94,9 @@ try {
       import assert from 'node:assert/strict';
       import { createRequire } from 'node:module';
       const require = createRequire(import.meta.url);
-      const esm = await import('@eugeneaiao-ui/dynamic-form/core');
-      const cjs = require('@eugeneaiao-ui/dynamic-form/core');
-      const schema = require('@eugeneaiao-ui/dynamic-form/schemas/form-definition.schema.json');
+      const esm = await import('@eugenedfsfsvg/dynamic-form/core');
+      const cjs = require('@eugenedfsfsvg/dynamic-form/core');
+      const schema = require('@eugenedfsfsvg/dynamic-form/schemas/form-definition.schema.json');
       assert.equal(schema.$defs.templateField.properties.type.enum.includes('Input'), true);
       for (const engine of [esm, cjs]) {
         const result = new engine.FormConfigBuilder([{ type: engine.FormFieldType.Input, name: 'name' }], { name: { label: 'Name' } }).build();
@@ -117,7 +117,7 @@ try {
         const { renderToString } = require('react-dom/server');
         const moment = ${variant.antd.startsWith('4') ? "require('moment')" : 'null'};
         const adapter = moment ? { parse: (value, format) => moment(value, format), format: (value, format) => moment(value).format(format) } : undefined;
-        const modules = [require('@eugeneaiao-ui/dynamic-form'), require('@eugeneaiao-ui/dynamic-form/antd'), await import('@eugeneaiao-ui/dynamic-form')];
+        const modules = [require('@eugenedfsfsvg/dynamic-form'), require('@eugenedfsfsvg/dynamic-form/antd'), await import('@eugenedfsfsvg/dynamic-form')];
         for (const lib of modules) {
           const html = renderToString(React.createElement(lib.DynamicForm, { initialValues: { name: 'Installed', date: '2025-01-01' }, dateAdapter: adapter },
             React.createElement(lib.FormComponent, { formConfig: [
@@ -135,8 +135,8 @@ try {
       run(process.execPath, ['ui.mjs'], cwd);
       const fixture = `
         import * as React from 'react';
-        import { DynamicForm, FormComponent, FormFieldType, FormConfigBuilder, guideMiddleware } from '@eugeneaiao-ui/dynamic-form';
-        import type { FormTemplate, FormConfigFields } from '@eugeneaiao-ui/dynamic-form';
+        import { DynamicForm, FormComponent, FormFieldType, FormConfigBuilder, guideMiddleware } from '@eugenedfsfsvg/dynamic-form';
+        import type { FormTemplate, FormConfigFields } from '@eugenedfsfsvg/dynamic-form';
         interface Values { name: string; count: number }
         const template: FormTemplate<Values> = [{ type: FormFieldType.Input, name: 'name' }];
         const fields: Record<string, FormConfigFields<Values>> = { name: { label: 'Name', rules: [{ required: true }] } };
@@ -167,7 +167,7 @@ try {
         ],
         cwd,
       );
-      assert(existsSync(path.join(cwd, 'node_modules/@eugeneaiao-ui/dynamic-form/dist/style.css')));
+      assert(existsSync(path.join(cwd, 'node_modules/@eugenedfsfsvg/dynamic-form/dist/style.css')));
     }
     console.log(
       'PASS ' +
