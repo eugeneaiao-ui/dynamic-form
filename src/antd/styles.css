@@ -1,0 +1,44 @@
+.df-value {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.df-tags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.df-snapshot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: baseline;
+}
+.df-snapshot del {
+  color: #a61d24;
+  text-decoration-color: currentColor;
+}
+.df-snapshot ins {
+  color: #237804;
+  text-decoration: none;
+  background: #f6ffed;
+  padding: 0 3px;
+}
+.df-title,
+.df-section-title {
+  margin: 8px 0 20px;
+  font-weight: 600;
+}
+.df-count {
+  text-align: right;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 12px;
+  line-height: 22px;
+}
+.df-error {
+  margin: -16px 0 16px;
+  color: #a61d24;
+  overflow-wrap: anywhere;
+}
+.df-section {
+  min-width: 0;
+}
