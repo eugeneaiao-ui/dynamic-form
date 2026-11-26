@@ -15,6 +15,12 @@ Core has no React or Ant Design imports. UI adapters support edit, preview, snap
 - [Configuration JSON Schema](https://raw.githubusercontent.com/eugeneaiao-ui/dynamic-form/main/schemas/form-definition.schema.json): version 1 serializable configuration subset, not a schema for submitted values.
 - [JSON example](https://raw.githubusercontent.com/eugeneaiao-ui/dynamic-form/main/examples/ai/service-request.json): runnable service request form.
 
+## Long forms and dependencies
+
+- [Illustrated examples](https://raw.githubusercontent.com/eugeneaiao-ui/dynamic-form/main/docs/EXAMPLES.md): 100/300/1000-field demo, asynchronous cascade, multi-stage calculations, dynamic attributes, conditional validation, snapshots.
+- [Measured browser performance](https://raw.githubusercontent.com/eugeneaiao-ui/dynamic-form/main/docs/PERFORMANCE.md): production-build measurements, environment, raw samples and reproducible scripts.
+- Progressive mounting renders batches but retains the complete DOM afterwards. Full-form validation must wait until every field is registered.
+
 ## Reference
 
 - [Configuration](https://raw.githubusercontent.com/eugeneaiao-ui/dynamic-form/main/docs/CONFIGURATION.md): template, fields, middleware, data sources and dependencies.

@@ -2,6 +2,8 @@
 
 [返回首页](../README.md) · [快速开始](GETTING_STARTED.md) · [常用场景](RECIPES.md) · [API](API.md)
 
+图文操作见[示例教程](EXAMPLES.md)，长表单实测见[性能报告](PERFORMANCE.md)。
+
 ## 1. 一张表单的配置放在哪里？
 
 ```text

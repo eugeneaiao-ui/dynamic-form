@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Button, Card, Form, Segmented, Space, Tag, Typography } from 'antd';
+import { Button, Card, Form, Segmented, Space, Tabs, Tag, Typography } from 'antd';
 import {
   ComponentRegistry,
   createSnapshotMiddleware,
@@ -14,6 +14,8 @@ import {
 } from '../../src';
 import type { FormConfigFields, FormTemplate } from '../../src';
 import { JsonFormExample } from '../ai/JsonFormExample';
+import { LongFormExample } from '../advanced/LongFormExample';
+import { ComplexDependenciesExample } from '../advanced/ComplexDependenciesExample';
 
 interface Values {
   name?: string;
@@ -145,41 +147,57 @@ export function Playground() {
           <br />
           Every form state.
         </h1>
-        <p>Independent engine. Typed fields. Pluggable data and controls.</p>
+        <p>Long forms. Multi-stage dependencies. Typed configuration.</p>
       </header>
-      <Card className="form-card" title="Library playground" extra={<Tag>React + Ant Design</Tag>}>
-        <Space wrap className="toolbar">
-          <Segmented
-            options={[FormMode.edit, FormMode.preview, FormMode.snapshot]}
-            value={mode}
-            onChange={(value) => setMode(value as FormMode)}
-          />
-          <Button onClick={() => setAdditional((value) => !value)}>
-            {additional ? 'Remove' : 'Add'} runtime field
-          </Button>
-        </Space>
-        <DynamicForm<Values>
-          form={form}
-          displayMode={mode}
-          initialValues={after}
-          registry={registry}
-          dataSources={sources}
-          onFinish={setSubmitted}
-        >
-          <Fields mode={mode} additional={additional} />
-          {mode === FormMode.edit && (
-            <Button type="primary" htmlType="submit">
-              Validate & submit
-            </Button>
-          )}
-        </DynamicForm>
-        {submitted && (
-          <Typography.Paragraph className="result">
-            <pre>{JSON.stringify(submitted, null, 2)}</pre>
-          </Typography.Paragraph>
-        )}
-      </Card>
-      <JsonFormExample />
+      <Tabs
+        defaultActiveKey={new URLSearchParams(window.location.search).get('example') ?? 'basic'}
+        items={[
+          {
+            key: 'basic',
+            label: 'Basics & snapshots',
+            children: (
+              <>
+                <Card className="form-card" title="Library playground" extra={<Tag>React + Ant Design</Tag>}>
+                  <Space wrap className="toolbar">
+                    <Segmented
+                      options={[FormMode.edit, FormMode.preview, FormMode.snapshot]}
+                      value={mode}
+                      onChange={(value) => setMode(value as FormMode)}
+                    />
+                    <Button onClick={() => setAdditional((value) => !value)}>
+                      {additional ? 'Remove' : 'Add'} runtime field
+                    </Button>
+                  </Space>
+                  <DynamicForm<Values>
+                    form={form}
+                    displayMode={mode}
+                    initialValues={after}
+                    registry={registry}
+                    dataSources={sources}
+                    onFinish={setSubmitted}
+                  >
+                    <Fields mode={mode} additional={additional} />
+                    {mode === FormMode.edit && (
+                      <Button type="primary" htmlType="submit">
+                        Validate & submit
+                      </Button>
+                    )}
+                  </DynamicForm>
+                  {submitted && (
+                    <Typography.Paragraph className="result">
+                      <pre>{JSON.stringify(submitted, null, 2)}</pre>
+                    </Typography.Paragraph>
+                  )}
+                </Card>
+              </>
+            ),
+          },
+          { key: 'long', label: 'Long forms', children: <LongFormExample /> },
+          { key: 'linked', label: 'Complex dependencies', children: <ComplexDependenciesExample /> },
+          { key: 'ai', label: 'AI / JSON', children: <JsonFormExample /> },
+        ]}
+      />
+
       <footer>Try switching countries, changing modes, or adding a field without remounting the form.</footer>
     </main>
   );

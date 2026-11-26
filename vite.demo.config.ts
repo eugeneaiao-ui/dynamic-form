@@ -3,5 +3,9 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   base: './',
-  build: { outDir: 'demo-dist', emptyOutDir: true },
+  build: {
+    outDir: 'demo-dist',
+    emptyOutDir: true,
+    rollupOptions: { input: { demo: 'index.html', benchmark: 'benchmark.html' } },
+  },
 });

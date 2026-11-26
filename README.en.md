@@ -4,6 +4,14 @@
 
 A TypeScript form library with an independent configuration engine and a React / Ant Design adapter. Configure field order, layout, validation, data sources, dependencies, and edit / preview / snapshot rendering.
 
+## Long forms and complex dependencies
+
+- Try 100, 300 or 1,000 fields with complete or progressive mounting and full-form validation.
+- Combine asynchronous dependent options, multi-stage calculations, dynamic attributes and conditional validation.
+- Read the [illustrated examples](docs/EXAMPLES.md), [browser benchmark report](docs/PERFORMANCE.md) and raw samples. Progressive mounting trades first-batch latency against total completion time; it is not virtualization.
+
+![Long form with 300 mounted fields](docs/images/long.png)
+
 ## Low-code and AI integration
 
 Use Dynamic Form as a rendering layer for stored form definitions, validate AI-generated JSON before rendering, or give a coding assistant the typed API and examples. The repository includes a [configuration JSON Schema](schemas/form-definition.schema.json), a working [JSON form example](examples/ai/JsonFormExample.tsx), and [llms.txt](llms.txt). See the [AI integration guide](docs/AI_INTEGRATION.md) for the full workflow and supported subset.
@@ -21,7 +29,7 @@ npm ci
 npm run dev
 ```
 
-Until the AI integration PR is merged, check out `codex/ai-low-code-discovery` for the new JSON example.
+Until the illustrated examples and performance PR is merged, check out `codex/examples-performance` for these additions.
 
 ## Install in an application
 

@@ -1,7 +1,7 @@
 {
   "name": "@eugeneaiao-ui/dynamic-form",
   "version": "0.1.0",
-  "description": "TypeScript dynamic form engine for React and Ant Design, with schema-driven configuration for low-code apps and AI-assisted form development.",
+  "description": "TypeScript dynamic form engine for React and Ant Design: long forms, complex field dependencies, low-code apps and AI-assisted development.",
   "type": "module",
   "license": "MIT",
   "main": "./dist/index.cjs",
@@ -48,7 +48,9 @@
     "examples/configuration",
     "llms.txt",
     "schemas",
-    "examples/ai"
+    "examples/ai",
+    "examples/advanced",
+    "examples/performance/fixtures.ts"
   ],
   "sideEffects": [
     "**/*.css"
@@ -73,7 +75,10 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "check:docs": "node scripts/check-docs.mjs",
-    "prepack": "npm run build"
+    "prepack": "npm run build",
+    "benchmark": "node scripts/benchmark.mjs",
+    "benchmark:smoke": "node scripts/benchmark.mjs --smoke",
+    "examples:screenshots": "node scripts/benchmark.mjs --screenshots-only"
   },
   "engines": {
     "node": ">=20.19.0"
@@ -111,6 +116,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "globals": "^16.4.0",
     "jsdom": "^26.1.0",
+    "playwright": "1.65.1",
     "prettier": "3.6.2",
     "react": "19.1.1",
     "react-dom": "19.1.1",
@@ -134,7 +140,9 @@
     "ai-assisted-development",
     "json-schema",
     "config-driven",
-    "react-forms"
+    "react-forms",
+    "long-form",
+    "field-dependencies"
   ],
   "publishConfig": {
     "access": "public"

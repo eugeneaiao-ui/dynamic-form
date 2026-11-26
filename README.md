@@ -2,12 +2,20 @@
 
 [English](README.en.md) · [快速开始](docs/GETTING_STARTED.md) · [配置手册](docs/CONFIGURATION.md) · [常用场景](docs/RECIPES.md) · [API](docs/API.md)
 
-面向 React / Ant Design 的 TypeScript 动态表单引擎，支持低代码应用的表单渲染和 AI 辅助生成配置。用 TypeScript 或受约束的 JSON 配置表单结构、校验、选项和字段联动。独立 core 引擎负责生成配置，React / Ant Design 适配器负责渲染编辑、预览与快照。
+面向 React / Ant Design 的 TypeScript 动态表单引擎，支持长表单、多级字段联动、低代码应用的表单渲染和 AI 辅助生成配置。用 TypeScript 或受约束的 JSON 配置表单结构、校验、选项和字段联动。独立 core 引擎负责生成配置，React / Ant Design 适配器负责渲染编辑、预览与快照。
 
 - **结构与规则分离**：template 定义字段顺序和布局，fields 定义标签、校验和控件属性。
 - **适配现有项目**：支持自定义组件、业务请求客户端、状态数据和日期适配器。
 - **可独立使用**：core 无 React / Ant Design 依赖；库提供 ESM、CommonJS 及类型声明。
 - **动态更新**：配置变更立即生效，异步联动会丢弃过期结果。
+
+## 核心能力：长表单与复杂联动
+
+- 长表单：演示支持 100 / 300 / 1000 字段、完整或分批挂载、整表校验；提供真实浏览器的性能数据和原始样本。
+- 复杂联动：异步下拉级联、多阶段计算、动态禁用和条件校验，可以同时出现在一张表单里。
+- 图文教程：查看[操作步骤与截图](docs/EXAMPLES.md)、[性能测量报告](docs/PERFORMANCE.md)及对应源码。
+
+![300 字段长表单及完整挂载计数](docs/images/long.png)
 
 ## 低代码与 AI 开发
 
@@ -40,7 +48,7 @@ npm ci
 npm run dev
 ```
 
-当前 AI / 低代码补充 PR 合并前，请先检出 `codex/ai-low-code-discovery` 分支查看新增示例。
+当前图文示例与性能 PR 合并前，请先检出 `codex/examples-performance` 分支查看新增内容。
 
 运行后打开终端显示的地址，可以切换 edit / preview / snapshot、切换国家加载城市、添加字段并提交校验。[最小表单源码](examples/quick-start/ProfileForm.tsx)和[进阶配置源码](examples/configuration/recipes.tsx)参与严格类型检查。
 
