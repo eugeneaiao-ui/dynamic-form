@@ -61,3 +61,9 @@ npm 包名为 forminojs。这些步骤由维护者手动执行，不会由 CI �
 5. 确认后手动执行 npm publish --access public，并创建对应版本的 Git tag / release。Formino 首次发布使用 formino-v0.1.0，旧 scoped 包的 v0.1.0 标签保留。
 
 本仓库已有 publishConfig.access=public，明确使用公开访问级别，不会自动触发发布。发布记录应注明验证结果。远程 CI 因账号级限制无法启动时，应记录限制和本地验证结果，不能将未启动视作通过。
+
+## 文档与演示站
+
+运行 npm run build:site、npm run check:site 可构建并验证静态文档。安装 Google Chrome 后运行 npm run test:site，可检查桌面 / 手机布局、搜索、导航和示例。部署方式见[版本与发布维护](docs/RELEASING.md)。
+
+使用 AI 辅助贡献时，请验证生成的配置、代码、接口与测试结果，说明真实重现步骤和验证命令。

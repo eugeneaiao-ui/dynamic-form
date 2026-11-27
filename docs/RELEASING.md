@@ -30,6 +30,6 @@ npm run check:site
 
 site/config.json 定义公开站点地址；site-dist 包含静态文档、全文搜索索引、sitemap.xml、robots.txt、llms.txt、配置 Schema 和 playground。可部署到 GitHub Pages 或其他静态托管。
 
-GitHub Pages 工作流仅发布文档和示例，不发布 npm。手动发布 Pages 时可运行 npm run deploy:site；该命令会构建并验证网站，将产物提交到 gh-pages 分支。GitHub Pages 设置应选择该分支根目录。
+GitHub Pages 使用 gh-pages 分支根目录作为发布源。Pages 工作流构建并验证网站后更新该分支，并请求 Pages 重新构建；仅发布文档和示例，不发布 npm。手动维护时运行 npm run deploy:site，使用已有 Git 登录把同一构建结果更新到 gh-pages。
 
 若 GitHub Actions 因账号 billing 限制无法启动，应先解决账号限制；不要把未运行的检查记为通过。版本 Release 和本地验证结果可以独立记录。

@@ -378,3 +378,14 @@ footer {
     gap: 12px;
   }
 }
+
+.badge {
+  display: inline-block;
+  padding: 2px 9px;
+  margin-right: 5px;
+  border: 1px solid #dbe0ec;
+  border-radius: 5px;
+  background: #f6f8fc;
+  color: #56617a;
+  font-size: 12px;
+}
