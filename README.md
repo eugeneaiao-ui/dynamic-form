@@ -85,7 +85,7 @@ React / Ant Design 渲染、校验与交互
 | 查完整接口和默认值                     | [API](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/docs/API.md)                  |
 | 将现有动态表单迁移进来                 | [迁移指南](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/docs/MIGRATION.md)       |
 | 排查不刷新、校验、样式和日期问题       | [常见问题](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/docs/FAQ.md)             |
-| 本地开发、提 PR、构建和准备发布        | [贡献指南](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/CONTRIBUTING.md)         |
+| 本地开发、提 PR、构建和准备发布        | [贡献指南](https://github.com/eugeneaiao-ui/formino/blob/main/CONTRIBUTING.md)                   |
 
 ## 运行示例
 
@@ -157,6 +157,8 @@ peer dependencies 标记为 optional 是为了支持 core-only 安装；使用 U
 
 ## 验证与贡献
 
+外部贡献请使用 **Fork → 短期分支 → PR 到 main → 审核 → Squash 合并**。完整命令见[贡献指南](https://github.com/eugeneaiao-ui/formino/blob/main/CONTRIBUTING.md)，分支保护与维护者例外见[贡献流程](https://github.com/eugeneaiao-ui/formino/blob/main/docs/CONTRIBUTION_WORKFLOW.md)。
+
 ```bash
 npm run check
 npm run test:package
@@ -165,7 +167,7 @@ npm run check:docs
 
 check 包括类型、ESLint、格式、回归测试及库和演示构建；test:package 将实际 tarball 安装到隔离项目，检查各组合的导入、SSR 和使用方类型；check:docs 检查本地文档链接和基础发布信息。
 
-欢迎通过 [Issues](https://github.com/eugeneaiao-ui/formino/issues) 反馈问题，通过 PR 贡献代码。请先阅读[贡献指南](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/CONTRIBUTING.md)。版本变化记录在 [CHANGELOG](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/CHANGELOG.md)。
+欢迎通过 [Issues](https://github.com/eugeneaiao-ui/formino/issues) 反馈问题，通过 PR 贡献代码。请先阅读[贡献指南](https://github.com/eugeneaiao-ui/formino/blob/main/CONTRIBUTING.md)。版本变化记录在 [CHANGELOG](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/CHANGELOG.md)。
 
 ## License
 

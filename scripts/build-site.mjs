@@ -46,6 +46,7 @@ const nav = [
   ['常见问题', 'docs/FAQ.md'],
   ['版本与发布', 'docs/RELEASING.md'],
   ['贡献指南', 'CONTRIBUTING.md'],
+  ['分支与投稿流程', 'docs/CONTRIBUTION_WORKFLOW.md'],
   ['安全反馈', 'SECURITY.md'],
 ];
 const assets = [
