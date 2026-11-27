@@ -49,5 +49,12 @@ The host owns backend storage, definition publishing, data-source implementation
 - [Latest release](https://github.com/eugeneaiao-ui/formino/releases/latest): version notes and matching source.
 - [Discussions](https://github.com/eugeneaiao-ui/formino/discussions): configuration and integration questions.
 
+## Contribution workflow
+
+External contributors fork the repository and open a PR to main from a short-lived branch. The maintainer reviews and squash-merges changes. Fork workflows require maintainer approval.
+
+- [Contributing](https://eugeneaiao-ui.github.io/formino/CONTRIBUTING.md): fork, clone, branch, checks, push and PR instructions.
+- [Branch and review policy](https://eugeneaiao-ui.github.io/formino/docs/CONTRIBUTION_WORKFLOW.md): protected refs, maintainer exception and current CI limitations.
+
 Website: https://eugeneaiao-ui.github.io/formino/
 Playground: https://eugeneaiao-ui.github.io/formino/playground/

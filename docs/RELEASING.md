@@ -8,6 +8,12 @@
 
 Release 附件中的 .tgz 与 npm 发布产物一致，SHA256SUMS.txt 用于校验下载。Windows 可使用 Get-FileHash -Algorithm SHA256；Linux / macOS 可使用 sha256sum 或 shasum -a 256。
 
+## 代码合并与版本权限
+
+普通贡献先通过短期分支向 main 发 PR，由维护者审核后 Squash 合并。PR 合并不自动发布 npm；正式发布由具备对应权限的维护者执行。main 可以包含尚未发版的维护改动，发布标签必须指向已经审核的明确提交。
+
+formino-v* 与保留的 v* 标签禁止更新和删除。版本错误应发布新版本，不覆盖原有标签。分支与审核流程见[贡献流程](CONTRIBUTION_WORKFLOW.md)。
+
 ## 下次发版顺序
 
 1. 合并待发布改动，确认工作区干净；更新 package.json、package-lock.json 的版本和 CHANGELOG。
