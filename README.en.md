@@ -1,26 +1,77 @@
-# Formino — schema-driven forms for low-code and AI-assisted development
+# Formino — a configuration-driven form engine
 
 [![npm version](https://img.shields.io/npm/v/forminojs?color=315efb)](https://www.npmjs.com/package/forminojs) [![MIT license](https://img.shields.io/github/license/eugeneaiao-ui/formino)](https://github.com/eugeneaiao-ui/formino/blob/main/LICENSE) [![GitHub release](https://img.shields.io/github/v/release/eugeneaiao-ui/formino)](https://github.com/eugeneaiao-ui/formino/releases/latest)
 
 [Documentation](https://eugeneaiao-ui.github.io/formino/) · [Live playground](https://eugeneaiao-ui.github.io/formino/playground/) · [Release](https://github.com/eugeneaiao-ui/formino/releases/latest) · [Discussions](https://github.com/eugeneaiao-ui/formino/discussions) · [Support](https://github.com/eugeneaiao-ui/formino/blob/main/SUPPORT.md) · [Adoption guide](https://github.com/eugeneaiao-ui/formino/blob/main/docs/ADOPTION.md)
 
-[中文](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/README.md) · [Quick start](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/docs/GETTING_STARTED.md) · [Configuration](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/docs/CONFIGURATION.md) · [Recipes](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/docs/RECIPES.md) · [API](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/docs/API.md)
+[中文](https://github.com/eugeneaiao-ui/formino/blob/main/README.md) · [Quick start](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/docs/GETTING_STARTED.md) · [Configuration](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/docs/CONFIGURATION.md) · [Recipes](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/docs/RECIPES.md) · [API](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/docs/API.md)
 
-A TypeScript form library with an independent configuration engine and a React / Ant Design adapter. Configure field order, layout, validation, data sources, dependencies, and edit / preview / snapshot rendering.
+A TypeScript **configuration-driven form engine** for React and Ant Design. Describe fields, layout, validation and data sources in a form definition; let a shared engine compose that definition, handle dependencies and render the form.
 
-## Long forms and complex dependencies
+## Why I created Formino
 
-- Try 100, 300 or 1,000 fields with complete or progressive mounting and full-form validation.
-- Combine asynchronous dependent options, multi-stage calculations, dynamic attributes and conditional validation.
-- Read the [illustrated examples](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/docs/EXAMPLES.md), [browser benchmark report](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/docs/PERFORMANCE.md) and raw samples. Progressive mounting trades first-batch latency against total completion time; it is not virtualization.
+I wanted a form to be a definition that can be read, managed and passed between systems. When a form changes, developers should be able to describe the business differences in configuration and reuse the rendering and interaction code already in place.
+
+**Configuration-driven design is the starting point. Long forms, complex dependencies, previews and snapshots are features supported by that model.**
+
+## Separate form definitions from rendering
+
+The definition describes which fields exist, how they are arranged and which rules apply. The rendering layer implements controls, state bindings and interactions. An explicit configuration contract connects the two.
+
+```text
+Requirements / human editing / AI generation
+                    ↓
+Form definition (local TypeScript / supported JSON from a backend)
+                    ↓
+Host validation and adaptation → Formino configuration engine
+                    ↓
+React / Ant Design rendering, validation and interaction
+```
+
+| Responsibility             | What it owns                                                                                    |
+| -------------------------- | ----------------------------------------------------------------------------------------------- |
+| Form definition            | Fields, layout, rules, options and supported data-source references                             |
+| Formino engine and adapter | Configuration composition, field dependencies, reusable rendering, form state and display modes |
+| Host application           | Definition storage and publishing, business APIs, custom controls and executable logic          |
+
+`template` defines field order, types and layout; `fields` defines labels, validation and control properties. Shared behavior belongs in the engine, while business differences enter through definitions and host adapters.
+
+### Store and deliver definitions from a backend
+
+A serializable definition can be stored, delivered for different scenarios and versioned by a backend while the frontend reuses its rendering implementation. This provides a foundation for configuration review, version management and reuse across application screens.
+
+Within the controls and rules already supported by the renderer, a field, layout or validation change can be delivered as configuration. New controls and executable behavior still require application code. Persist the supported **JSON configuration subset**; functions, custom components and advanced dependencies use trusted TypeScript configuration and host registrations.
+
+The host owns storage, authorization and publishing services. Formino supplies the configuration contract, engine and integration examples. See [JSON and backend integration](https://github.com/eugeneaiao-ui/formino/blob/main/docs/AI_INTEGRATION.md).
+
+### Give AI a stable configuration contract
+
+Provide the contract, relevant examples and business requirements so a model can generate or update a definition, reusing the engine's existing rendering and interaction behavior. This separation aims to reduce repeated reasoning and code generation around form implementation.
+
+- **Less repeated context:** focus on relevant fields, rules and registered capabilities, reducing the need to revisit page implementation details.
+- **Less repeated output:** reuse the renderer instead of generating similar JSX, state wiring and event handlers for every form.
+- **Smaller changes:** review and validate field or rule changes as configuration differences.
+
+The aim is to reduce context size, output tokens and revision overhead. Actual savings depend on the task, model and definition size; the project has not published a comparative AI-cost benchmark. Validate generated definitions against the contract before host adaptation and rendering.
+
+## Features supported by this model
+
+- Long forms with 100, 300 or 1,000 fields, complete or progressive mounting and full-form validation.
+- Asynchronous cascading options, multi-stage calculations, dynamic attributes and conditional validation.
+- Edit, preview and snapshot modes using shared field definitions.
+- Custom controls, business data sources, application context and date adapters supplied by the host.
+- An independent core without React or AntD imports, plus ESM / CommonJS outputs and type declarations.
+- Reactive configuration updates and cancellation of outdated asynchronous results.
+
+Read the [illustrated examples](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/docs/EXAMPLES.md) and [browser benchmark report](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/docs/PERFORMANCE.md). Progressive mounting trades first-batch latency against total completion time; it retains the full DOM.
 
 ![Long form with 300 mounted fields](https://raw.githubusercontent.com/eugeneaiao-ui/formino/formino-v0.1.0/docs/images/long.png)
 
 ## Low-code and AI integration
 
-Use Formino as a rendering layer for stored form definitions, validate AI-generated JSON before rendering, or give a coding assistant the typed API and examples. The repository includes a [configuration JSON Schema](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/schemas/form-definition.schema.json), a working [JSON form example](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/examples/ai/JsonFormExample.tsx), and [llms.txt](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/llms.txt). See the [AI integration guide](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/docs/AI_INTEGRATION.md) for the full workflow and supported subset.
+Use Formino as the rendering layer for stored definitions, validate AI-generated JSON, or give a coding assistant the typed API and examples. The repository includes a [configuration JSON Schema](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/schemas/form-definition.schema.json), a working [JSON form example](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/examples/ai/JsonFormExample.tsx), and [llms.txt](https://github.com/eugeneaiao-ui/formino/blob/main/llms.txt). See the [integration guide](https://github.com/eugeneaiao-ui/formino/blob/main/docs/AI_INTEGRATION.md) for the supported subset and workflow.
 
-This is a form engine, not a complete drag-and-drop builder or an LLM backend. It does not render arbitrary JSON Schema documents.
+The project provides a form engine and integration examples. Hosts can build a visual editor, configuration backend or LLM service around it. The supplied schema describes Formino configuration rather than arbitrary JSON Schema documents.
 
 ## Try the playground
 

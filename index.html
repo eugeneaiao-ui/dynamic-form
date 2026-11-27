@@ -1,28 +1,72 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Formino — 低代码与 AI 辅助开发的动态表单引擎 | Formino</title><meta name="description" content="Formino 动态表单引擎：React / Ant Design 长表单、复杂字段联动、低代码与 AI 辅助开发。"><link rel="canonical" href="https://eugeneaiao-ui.github.io/formino/"><meta name="robots" content="index,follow"><meta property="og:type" content="website"><meta property="og:title" content="Formino — 低代码与 AI 辅助开发的动态表单引擎"><meta property="og:description" content="Formino 动态表单引擎：React / Ant Design 长表单、复杂字段联动、低代码与 AI 辅助开发。"><meta property="og:url" content="https://eugeneaiao-ui.github.io/formino/"><meta property="og:image" content="https://eugeneaiao-ui.github.io/formino/docs/images/long.png"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="/formino/site.css"><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Formino","description":"Formino 动态表单引擎：React / Ant Design 长表单、复杂字段联动、低代码与 AI 辅助开发。","url":"https://eugeneaiao-ui.github.io/formino/","codeRepository":"https://github.com/eugeneaiao-ui/formino","programmingLanguage":"TypeScript","softwareVersion":"0.1.0","license":"https://github.com/eugeneaiao-ui/formino/blob/main/LICENSE","downloadUrl":"https://www.npmjs.com/package/forminojs","keywords":"forminojs, formino, dynamic-form, form-builder, react, antd, typescript, schema, validation, low-code, schema-driven, ai-assisted-development, json-schema, config-driven, react-forms, long-form, field-dependencies, form-engine, dynamic-forms, complex-forms, conditional-fields"}</script><script src="/formino/site.js" defer></script></head><body><a class="skip" href="#content">跳到正文</a><header class="top"><a class="brand" href="/formino/"><span>F</span> Formino</a><nav aria-label="主导航"><a href="/formino/playground/">Playground</a><a href="/formino/en/">English</a><a href="https://www.npmjs.com/package/forminojs">npm ↗</a><a href="https://github.com/eugeneaiao-ui/formino">GitHub ↗</a></nav></header><div class="layout"><aside><form role="search"><label for="docs-search">搜索文档</label><input id="docs-search" type="search" placeholder="联动、数据源、校验…" autocomplete="off" aria-controls="search-results"><p id="search-status" role="status" class="search-status"></p><div id="search-results" hidden></div></form><nav aria-label="文档目录"><a href="/formino/docs/getting-started.html">快速开始</a><a href="/formino/docs/examples.html">图文示例</a><a href="/formino/docs/configuration.html">配置手册</a><a href="/formino/docs/recipes.html">常用场景</a><a href="/formino/docs/api.html">API</a><a href="/formino/docs/ai-integration.html">AI / 低代码</a><a href="/formino/docs/performance.html">性能与测量</a><a href="/formino/docs/migration.html">迁移指南</a><a href="/formino/docs/faq.html">常见问题</a><a href="/formino/docs/releasing.html">版本与发布</a><a href="/formino/docs/contributing.html">贡献指南</a><a href="/formino/docs/security.html">安全反馈</a></nav><div class="install"><code>npm i forminojs</code><button type="button" id="copy-install" aria-label="复制安装命令">复制</button><span id="copy-status" role="status"></span></div><a class="discuss" href="https://github.com/eugeneaiao-ui/formino/discussions">提问与交流 ↗</a></aside><main id="content"><section class="start"><span class="version">MIT · forminojs 0.1.0</span><h1>长表单与复杂联动，<br>用配置完成。</h1><p>从 React 项目接入，到低代码和 AI 生成配置，先运行示例，再接入自己的数据。</p><div class="actions"><a class="primary" href="/formino/docs/getting-started.html">开始接入 →</a><a href="/formino/playground/">打开交互示例 ↗</a></div></section><article><h1 id="formino--低代码与-ai-辅助开发的动态表单引擎">Formino — 低代码与 AI 辅助开发的动态表单引擎</h1>
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Formino — 配置驱动的表单引擎 | Formino</title><meta name="description" content="Formino 配置驱动表单引擎：将表单定义与渲染分离，支持宿主管理的 JSON 定义和 AI 辅助生成配置。"><link rel="canonical" href="https://eugeneaiao-ui.github.io/formino/"><meta name="robots" content="index,follow"><meta property="og:type" content="website"><meta property="og:title" content="Formino — 配置驱动的表单引擎"><meta property="og:description" content="Formino 配置驱动表单引擎：将表单定义与渲染分离，支持宿主管理的 JSON 定义和 AI 辅助生成配置。"><meta property="og:url" content="https://eugeneaiao-ui.github.io/formino/"><meta property="og:image" content="https://eugeneaiao-ui.github.io/formino/docs/images/long.png"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="/formino/site.css"><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Formino","description":"Formino 配置驱动表单引擎：将表单定义与渲染分离，支持宿主管理的 JSON 定义和 AI 辅助生成配置。","url":"https://eugeneaiao-ui.github.io/formino/","codeRepository":"https://github.com/eugeneaiao-ui/formino","programmingLanguage":"TypeScript","softwareVersion":"0.1.0","license":"https://github.com/eugeneaiao-ui/formino/blob/main/LICENSE","downloadUrl":"https://www.npmjs.com/package/forminojs","keywords":"forminojs, formino, dynamic-form, form-builder, react, antd, typescript, schema, validation, low-code, schema-driven, ai-assisted-development, json-schema, config-driven, react-forms, long-form, field-dependencies, form-engine, dynamic-forms, complex-forms, conditional-fields"}</script><script src="/formino/site.js" defer></script></head><body><a class="skip" href="#content">跳到正文</a><header class="top"><a class="brand" href="/formino/"><span>F</span> Formino</a><nav aria-label="主导航"><a href="/formino/playground/">Playground</a><a href="/formino/en/">English</a><a href="https://www.npmjs.com/package/forminojs">npm ↗</a><a href="https://github.com/eugeneaiao-ui/formino">GitHub ↗</a></nav></header><div class="layout"><aside><form role="search"><label for="docs-search">搜索文档</label><input id="docs-search" type="search" placeholder="联动、数据源、校验…" autocomplete="off" aria-controls="search-results"><p id="search-status" role="status" class="search-status"></p><div id="search-results" hidden></div></form><nav aria-label="文档目录"><a href="/formino/docs/getting-started.html">快速开始</a><a href="/formino/docs/examples.html">图文示例</a><a href="/formino/docs/configuration.html">配置手册</a><a href="/formino/docs/recipes.html">常用场景</a><a href="/formino/docs/api.html">API</a><a href="/formino/docs/ai-integration.html">AI / 低代码</a><a href="/formino/docs/performance.html">性能与测量</a><a href="/formino/docs/migration.html">迁移指南</a><a href="/formino/docs/faq.html">常见问题</a><a href="/formino/docs/releasing.html">版本与发布</a><a href="/formino/docs/contributing.html">贡献指南</a><a href="/formino/docs/security.html">安全反馈</a></nav><div class="install"><code>npm i forminojs</code><button type="button" id="copy-install" aria-label="复制安装命令">复制</button><span id="copy-status" role="status"></span></div><a class="discuss" href="https://github.com/eugeneaiao-ui/formino/discussions">提问与交流 ↗</a></aside><main id="content"><section class="start"><span class="version">MIT · forminojs 0.1.0</span><h1>配置描述表单，<br>引擎负责渲染。</h1><p>用可复用的定义表达字段、布局与规则。配置可以由后端下发，也可以由 AI 按契约生成，再由共享引擎转成表单。</p><div class="actions"><a class="primary" href="/formino/docs/getting-started.html">开始接入 →</a><a href="/formino/playground/">打开交互示例 ↗</a></div></section><article><h1 id="formino--配置驱动的表单引擎">Formino — 配置驱动的表单引擎</h1>
 <p><a href="https://www.npmjs.com/package/forminojs"><span class="badge">npm 0.1.0</span></a> <a href="/formino/LICENSE"><span class="badge">MIT</span></a> <a href="https://github.com/eugeneaiao-ui/formino/releases/latest"><span class="badge">Release 0.1.0</span></a></p>
 <p><a href="https://eugeneaiao-ui.github.io/formino/">在线文档</a> · <a href="https://eugeneaiao-ui.github.io/formino/playground/">在线示例</a> · <a href="https://github.com/eugeneaiao-ui/formino/releases/latest">Release</a> · <a href="https://github.com/eugeneaiao-ui/formino/discussions">Discussions</a> · <a href="/formino/docs/support.html">Support</a> · <a href="/formino/docs/adoption.html">Adoption guide</a></p>
 <p><a href="/formino/en/index.html">English</a> · <a href="/formino/docs/getting-started.html">快速开始</a> · <a href="/formino/docs/configuration.html">配置手册</a> · <a href="/formino/docs/recipes.html">常用场景</a> · <a href="/formino/docs/api.html">API</a></p>
-<p>面向 React / Ant Design 的 TypeScript 动态表单引擎，支持长表单、多级字段联动、低代码应用的表单渲染和 AI 辅助生成配置。用 TypeScript 或受约束的 JSON 配置表单结构、校验、选项和字段联动。独立 core 引擎负责生成配置，React / Ant Design 适配器负责渲染编辑、预览与快照。</p>
+<p>面向 React / Ant Design 的 TypeScript <strong>配置驱动表单引擎</strong>。用配置描述字段、布局、校验和数据源，由共享引擎负责配置合成、字段依赖和表单渲染。</p>
+<h2 id="为什么创建-formino">为什么创建 Formino</h2>
+<p>我创造 Formino 的初衷，是让表单先成为一份可读、可管理、可传递的定义。新增或调整一张表单时，开发者可以围绕业务需要修改配置，复用已经建立的渲染和交互能力。</p>
+<p><strong>配置驱动是 Formino 的设计出发点。长表单、复杂联动、预览和快照，是这一模型支撑的具体特性。</strong></p>
+<h2 id="配置与渲染分离">配置与渲染分离</h2>
+<p>表单定义表达“有哪些字段、如何排列、遵守什么规则”；渲染层实现“如何显示控件、连接状态并处理交互”。两者通过明确的配置契约协作。</p>
+<pre><code class="language-text">业务需求 / 人工编辑 / AI 生成
+              ↓
+表单定义（本地 TypeScript / 后端下发的受支持 JSON）
+              ↓
+宿主校验与适配 → Formino 配置引擎
+              ↓
+React / Ant Design 渲染、校验与交互
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>分工</th>
+<th>负责什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>表单配置</td>
+<td>字段、布局、规则、选项和受支持的数据源引用</td>
+</tr>
+<tr>
+<td>Formino 引擎与适配层</td>
+<td>合成配置、处理字段依赖，复用控件渲染、表单状态和显示模式</td>
+</tr>
+<tr>
+<td>宿主应用</td>
+<td>配置来源、存储与发布策略、业务接口、自定义控件和函数型逻辑</td>
+</tr>
+</tbody></table>
+<p>在配置模型中，<code>template</code> 定义字段顺序、类型和布局，<code>fields</code> 定义标签、校验和控件属性。通用能力集中在引擎，业务差异通过配置和宿主适配器接入。</p>
+<h3 id="配置可以放到后端">配置可以放到后端</h3>
+<p>当表单定义可以序列化，后端就可以保存、按场景下发和管理不同版本的配置，前端复用同一套渲染实现。这为配置审核、版本管理和多个页面复用定义提供了基础。</p>
+<p>在现有控件和规则已经支持的范围内，调整字段、布局或校验可以通过更新配置完成；新增控件或执行逻辑仍由应用代码实现。持久化时使用项目支持的 <strong>JSON 配置子集</strong>，函数、自定义组件和高级联动通过可信的 TypeScript 配置及宿主注册机制接入。</p>
+<p>后端的存储、权限与发布服务由宿主实现。Formino 提供配置契约、引擎和接入示例，详见 <a href="/formino/docs/ai-integration.html">JSON 配置与后端接入</a>。</p>
+<h3 id="给-ai-一个稳定的配置契约">给 AI 一个稳定的配置契约</h3>
+<p>配置驱动也让 AI 生成表单有了更明确的目标：提供配置契约、相关示例和业务需求，让模型生成或修改表单定义，复用引擎中已经实现的渲染与交互。这种分工的目标，是降低 AI 重复理解、推理和生成表单实现的成本。</p>
 <ul>
-<li><strong>结构与规则分离</strong>：template 定义字段顺序和布局，fields 定义标签、校验和控件属性。</li>
-<li><strong>适配现有项目</strong>：支持自定义组件、业务请求客户端、状态数据和日期适配器。</li>
-<li><strong>可独立使用</strong>：core 无 React / Ant Design 依赖；库提供 ESM、CommonJS 及类型声明。</li>
-<li><strong>动态更新</strong>：配置变更立即生效，异步联动会丢弃过期结果。</li>
+<li><strong>减少重复上下文</strong>：模型可以围绕相关字段、规则和已注册能力工作，减少反复理解页面实现细节的需要。</li>
+<li><strong>减少重复生成</strong>：复用渲染器，减少为每张表单生成相似 JSX、状态连接和事件处理代码。</li>
+<li><strong>缩小修改范围</strong>：字段和规则变化可以体现为配置差异，便于校验、审查和继续修改。</li>
 </ul>
-<h2 id="核心能力长表单与复杂联动">核心能力：长表单与复杂联动</h2>
+<p>这里希望降低的是上下文规模、输出 token 和修改迭代的开销。实际收益取决于任务、模型和配置大小，项目目前没有发布 AI 成本对照基准。模型输出需要按契约校验，再交给宿主适配和渲染。</p>
+<h2 id="这一模型支持的特性">这一模型支持的特性</h2>
 <ul>
-<li>长表单：演示支持 100 / 300 / 1000 字段、完整或分批挂载、整表校验；提供真实浏览器的性能数据和原始样本。</li>
-<li>复杂联动：异步下拉级联、多阶段计算、动态禁用和条件校验，可以同时出现在一张表单里。</li>
-<li>图文教程：查看<a href="/formino/docs/examples.html">操作步骤与截图</a>、<a href="/formino/docs/performance.html">性能测量报告</a>及对应源码。</li>
+<li><strong>长表单</strong>：演示支持 100 / 300 / 1000 字段、完整或分批挂载、整表校验；提供浏览器性能数据和原始样本。</li>
+<li><strong>复杂联动</strong>：异步下拉级联、多阶段计算、动态禁用和条件校验。</li>
+<li><strong>多种显示模式</strong>：复用字段定义，渲染编辑、预览和快照。</li>
+<li><strong>宿主扩展</strong>：注入自定义组件、业务数据源、状态数据和日期适配器。</li>
+<li><strong>独立 core</strong>：配置引擎无 React / Ant Design 依赖；库提供 ESM、CommonJS 及类型声明。</li>
+<li><strong>动态更新</strong>：配置变更生效，异步联动会丢弃过期结果。</li>
 </ul>
+<p>查看<a href="/formino/docs/examples.html">图文示例</a>和<a href="/formino/docs/performance.html">性能测量报告</a>，了解具体操作、数据和适用边界。</p>
 <p><img src="/formino/docs/images/long.png" alt="300 字段长表单及完整挂载计数"></p>
-<h2 id="低代码与-ai-开发">低代码与 AI 开发</h2>
+<h2 id="低代码与-ai-接入">低代码与 AI 接入</h2>
 <ul>
-<li>低代码平台：保存 JSON 配置，接入表单渲染、校验和提交。</li>
-<li>AI 生成表单：提供 <a href="/formino/schemas/form-definition.schema.json">配置 Schema</a>，先校验输出，再渲染。</li>
-<li>AI 编程助手：使用 <a href="https://github.com/eugeneaiao-ui/formino/blob/main/llms.txt">llms.txt</a>、API 和示例作为上下文，生成 TypeScript 表单。</li>
+<li>低代码渲染层：存储受支持的 JSON 定义，接入校验、渲染和提交。</li>
+<li>AI 生成配置：提供 <a href="/formino/schemas/form-definition.schema.json">Formino 配置 Schema</a>，先校验输出，再渲染。</li>
+<li>AI 编程助手：使用 <a href="https://github.com/eugeneaiao-ui/formino/blob/main/llms.txt">llms.txt</a>、API 和示例作为上下文，生成 TypeScript 配置或受支持的 JSON。</li>
 </ul>
-<p>运行 npm run dev 可体验 JSON 编辑、校验和预览。详见 <a href="/formino/docs/ai-integration.html">AI / 低代码接入指南</a>和<a href="/formino/docs/discovery.html">项目发现说明</a>。这是表单引擎及接入示例，不包含完整拖拽编辑器或 LLM 服务。</p>
+<p>运行 <code>npm run dev</code> 可体验 JSON 编辑、校验和预览。详见 <a href="/formino/docs/ai-integration.html">AI / 低代码接入指南</a>。项目提供表单引擎及接入示例；可视化编辑器、配置管理后台和 LLM 服务由宿主按需建设。</p>
 <h2 id="先看哪个文档">先看哪个文档？</h2>
 <table>
 <thead>

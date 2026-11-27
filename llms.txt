@@ -1,6 +1,6 @@
 # Formino
 
-> MIT-licensed TypeScript dynamic form engine for React and Ant Design. Supports schema-driven forms, low-code applications, and AI-assisted form development.
+> MIT-licensed, configuration-driven TypeScript form engine. Separate form definitions from React / Ant Design rendering; reuse the engine with local TypeScript or host-managed supported JSON and AI-generated configuration.
 
 Repository: https://github.com/eugeneaiao-ui/formino
 Package name: forminojs
@@ -9,10 +9,12 @@ Release: 0.1.0
 npm: https://www.npmjs.com/package/forminojs
 Core has no React or Ant Design imports. UI adapters support edit, preview, snapshot, validation, dependent fields, async options, and custom controls.
 
+The host owns backend storage, definition publishing, data-source implementations and executable behavior. Configuration provides a bounded target for AI generation; no comparative AI-cost benchmark has been published.
+
 ## Start here
 
-- [English overview](https://eugeneaiao-ui.github.io/formino/README.en.md): capabilities, installation, minimal example.
-- [Chinese overview](https://eugeneaiao-ui.github.io/formino/README.md): documentation index.
+- [English overview](https://eugeneaiao-ui.github.io/formino/README.en.md): configuration-driven philosophy, integration, installation and minimal example.
+- [Chinese overview](https://eugeneaiao-ui.github.io/formino/README.md): configuration-driven philosophy and documentation index.
 - [AI and low-code integration](https://eugeneaiao-ui.github.io/formino/docs/AI_INTEGRATION.md): JSON generation, validation, renderer, limitations.
 - [Configuration JSON Schema](https://eugeneaiao-ui.github.io/formino/schemas/form-definition.schema.json): version 1 serializable configuration subset, not a schema for submitted values.
 - [JSON example](https://eugeneaiao-ui.github.io/formino/examples/ai/service-request.json): runnable service request form.
