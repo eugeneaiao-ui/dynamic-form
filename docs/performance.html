@@ -1,0 +1,120 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>长表单渲染性能 | Formino</title><meta name="description" content="Formino 动态表单引擎：React / Ant Design 长表单、复杂字段联动、低代码与 AI 辅助开发。"><link rel="canonical" href="https://eugeneaiao-ui.github.io/formino/docs/performance.html"><meta name="robots" content="index,follow"><meta property="og:type" content="website"><meta property="og:title" content="长表单渲染性能"><meta property="og:description" content="Formino 动态表单引擎：React / Ant Design 长表单、复杂字段联动、低代码与 AI 辅助开发。"><meta property="og:url" content="https://eugeneaiao-ui.github.io/formino/docs/performance.html"><meta property="og:image" content="https://eugeneaiao-ui.github.io/formino/docs/images/long.png"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="/formino/site.css"><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Formino","description":"Formino 动态表单引擎：React / Ant Design 长表单、复杂字段联动、低代码与 AI 辅助开发。","url":"https://eugeneaiao-ui.github.io/formino/","codeRepository":"https://github.com/eugeneaiao-ui/formino","programmingLanguage":"TypeScript","softwareVersion":"0.1.0","license":"https://github.com/eugeneaiao-ui/formino/blob/main/LICENSE","downloadUrl":"https://www.npmjs.com/package/forminojs","keywords":"forminojs, formino, dynamic-form, form-builder, react, antd, typescript, schema, validation, low-code, schema-driven, ai-assisted-development, json-schema, config-driven, react-forms, long-form, field-dependencies"}</script><script src="/formino/site.js" defer></script></head><body><a class="skip" href="#content">跳到正文</a><header class="top"><a class="brand" href="/formino/"><span>F</span> Formino</a><nav aria-label="主导航"><a href="/formino/playground/">Playground</a><a href="/formino/en/">English</a><a href="https://www.npmjs.com/package/forminojs">npm ↗</a><a href="https://github.com/eugeneaiao-ui/formino">GitHub ↗</a></nav></header><div class="layout"><aside><form role="search"><label for="docs-search">搜索文档</label><input id="docs-search" type="search" placeholder="联动、数据源、校验…" autocomplete="off" aria-controls="search-results"><p id="search-status" role="status" class="search-status"></p><div id="search-results" hidden></div></form><nav aria-label="文档目录"><a href="/formino/docs/getting-started.html">快速开始</a><a href="/formino/docs/examples.html">图文示例</a><a href="/formino/docs/configuration.html">配置手册</a><a href="/formino/docs/recipes.html">常用场景</a><a href="/formino/docs/api.html">API</a><a href="/formino/docs/ai-integration.html">AI / 低代码</a><a aria-current="page" href="/formino/docs/performance.html">性能与测量</a><a href="/formino/docs/migration.html">迁移指南</a><a href="/formino/docs/faq.html">常见问题</a><a href="/formino/docs/releasing.html">版本与发布</a><a href="/formino/docs/contributing.html">贡献指南</a><a href="/formino/docs/security.html">安全反馈</a></nav><div class="install"><code>npm i forminojs</code><button type="button" id="copy-install" aria-label="复制安装命令">复制</button><span id="copy-status" role="status"></span></div><a class="discuss" href="https://github.com/eugeneaiao-ui/formino/discussions">提问与交流 ↗</a></aside><main id="content"><article><h1 id="长表单渲染性能">长表单渲染性能</h1>
+<p><a href="/formino/docs/examples.html">图文示例</a> · <a href="/formino/docs/benchmarks/latest.json">原始数据</a> · <a href="https://github.com/eugeneaiao-ui/formino/blob/main/scripts/benchmark.mjs">测量脚本</a></p>
+<p>本报告测量真实 Chrome 中的生产构建。它描述当前版本在这台机器上的结果，不代表所有设备，也不与未测量的其他库比较。</p>
+<h2 id="指标与场景">指标与场景</h2>
+<ul>
+<li>普通长表单：100、300、1000 个 Ant Design Input，三列布局；每项均有 required 校验与初始值。</li>
+<li>完整挂载与 progressive 分批挂载各测一组。每批 3 行 × 3 列 = 9 项。</li>
+<li>联动场景：100 个 NumberInput，1 个源值驱动 99 个计算字段。更新计时会等到所有目标值正确。</li>
+<li>首批 DOM：从 root.render 调用前，到 MutationObserver 首次观察到控件；不是首屏绘制指标。</li>
+<li>全部 DOM：观察到全部控件的时间，保留在原始数据 allCommittedMs 中。</li>
+<li>全部就绪：观察到全部控件，再等待两次 requestAnimationFrame；检查实际 DOM 数与表单注册数都等于配置数。</li>
+<li>编辑稳定：从真实 input 事件开始，到值 / 所有计算目标更新正确并经过两帧；不包含浏览器自动化通信耗时，不等同于 INP。</li>
+<li>校验：form.validateFields() Promise 完成的时间；所有数据有效，不包含错误提示重绘。</li>
+</ul>
+<p>requestAnimationFrame 回调发生在重绘前，两帧是这里的稳定观察边界，不能视作精确像素绘制完成时间。参见 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/requestAnimationFrame">MDN</a>。</p>
+<h2 id="测量结果">测量结果</h2>
+<!-- benchmark-results --><table>
+<thead>
+<tr>
+<th>字段数 / 场景</th>
+<th>挂载方式</th>
+<th>首批 DOM p50 / p95</th>
+<th>全部就绪 p50 / p95</th>
+<th>编辑稳定 p50 / p95</th>
+<th>校验 p50 / p95</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>100（Input）</td>
+<td>完整</td>
+<td>202.8 / 243.6</td>
+<td>210.1 / 251.5</td>
+<td>39.7 / 45.7</td>
+<td>24.6 / 27.3</td>
+</tr>
+<tr>
+<td>100（Input）</td>
+<td>分批：每批 9 项</td>
+<td>40.2 / 49.7</td>
+<td>533.7 / 551.3</td>
+<td>39.1 / 45.1</td>
+<td>24.1 / 32.6</td>
+</tr>
+<tr>
+<td>300（Input）</td>
+<td>完整</td>
+<td>510.0 / 620.0</td>
+<td>525.8 / 646.1</td>
+<td>34.5 / 45.4</td>
+<td>93.6 / 101.8</td>
+</tr>
+<tr>
+<td>300（Input）</td>
+<td>分批：每批 9 项</td>
+<td>46.3 / 49.5</td>
+<td>3031.4 / 3478.5</td>
+<td>38.5 / 44.3</td>
+<td>89.0 / 112.8</td>
+</tr>
+<tr>
+<td>1000（Input）</td>
+<td>完整</td>
+<td>1719.3 / 2154.4</td>
+<td>1770.0 / 2204.2</td>
+<td>48.5 / 54.7</td>
+<td>439.3 / 483.8</td>
+</tr>
+<tr>
+<td>1000（Input）</td>
+<td>分批：每批 9 项</td>
+<td>256.6 / 280.9</td>
+<td>28286.0 / 29482.0</td>
+<td>37.3 / 42.6</td>
+<td>471.5 / 619.2</td>
+</tr>
+<tr>
+<td>100（99 项计算联动）</td>
+<td>完整</td>
+<td>230.0 / 326.0</td>
+<td>240.0 / 338.3</td>
+<td>168.9 / 234.2</td>
+<td>33.8 / 40.6</td>
+</tr>
+</tbody></table>
+<p><strong>单位：ms。每格为 p50 / p95。</strong></p>
+<p>环境：Intel(R) Core(TM) i7-10610U CPU @ 1.80GHz；8 个逻辑处理器；16 GiB RAM；win32 10.0.26100 x64；Chrome 157.0.8103.79（headless）；React 19.1.1 / AntD 5.27.6。</p>
+<p>时间：2026-11-26T07:53:37.492Z；每场景预热 1 次，正式 7 次；未限速。源码 SHA-256：82449b1e67ebf95a3e7847b394c6b82931d8abca2801c611032f1549d1b510dc。</p>
+<!-- /benchmark-results --><p>完整原始样本还记录 DOM 节点数、注册数和 Long Task 时长。默认每场景 1 次预热、7 次正式采样，p50 / p95 使用 nearest-rank；7 个样本的 p95 就是最大值，仅作描述，不是统计保证。</p>
+<h2 id="本次实测解读">本次实测解读</h2>
+<ul>
+<li>完整挂载的全部就绪中位数：100 字段 210.1 ms、300 字段 525.8 ms、1000 字段 1770.0 ms。</li>
+<li>1000 字段分批模式首批为 256.6 ms，但全部就绪达到 28286.0 ms。当前默认每批 9 项时，全量完成成本很高，不能把首批时间当作整表性能。</li>
+<li>1000 字段最终都是 9447 个 DOM 节点，分批没有减少最终 DOM。完整挂载后编辑稳定中位数 48.5 ms，全部有效字段校验中位数 439.3 ms。</li>
+<li>100 字段 / 99 个直接计算目标的编辑稳定中位数为 168.9 ms。这是 NumberInput、表单通知和计算写入共同产生的成本，不是纯计算函数耗时。</li>
+<li>当前版本保持 progressive=false 为默认值。需要尽快完整可用时优先评估完整挂载；非常大的业务表单还应考虑合理分组 / 分步，不能把当前分批模式理解为虚拟滚动。</li>
+</ul>
+<p>以上解读对应本次记录。项目更名为 Formino、包名调整为 forminojs；历史测量数据与原始指纹保持不变，未因更名重新计时。以后复测更新原始数据时，请同时检查本段；数值不代表冷启动、移动设备或不同字段组合。</p>
+<h2 id="如何复现">如何复现</h2>
+<pre><code class="language-bash">npm ci
+npm run benchmark
+</code></pre>
+<p>在源码仓库运行上述命令。默认使用系统 Chrome 的独立 headless 实例，不读取个人浏览器资料。没有 Chrome 时可先安装 Playwright Chromium，再使用对应选项：</p>
+<pre><code class="language-bash">npx playwright install chromium
+BENCH_BROWSER=chromium npm run benchmark
+</code></pre>
+<p>Windows PowerShell 可先设置环境变量，再运行：</p>
+<pre><code class="language-powershell">$env:BENCH_BROWSER = &#39;chromium&#39;
+npm run benchmark
+</code></pre>
+<p>可用 BENCH_SAMPLES 调整正式次数。npm run benchmark:smoke 是单次检查，不更新正式性能报告。脚本会先构建生产页面，完成测量后再验证并截图四类示例；结果写入 docs/benchmarks/latest.json，报告中的结果表随之更新。</p>
+<h2 id="解释和使用边界">解释和使用边界</h2>
+<ul>
+<li>JS / CSS 已加载的页面内，每次重新挂载一个新表单；首轮预热不纳入数据。排除冷启动下载、打包、模块解析、测试配置数据创建和真实 API 延迟，包含 useDynamicConfig 生成配置及控件挂载。</li>
+<li>benchmark 独立入口没有 React.StrictMode，避免开发模式重复执行干扰。采用实际生产 React / AntD，未限 CPU、未模拟网络；同机后台负载仍会影响结果。</li>
+<li>progressive 优先让首批可见，不承诺全部完成更快。完成后仍保留所有字段，不是虚拟滚动；大表单依然有完整 DOM 和表单状态开销。</li>
+<li>提交和整表校验必须等所有字段注册完成。演示页也会在字段数未齐时禁用整表校验按钮。</li>
+<li>输入类型、校验规则数量、联动图规模、自定义组件、异步接口和设备都会影响耗时。当前 Input 基线不能替代所有复杂业务表单的实际压测。</li>
+<li>多级联动的交互正确性在截图脚本中单独验证；它不等同于这里的 99 项直接依赖压力样本。</li>
+</ul>
+</article><footer><a href="https://github.com/eugeneaiao-ui/formino/edit/main/docs/PERFORMANCE.md">改进这页文档</a><a href="https://github.com/eugeneaiao-ui/formino/releases/latest">最新 Release</a><span>Formino 0.1.0 · MIT</span></footer></main></div></body></html>

@@ -1,0 +1,126 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>从业务项目迁移 | Formino</title><meta name="description" content="Formino 动态表单引擎：React / Ant Design 长表单、复杂字段联动、低代码与 AI 辅助开发。"><link rel="canonical" href="https://eugeneaiao-ui.github.io/formino/docs/migration.html"><meta name="robots" content="index,follow"><meta property="og:type" content="website"><meta property="og:title" content="从业务项目迁移"><meta property="og:description" content="Formino 动态表单引擎：React / Ant Design 长表单、复杂字段联动、低代码与 AI 辅助开发。"><meta property="og:url" content="https://eugeneaiao-ui.github.io/formino/docs/migration.html"><meta property="og:image" content="https://eugeneaiao-ui.github.io/formino/docs/images/long.png"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="/formino/site.css"><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Formino","description":"Formino 动态表单引擎：React / Ant Design 长表单、复杂字段联动、低代码与 AI 辅助开发。","url":"https://eugeneaiao-ui.github.io/formino/","codeRepository":"https://github.com/eugeneaiao-ui/formino","programmingLanguage":"TypeScript","softwareVersion":"0.1.0","license":"https://github.com/eugeneaiao-ui/formino/blob/main/LICENSE","downloadUrl":"https://www.npmjs.com/package/forminojs","keywords":"forminojs, formino, dynamic-form, form-builder, react, antd, typescript, schema, validation, low-code, schema-driven, ai-assisted-development, json-schema, config-driven, react-forms, long-form, field-dependencies"}</script><script src="/formino/site.js" defer></script></head><body><a class="skip" href="#content">跳到正文</a><header class="top"><a class="brand" href="/formino/"><span>F</span> Formino</a><nav aria-label="主导航"><a href="/formino/playground/">Playground</a><a href="/formino/en/">English</a><a href="https://www.npmjs.com/package/forminojs">npm ↗</a><a href="https://github.com/eugeneaiao-ui/formino">GitHub ↗</a></nav></header><div class="layout"><aside><form role="search"><label for="docs-search">搜索文档</label><input id="docs-search" type="search" placeholder="联动、数据源、校验…" autocomplete="off" aria-controls="search-results"><p id="search-status" role="status" class="search-status"></p><div id="search-results" hidden></div></form><nav aria-label="文档目录"><a href="/formino/docs/getting-started.html">快速开始</a><a href="/formino/docs/examples.html">图文示例</a><a href="/formino/docs/configuration.html">配置手册</a><a href="/formino/docs/recipes.html">常用场景</a><a href="/formino/docs/api.html">API</a><a href="/formino/docs/ai-integration.html">AI / 低代码</a><a href="/formino/docs/performance.html">性能与测量</a><a aria-current="page" href="/formino/docs/migration.html">迁移指南</a><a href="/formino/docs/faq.html">常见问题</a><a href="/formino/docs/releasing.html">版本与发布</a><a href="/formino/docs/contributing.html">贡献指南</a><a href="/formino/docs/security.html">安全反馈</a></nav><div class="install"><code>npm i forminojs</code><button type="button" id="copy-install" aria-label="复制安装命令">复制</button><span id="copy-status" role="status"></span></div><a class="discuss" href="https://github.com/eugeneaiao-ui/formino/discussions">提问与交流 ↗</a></aside><main id="content"><article><h1 id="从业务项目迁移">从业务项目迁移</h1>
+<p>本库从现有动态表单实现抽离并整理。原业务项目暂不替换依赖；先以 tarball 在使用方验证，再逐步替换引擎导入。配置中的业务枚举、接口、权限判断和专用控件仍由使用方维护。</p>
+<h2 id="从旧-npm-包迁移到-formino">从旧 npm 包迁移到 Formino</h2>
+<p>旧包 @eugenedfsfsvg/<a href="mailto:dynamic-form@0.1.0">dynamic-form@0.1.0</a> 仍可使用；新包名为 forminojs。</p>
+<ol>
+<li>卸载 @eugenedfsfsvg/dynamic-form，安装 forminojs。</li>
+<li>将根入口和 /core、/antd、/style.css、/schemas/form-definition.schema.json 的包名前缀改为 forminojs。</li>
+<li>组件、Hook、类型、字段配置及数据源 API 保持不变，无需重写表单。</li>
+</ol>
+<p>GitHub 仓库改名为 eugeneaiao-ui/formino，旧链接由 GitHub 重定向。新包源码标签为 formino-v0.1.0；旧包标签 v0.1.0 保留。</p>
+<h2 id="导入映射">导入映射</h2>
+<table>
+<thead>
+<tr>
+<th>原有能力</th>
+<th>独立库</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>useDynamicConfig</td>
+<td>根入口同名导出，另保留 useDynamicForm 别名</td>
+</tr>
+<tr>
+<td>FormComponent</td>
+<td>根入口同名导出，另保留 FormDetailFields 别名</td>
+</tr>
+<tr>
+<td>withDynamicForm / Provider</td>
+<td>withDynamicForm / DynamicFormProvider / FormProvider</td>
+</tr>
+<tr>
+<td>FormMode / FormFieldType / DataSourceType</td>
+<td>根入口或 core 入口同名枚举</td>
+</tr>
+<tr>
+<td>FormTemplate / FormConfigFields</td>
+<td>React 适配器类型，支持 Values 泛型</td>
+</tr>
+<tr>
+<td>FormConfigBuilder / MiniMiddleware</td>
+<td>core 同名导出</td>
+</tr>
+<tr>
+<td>guideMiddleware / snapshotMiddleware</td>
+<td>core 同名导出，新增 createSnapshotMiddleware 工厂</td>
+</tr>
+<tr>
+<td>DataSourceManager</td>
+<td>实例优先，静态注册方法仍绑定默认实例</td>
+</tr>
+<tr>
+<td>registerCustomComponents</td>
+<td>默认注册表快捷方法，推荐 ComponentRegistry 实例</td>
+</tr>
+</tbody></table>
+<p>兼容旧拼写 <code>middlewaries</code> 与 <code>snapshootValues</code>，新代码使用 <code>middlewares</code> 与 <code>snapshotValues</code>。仅保留引擎层 API，不包含业务项目组件或服务的替身。</p>
+<h2 id="替换步骤">替换步骤</h2>
+<ol>
+<li>在使用方安装 npm 包 forminojs；验证未发布源码时，可 npm run build、npm pack 后安装 tarball。</li>
+<li>替换引擎 import，显式导入库的 style.css。现有 Ant Design 全局样式仍由宿主加载。</li>
+<li>将专用控件注册到 ComponentRegistry，将请求、枚举、状态数据注入 DataSourceManager / dataContext。</li>
+<li>对照下述差异调整配置，并验证新增、编辑、预览、快照、校验及异步联动。</li>
+<li>完成使用方验证后，再移除原引擎文件。当前迁移未删除或修改业务项目中的原实现。</li>
+</ol>
+<h2 id="业务请求适配">业务请求适配</h2>
+<pre><code class="language-tsx">import { DataSourceManager, DataSourceType } from &#39;forminojs&#39;;
+import type { SelectOption } from &#39;forminojs&#39;;
+
+interface Values {
+  country: string;
+}
+const sources = new DataSourceManager&lt;Values&gt;({
+  [DataSourceType.API]: async (source, context) =&gt; {
+    if (source.type !== DataSourceType.API) return [];
+    const params =
+      typeof source.params === &#39;function&#39; ? source.params(context.values ?? { country: &#39;&#39; }) : source.params;
+    // 调用使用方已有的客户端；必须返回选项数组。
+    const options: SelectOption[] = await loadOptions(source.url, params, context.signal);
+    return options;
+  },
+});
+</code></pre>
+<p><code>loadOptions</code> 由使用方实现。认证、接口包装结构和错误拦截属于宿主；本库不依赖业务 SDK。默认 fetch resolver 直接接收数组，或用 source.select 将响应转换为数组。旧的字段映射参数应改成 select / 自定义 resolver。</p>
+<p><code>dataContext</code> 的 store / enums / dependencyData 使用不可变更新；更新时传新对象。数据源和注册表建议在组件外创建，或通过 useMemo 创建。SSR 及多租户场景请为每个请求 / 表单创建独立实例，不向默认全局实例写入用户数据。</p>
+<h2 id="自定义控件">自定义控件</h2>
+<pre><code class="language-tsx">const registry = new ComponentRegistry();
+registry.register(&#39;FileUpload&#39;, {
+  edit: FileUploadEditor,
+  preview: FileUploadPreview,
+  snapshot: FileUploadSnapshot,
+});
+
+// 字段
+const field = {
+  type: FormFieldType.Custom,
+  name: &#39;attachments&#39;,
+  componentName: &#39;FileUpload&#39;,
+};
+</code></pre>
+<p>组件接收 value、onChange、name、displayMode、disabled 与 componentProps。快照额外接收 snapshotValues（以及兼容拼写 snapshootValues），字段 onLogRecord 会透传。库内未打包业务上传、金额或富文本控件；需要注册原控件及各模式实现。找不到自定义控件时会明确报错。</p>
+<h2 id="ant-design-4-日期适配">Ant Design 4 日期适配</h2>
+<p>Ant Design 5 默认使用库内 dayjs 适配器。Ant Design 4 默认 DatePicker 使用 moment，需使用方注入：</p>
+<pre><code class="language-tsx">import moment from &#39;moment&#39;;
+import type { DateAdapter } from &#39;forminojs&#39;;
+
+const dateAdapter: DateAdapter = {
+  parse: (value, format) =&gt; moment(value as moment.MomentInput, format),
+  format: (value, format) =&gt; moment(value as moment.MomentInput).format(format),
+};
+
+&lt;DynamicForm dateAdapter={dateAdapter}&gt;{/* 配置字段 */}&lt;/DynamicForm&gt;;
+</code></pre>
+<p>日期字段编辑时，将存储字符串转换成控件需要的日期对象，再按 componentProps.format（默认 YYYY-MM-DD）写回字符串。其他日期组件可注入自己的适配器。</p>
+<h2 id="行为差异">行为差异</h2>
+<ul>
+<li>配置同步生成，移除固定延迟；请用 useMemo 保持模板、字段和中间件引用稳定。中间件必须纯粹，不能在配置生成时发请求或更新 React 状态。</li>
+<li>中间件仍采用 next 链，未调用 next 会终止后续中间件。异步中间件会报错，异步工作放进 dataSource 或 dependenciesConfig.calculate。</li>
+<li>权限和模式可受控，也可通过 Context setter 修改。false 不再被默认值覆盖。</li>
+<li>calculate 按 dependsOn 顺序接收值；依赖变为 false、0、空值时仍执行。返回 undefined 表示不写值；null 可显式清空。不再因空值跳过计算。</li>
+<li>默认完整渲染表单。progressive 是长表单的可选优化，开启后在所有批次挂载前不要提交或校验整表。</li>
+<li>Span 为布局占位，不注册字段。hidden 字段遵循 Ant Design Form.Item 规则，仍保留数据与校验。</li>
+<li>字符串字段名中的点按字面量处理；嵌套字段使用数组路径，如 [&#39;profile&#39;, &#39;name&#39;]。嵌套字段定义以 fieldKey(path) 为 key，禁止原型污染路径。</li>
+<li>旧配置中引擎以外的扩展属性应放入 meta 或使用方扩展字段类型，避免传给 DOM 或 Form.Item。</li>
+<li>快照默认显示值差异。需要业务专用显示时用 snapshotRender，或注册 snapshot 控件。</li>
+</ul>
+</article><footer><a href="https://github.com/eugeneaiao-ui/formino/edit/main/docs/MIGRATION.md">改进这页文档</a><a href="https://github.com/eugeneaiao-ui/formino/releases/latest">最新 Release</a><span>Formino 0.1.0 · MIT</span></footer></main></div></body></html>

@@ -1,0 +1,119 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI-assisted development and low-code integration | Formino</title><meta name="description" content="Formino 动态表单引擎：React / Ant Design 长表单、复杂字段联动、低代码与 AI 辅助开发。"><link rel="canonical" href="https://eugeneaiao-ui.github.io/formino/docs/ai-integration.html"><meta name="robots" content="index,follow"><meta property="og:type" content="website"><meta property="og:title" content="AI-assisted development and low-code integration"><meta property="og:description" content="Formino 动态表单引擎：React / Ant Design 长表单、复杂字段联动、低代码与 AI 辅助开发。"><meta property="og:url" content="https://eugeneaiao-ui.github.io/formino/docs/ai-integration.html"><meta property="og:image" content="https://eugeneaiao-ui.github.io/formino/docs/images/long.png"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="/formino/site.css"><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Formino","description":"Formino 动态表单引擎：React / Ant Design 长表单、复杂字段联动、低代码与 AI 辅助开发。","url":"https://eugeneaiao-ui.github.io/formino/","codeRepository":"https://github.com/eugeneaiao-ui/formino","programmingLanguage":"TypeScript","softwareVersion":"0.1.0","license":"https://github.com/eugeneaiao-ui/formino/blob/main/LICENSE","downloadUrl":"https://www.npmjs.com/package/forminojs","keywords":"forminojs, formino, dynamic-form, form-builder, react, antd, typescript, schema, validation, low-code, schema-driven, ai-assisted-development, json-schema, config-driven, react-forms, long-form, field-dependencies"}</script><script src="/formino/site.js" defer></script></head><body><a class="skip" href="#content">跳到正文</a><header class="top"><a class="brand" href="/formino/"><span>F</span> Formino</a><nav aria-label="主导航"><a href="/formino/playground/">Playground</a><a href="/formino/en/">English</a><a href="https://www.npmjs.com/package/forminojs">npm ↗</a><a href="https://github.com/eugeneaiao-ui/formino">GitHub ↗</a></nav></header><div class="layout"><aside><form role="search"><label for="docs-search">搜索文档</label><input id="docs-search" type="search" placeholder="联动、数据源、校验…" autocomplete="off" aria-controls="search-results"><p id="search-status" role="status" class="search-status"></p><div id="search-results" hidden></div></form><nav aria-label="文档目录"><a href="/formino/docs/getting-started.html">快速开始</a><a href="/formino/docs/examples.html">图文示例</a><a href="/formino/docs/configuration.html">配置手册</a><a href="/formino/docs/recipes.html">常用场景</a><a href="/formino/docs/api.html">API</a><a aria-current="page" href="/formino/docs/ai-integration.html">AI / 低代码</a><a href="/formino/docs/performance.html">性能与测量</a><a href="/formino/docs/migration.html">迁移指南</a><a href="/formino/docs/faq.html">常见问题</a><a href="/formino/docs/releasing.html">版本与发布</a><a href="/formino/docs/contributing.html">贡献指南</a><a href="/formino/docs/security.html">安全反馈</a></nav><div class="install"><code>npm i forminojs</code><button type="button" id="copy-install" aria-label="复制安装命令">复制</button><span id="copy-status" role="status"></span></div><a class="discuss" href="https://github.com/eugeneaiao-ui/formino/discussions">提问与交流 ↗</a></aside><main id="content"><article><h1 id="ai-assisted-development-and-low-code-integration">AI-assisted development and low-code integration</h1>
+<p><a href="/formino/en/index.html">Overview</a> · <a href="/formino/docs/configuration.html">配置手册</a> · <a href="/formino/schemas/form-definition.schema.json">JSON Schema</a> · <a href="https://github.com/eugeneaiao-ui/formino/blob/main/examples/ai/parse-definition.ts">Example adapter</a></p>
+<p>Formino is a TypeScript form engine for React and Ant Design. Use it as a rendering layer in a low-code application, as a target for AI-generated form definitions, or as a typed form API for an AI coding assistant.</p>
+<h2 id="what-is-supported">What is supported?</h2>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Integration</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A coding assistant writes React / TypeScript forms</td>
+<td>Provide README, API reference and examples as context; generate template / fields using exported enums</td>
+</tr>
+<tr>
+<td>A model outputs a JSON form definition</td>
+<td>Validate against the supplied configuration schema, then run the example adapter before rendering</td>
+</tr>
+<tr>
+<td>A low-code application stores form definitions</td>
+<td>Store the JSON subset; let application code approve data sources and provide initial values</td>
+</tr>
+<tr>
+<td>A form needs calculations, custom uploads or richer rendering</td>
+<td>Extend the validated configuration in trusted TypeScript; use middleware / dependencies / registry</td>
+</tr>
+</tbody></table>
+<p>The project does not include a drag-and-drop editor, an LLM backend, or an importer for arbitrary JSON Schema documents. The supplied JSON Schema describes <strong>Formino configuration</strong>, not the values submitted by a user.</p>
+<h2 id="working-example">Working example</h2>
+<p>Run npm ci and npm run dev in this repository. The playground includes <strong>Low-code / AI-generated JSON</strong>. Edit the JSON, see valid fields render, and submit them. Invalid definitions replace the form with validation errors.</p>
+<p>Source files:</p>
+<ul>
+<li><a href="/formino/examples/ai/service-request.json">service-request.json</a>: sample definition.</li>
+<li><a href="https://github.com/eugeneaiao-ui/formino/blob/main/examples/ai/parse-definition.ts">parse-definition.ts</a>: validation adapter.</li>
+<li><a href="https://github.com/eugeneaiao-ui/formino/blob/main/examples/ai/JsonFormExample.tsx">JsonFormExample.tsx</a>: editor, preview and submission.</li>
+</ul>
+<h2 id="json-contract-v1">JSON contract v1</h2>
+<pre><code class="language-json">{
+  &quot;schemaVersion&quot;: 1,
+  &quot;template&quot;: [
+    { &quot;name&quot;: &quot;name&quot;, &quot;type&quot;: &quot;Input&quot;, &quot;span&quot;: 12 },
+    { &quot;name&quot;: &quot;country&quot;, &quot;type&quot;: &quot;Select&quot;, &quot;span&quot;: 12 }
+  ],
+  &quot;fields&quot;: {
+    &quot;name&quot;: {
+      &quot;label&quot;: &quot;Name&quot;,
+      &quot;rules&quot;: [{ &quot;required&quot;: true, &quot;message&quot;: &quot;Please enter a name.&quot; }]
+    },
+    &quot;country&quot;: {
+      &quot;label&quot;: &quot;Country&quot;,
+      &quot;componentProps&quot;: {
+        &quot;options&quot;: [{ &quot;label&quot;: &quot;Singapore&quot;, &quot;value&quot;: &quot;SG&quot; }]
+      }
+    }
+  }
+}
+</code></pre>
+<p>This is the same template / fields model as the TypeScript API, limited to serializable properties.</p>
+<ul>
+<li>schemaVersion is 1.</li>
+<li>type is one of Input, NumberInput, Select, RichTextSelect, TextArea, Date, Span or Title.</li>
+<li>Normal controls require name; layout items are unnamed. Field paths are identifiers or arrays of identifiers / non-negative indexes.</li>
+<li>span is an integer from 1 to 24.</li>
+<li>Rules support required, type, min, max, len, whitespace and message.</li>
+<li>componentProps supports the explicit property list in the schema, including placeholders, options, numeric limits and text limits.</li>
+<li>dataSource is a registered source name approved by the host, not an API descriptor.</li>
+<li>Functions, custom component names, callback strings, arbitrary URLs and extra properties are rejected.</li>
+<li>The contract limits template size, path depth and option counts. Applications should also bound incoming response size.</li>
+</ul>
+<h2 id="generation--validation--rendering">Generation → validation → rendering</h2>
+<ol>
+<li>Give the model the schema, this guide, the example JSON, and the user&#39;s field requirements.</li>
+<li>Parse the model response as JSON; validate it locally.</li>
+<li>Run the example adapter for duplicate fields, overlapping paths, unused definitions and approved source names.</li>
+<li>Render through useDynamicConfig + FormComponent inside DynamicForm.</li>
+<li>Validate submitted values in the application and on the server.</li>
+</ol>
+<p>JSON Schema dialects and model provider subsets vary. A provider&#39;s structured-output mode may need a simplified schema; the local validator remains authoritative. Never treat model output as trusted executable TypeScript.</p>
+<h3 id="use-in-your-application">Use in your application</h3>
+<p>Install forminojs as described in the <a href="/formino/docs/getting-started.html">quick start</a>. Copy parse-definition.ts and JsonFormExample.tsx from the example, replace their local ../../src imports with the package root and ../../src/core with the /core entry. Install Ajv in the host:</p>
+<pre><code class="language-bash">npm install ajv@8.17.1
+</code></pre>
+<p>The schema is included in the package:</p>
+<pre><code class="language-tsx">import schema from &#39;forminojs/schemas/form-definition.schema.json&#39;;
+</code></pre>
+<p>This JSON import example assumes a bundler / TypeScript configuration with resolveJsonModule. Adapt JSON loading to the host module system. The example adapter is <strong>not exported by the library</strong>; copy it as application code and adjust its schema import to the package path.</p>
+<p>Then use the adapter&#39;s validated result:</p>
+<pre><code class="language-tsx">const config = parseFormDefinition(modelOutput, [&#39;countries&#39;]);
+// Pass the same approved source registry to DynamicForm.
+// In a child Fields component:
+const { formConfig } = useDynamicConfig({ template: config.template, fields: config.fields });
+// &lt;FormComponent formConfig={formConfig} /&gt;
+</code></pre>
+<p>Approval of a source name does not register it. Register countries on the DataSourceManager passed to DynamicForm. Without any source names, the adapter rejects every dataSource reference. It does not automatically call an LLM or register business APIs.</p>
+<p>Changing the whole JSON document resets the example&#39;s form data intentionally. A production editor may choose a stable document ID and explicitly migrate values between revisions.</p>
+<h2 id="prompt-starter">Prompt starter</h2>
+<pre><code class="language-text">Generate a Formino configuration for the following user requirements:
+&lt;insert field labels, types, layout and validation requirements here&gt;
+
+Use the provided form-definition.schema.json and service-request.json.
+Return one JSON object only, with schemaVersion: 1, template and fields.
+Use only the built-in field types and componentProps allowed by the schema.
+Every normal field must have a unique name and a matching fields entry.
+Span and Title are unnamed. A row is 24 columns.
+Do not generate JavaScript, callback strings, HTML, component imports or API URLs.
+Use static options unless a host-approved data-source name was supplied.
+If a requirement is outside the contract, report it to the host instead of inventing a property.
+</code></pre>
+<p>Handle an unsupported-requirement response separately from a successful JSON result. For code generation, provide the TypeScript API and let the coding assistant write reviewed host code for advanced features.</p>
+<h2 id="stable-retrieval-entry-points">Stable retrieval entry points</h2>
+<ul>
+<li><a href="https://github.com/eugeneaiao-ui/formino/blob/main/llms.txt">llms.txt</a>: compact documentation map.</li>
+<li><a href="/formino/schemas/form-definition.schema.json">JSON Schema</a>: machine-readable contract.</li>
+<li><a href="/formino/docs/api.html">Public API</a>: typed API reference.</li>
+<li><a href="/formino/docs/discovery.html">Discoverability notes</a>: repository metadata, indexing and remaining publication steps.</li>
+</ul>
+<p>These documents help retrieval and integration; they do not guarantee that any search engine or AI assistant will index or recommend the project.</p>
+</article><footer><a href="https://github.com/eugeneaiao-ui/formino/edit/main/docs/AI_INTEGRATION.md">改进这页文档</a><a href="https://github.com/eugeneaiao-ui/formino/releases/latest">最新 Release</a><span>Formino 0.1.0 · MIT</span></footer></main></div></body></html>

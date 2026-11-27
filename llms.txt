@@ -1,0 +1,51 @@
+# Formino
+
+> MIT-licensed TypeScript dynamic form engine for React and Ant Design. Supports schema-driven forms, low-code applications, and AI-assisted form development.
+
+Repository: https://github.com/eugeneaiao-ui/formino
+Package name: forminojs
+Install: npm install forminojs
+Release: 0.1.0
+npm: https://www.npmjs.com/package/forminojs
+Core has no React or Ant Design imports. UI adapters support edit, preview, snapshot, validation, dependent fields, async options, and custom controls.
+
+## Start here
+
+- [English overview](https://eugeneaiao-ui.github.io/formino/README.en.md): capabilities, installation, minimal example.
+- [Chinese overview](https://eugeneaiao-ui.github.io/formino/README.md): documentation index.
+- [AI and low-code integration](https://eugeneaiao-ui.github.io/formino/docs/AI_INTEGRATION.md): JSON generation, validation, renderer, limitations.
+- [Configuration JSON Schema](https://eugeneaiao-ui.github.io/formino/schemas/form-definition.schema.json): version 1 serializable configuration subset, not a schema for submitted values.
+- [JSON example](https://eugeneaiao-ui.github.io/formino/examples/ai/service-request.json): runnable service request form.
+
+## Long forms and dependencies
+
+- [Illustrated examples](https://eugeneaiao-ui.github.io/formino/docs/EXAMPLES.md): 100/300/1000-field demo, asynchronous cascade, multi-stage calculations, dynamic attributes, conditional validation, snapshots.
+- [Measured browser performance](https://eugeneaiao-ui.github.io/formino/docs/PERFORMANCE.md): production-build measurements, environment, raw samples and reproducible scripts.
+- Progressive mounting renders batches but retains the complete DOM afterwards. Full-form validation must wait until every field is registered.
+
+## Reference
+
+- [Configuration](https://eugeneaiao-ui.github.io/formino/docs/CONFIGURATION.md): template, fields, middleware, data sources and dependencies.
+- [API](https://eugeneaiao-ui.github.io/formino/docs/API.md): exported interfaces.
+- [Recipes](https://eugeneaiao-ui.github.io/formino/docs/RECIPES.md): common application patterns.
+- [Quick start](https://eugeneaiao-ui.github.io/formino/docs/GETTING_STARTED.md): complete typechecked example.
+- [Example JSON adapter](https://eugeneaiao-ui.github.io/formino/examples/ai/parse-definition.ts): Ajv validation plus field/source checks; example code, not a package export.
+
+## Integration boundaries
+
+- The JSON contract covers built-in controls and serializable properties only. It does not execute JavaScript, import components, or accept arbitrary API URLs.
+- Host-approved data-source names may be referenced; application code owns network access and authorization.
+- Advanced calculations, custom controls and renderers use the TypeScript API, registered by the host.
+- The library is a form engine, not a complete visual drag-and-drop builder, LLM service, or general-purpose JSON Schema form renderer.
+- llms.txt is a documentation index, not a search-indexing or AI-recommendation guarantee.
+
+## Adoption and support
+
+- [Adoption guide](https://eugeneaiao-ui.github.io/formino/docs/ADOPTION.md): supported use cases, integration order and limits.
+- [Support](https://eugeneaiao-ui.github.io/formino/SUPPORT.md): questions, bug reports and security channels.
+- [Release maintenance](https://eugeneaiao-ui.github.io/formino/docs/RELEASING.md): package naming, tags, verification and publishing.
+- [Latest release](https://github.com/eugeneaiao-ui/formino/releases/latest): version notes and matching source.
+- [Discussions](https://github.com/eugeneaiao-ui/formino/discussions): configuration and integration questions.
+
+Website: https://eugeneaiao-ui.github.io/formino/
+Playground: https://eugeneaiao-ui.github.io/formino/playground/

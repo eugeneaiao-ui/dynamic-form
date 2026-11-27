@@ -1,0 +1,115 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>图文示例：长表单、复杂联动与 AI 配置 | Formino</title><meta name="description" content="Formino 动态表单引擎：React / Ant Design 长表单、复杂字段联动、低代码与 AI 辅助开发。"><link rel="canonical" href="https://eugeneaiao-ui.github.io/formino/docs/examples.html"><meta name="robots" content="index,follow"><meta property="og:type" content="website"><meta property="og:title" content="图文示例：长表单、复杂联动与 AI 配置"><meta property="og:description" content="Formino 动态表单引擎：React / Ant Design 长表单、复杂字段联动、低代码与 AI 辅助开发。"><meta property="og:url" content="https://eugeneaiao-ui.github.io/formino/docs/examples.html"><meta property="og:image" content="https://eugeneaiao-ui.github.io/formino/docs/images/long.png"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="/formino/site.css"><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Formino","description":"Formino 动态表单引擎：React / Ant Design 长表单、复杂字段联动、低代码与 AI 辅助开发。","url":"https://eugeneaiao-ui.github.io/formino/","codeRepository":"https://github.com/eugeneaiao-ui/formino","programmingLanguage":"TypeScript","softwareVersion":"0.1.0","license":"https://github.com/eugeneaiao-ui/formino/blob/main/LICENSE","downloadUrl":"https://www.npmjs.com/package/forminojs","keywords":"forminojs, formino, dynamic-form, form-builder, react, antd, typescript, schema, validation, low-code, schema-driven, ai-assisted-development, json-schema, config-driven, react-forms, long-form, field-dependencies"}</script><script src="/formino/site.js" defer></script></head><body><a class="skip" href="#content">跳到正文</a><header class="top"><a class="brand" href="/formino/"><span>F</span> Formino</a><nav aria-label="主导航"><a href="/formino/playground/">Playground</a><a href="/formino/en/">English</a><a href="https://www.npmjs.com/package/forminojs">npm ↗</a><a href="https://github.com/eugeneaiao-ui/formino">GitHub ↗</a></nav></header><div class="layout"><aside><form role="search"><label for="docs-search">搜索文档</label><input id="docs-search" type="search" placeholder="联动、数据源、校验…" autocomplete="off" aria-controls="search-results"><p id="search-status" role="status" class="search-status"></p><div id="search-results" hidden></div></form><nav aria-label="文档目录"><a href="/formino/docs/getting-started.html">快速开始</a><a aria-current="page" href="/formino/docs/examples.html">图文示例</a><a href="/formino/docs/configuration.html">配置手册</a><a href="/formino/docs/recipes.html">常用场景</a><a href="/formino/docs/api.html">API</a><a href="/formino/docs/ai-integration.html">AI / 低代码</a><a href="/formino/docs/performance.html">性能与测量</a><a href="/formino/docs/migration.html">迁移指南</a><a href="/formino/docs/faq.html">常见问题</a><a href="/formino/docs/releasing.html">版本与发布</a><a href="/formino/docs/contributing.html">贡献指南</a><a href="/formino/docs/security.html">安全反馈</a></nav><div class="install"><code>npm i forminojs</code><button type="button" id="copy-install" aria-label="复制安装命令">复制</button><span id="copy-status" role="status"></span></div><a class="discuss" href="https://github.com/eugeneaiao-ui/formino/discussions">提问与交流 ↗</a></aside><main id="content"><article><h1 id="图文示例长表单复杂联动与-ai-配置">图文示例：长表单、复杂联动与 AI 配置</h1>
+<p><a href="/formino/index.html">返回首页</a> · <a href="/formino/docs/configuration.html">配置手册</a> · <a href="/formino/docs/performance.html">性能数据</a></p>
+<p>所有图片来自本仓库生产构建的真实 Chrome 页面。数据为演示数据，图片由 npm run examples:screenshots 自动生成。</p>
+<h2 id="运行和选择示例">运行和选择示例</h2>
+<pre><code class="language-bash">npm ci
+npm run dev
+</code></pre>
+<p>打开终端地址，通过顶部标签选择。也可以在该地址后加 ?example=basic、?example=long、?example=linked 或 ?example=ai。</p>
+<table>
+<thead>
+<tr>
+<th>示例</th>
+<th>核心能力</th>
+<th>源码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Basics &amp; snapshots</td>
+<td>编辑、预览、字段差异与配置更新</td>
+<td><a href="https://github.com/eugeneaiao-ui/formino/blob/main/examples/basic/Playground.tsx">Playground.tsx</a></td>
+</tr>
+<tr>
+<td>Long forms</td>
+<td>100 / 300 / 1000 字段、三列布局、完整 / 分批挂载、整表校验</td>
+<td><a href="https://github.com/eugeneaiao-ui/formino/blob/main/examples/advanced/LongFormExample.tsx">LongFormExample.tsx</a></td>
+</tr>
+<tr>
+<td>Complex dependencies</td>
+<td>异步级联、多级计算、动态禁用、条件校验</td>
+<td><a href="https://github.com/eugeneaiao-ui/formino/blob/main/examples/advanced/ComplexDependenciesExample.tsx">ComplexDependenciesExample.tsx</a></td>
+</tr>
+<tr>
+<td>AI / JSON</td>
+<td>JSON 校验后渲染、修改配置、校验及提交</td>
+<td><a href="https://github.com/eugeneaiao-ui/formino/blob/main/examples/ai/JsonFormExample.tsx">JsonFormExample.tsx</a></td>
+</tr>
+</tbody></table>
+<h2 id="1-长表单300-字段仍是一张表单">1. 长表单：300 字段仍是一张表单</h2>
+<p><img src="/formino/docs/images/long.png" alt="300 字段长表单，显示完整挂载计数、三列布局和整表校验按钮"></p>
+<p>图中 300 / 300 表示控件已全部挂载，而不是仅在配置中声明了 300 项。右侧滚动区域保留所有字段，按钮会对整张表单执行校验。</p>
+<p>操作步骤：</p>
+<ol>
+<li>选择 100、300 或 1000 字段，生成相应模板。</li>
+<li>默认使用完整挂载。开启 Progressive 后，每次按 3 行、每行 3 项挂载下一批。</li>
+<li>等计数完整后，点击 Validate entire form；清空一个字段再校验，可以看到对应 required 错误。</li>
+<li>查看<a href="/formino/docs/performance.html">实测数据</a>，分别比较首批 DOM 与全部就绪时间。</li>
+</ol>
+<p>核心配置：</p>
+<pre><code class="language-tsx">const { formConfig } = useDynamicConfig({ template, fields });
+
+&lt;FormComponent formConfig={formConfig} progressive={true} rowsPerBatch={3} /&gt;;
+</code></pre>
+<p>template 中每项 span: 8，因此每批为 3 × 3 = 9 项。实际字段数量没有写在引擎里；演示数据生成器在 <a href="https://github.com/eugeneaiao-ui/formino/blob/main/examples/performance/fixtures.ts">fixtures.ts</a>。输入类型、规则和控件复杂度都会影响性能。</p>
+<p><strong>分批挂载不是虚拟滚动。</strong> 全部完成后仍有完整 DOM 和表单状态，整表校验应等所有控件注册后执行。本示例会在挂载未齐时禁用校验按钮。</p>
+<h2 id="2-复杂联动一次输入触发多种变化">2. 复杂联动：一次输入触发多种变化</h2>
+<pre><code class="language-mermaid">flowchart LR
+  Country[Country] --&gt; Cities[异步城市选项]
+  Quantity[Quantity] --&gt; Subtotal[Subtotal]
+  Price[Unit price] --&gt; Subtotal
+  Subtotal --&gt; Total[Total]
+  Discount[Discount %] --&gt; Total
+  Tax[Tax %] --&gt; Total
+  Total --&gt; Enabled[Justification 是否启用]
+  Total --&gt; Validation[提交时是否要求说明]
+</code></pre>
+<h3 id="多级计算与条件校验">多级计算与条件校验</h3>
+<p><img src="/formino/docs/images/linked-validation.png" alt="金额超过阈值后启用说明字段，并在缺少说明时阻止提交"></p>
+<p>操作：</p>
+<ol>
+<li>把 Quantity 改为 20，Unit price 改为 300。</li>
+<li>Subtotal 自动写成 6,000；默认税率 8%、折扣 0%，Total 自动写成 6,480。</li>
+<li>Total 超过 5,000，Justification 自动启用。</li>
+<li>不填说明直接提交，会出现红色校验错误。填入说明后才通过。</li>
+</ol>
+<p>多级计算使用实际字段值继续传播，不需要页面手动依次调用各个计算函数：</p>
+<pre><code class="language-tsx">const totalField = {
+  dependenciesConfig: {
+    type: DependentTypeEnum.COMPUTE,
+    dependsOn: [&#39;subtotal&#39;, &#39;discount&#39;, &#39;tax&#39;],
+    calculate: ([subtotal, discount, tax]) =&gt;
+      Math.round(Number(subtotal ?? 0) * (1 - Number(discount ?? 0) / 100) * (1 + Number(tax ?? 0) / 100) * 100) / 100,
+  },
+};
+</code></pre>
+<p>Justification 使用 ATTRIBUTE 根据 total 修改 disabled，rules 中的 validator 在校验时读取当前 total。说明要求不依赖旧快照，也不把 0 当成缺失值。</p>
+<h3 id="异步级联与最终提交">异步级联与最终提交</h3>
+<p><img src="/formino/docs/images/linked.png" alt="切换至菲律宾后加载 Manila，并完成含计算结果的提交"></p>
+<p>切换 Country 到 Philippines，City 会清空旧选择并加载 Manila / Cebu。此处使用本地模拟的 200 ms 异步请求，不依赖外部服务；状态行显示最新完成的国家选项。请求支持 AbortSignal，过期结果不会覆盖新结果。</p>
+<p>完整路径是：修改国家 → 异步选项更新 → 选择城市 → 计算金额 → 填写条件说明 → 提交完整值。截图脚本会实际执行这一路径，并等待成功提交。</p>
+<p>联动配置建议：</p>
+<ul>
+<li>dependsOn 必须显式列出全部依赖；数组顺序就是 calculate 参数顺序。</li>
+<li>使用 COMPUTE / FETCH / STORE 返回新值，使用 ATTRIBUTE 返回控件属性补丁。</li>
+<li>需要异步时接收 signal，避免旧计算结果覆盖新值。</li>
+<li>保持配置引用稳定，避免循环依赖。初次挂载也会计算，编辑页不要无条件覆盖接口回填值。</li>
+<li>校验规则、控件属性和数据值分别配置，业务权限仍由宿主处理。</li>
+</ul>
+<h2 id="3-编辑预览与快照">3. 编辑、预览与快照</h2>
+<p><img src="/formino/docs/images/basic.png" alt="可编辑表单及异步选项、自定义状态组件"></p>
+<p>编辑模式使用真实 AntD 控件及 required 校验；Add runtime field 按钮说明模板可以在不重新载入页面的情况下更新。</p>
+<p><img src="/formino/docs/images/preview.png" alt="预览模式将控件转换成只读值"></p>
+<p>预览使用 FormMode.preview；Select 显示 label，而不是只显示存储值。</p>
+<p><img src="/formino/docs/images/snapshot.png" alt="快照模式展示修改前后的字段差异"></p>
+<p>快照使用 FormMode.snapshot 与 createSnapshotMiddleware(before, after)。标记表示修改前后差异；自定义组件可自行注册 snapshot 实现。</p>
+<h2 id="4-ai--json从配置到可提交表单">4. AI / JSON：从配置到可提交表单</h2>
+<p><img src="/formino/docs/images/ai.png" alt="JSON 编辑区与由配置渲染的服务申请表单"></p>
+<p>上方是 JSON 编辑区，下方是通过既有引擎渲染的表单；调整合法配置会重新渲染，非法配置显示错误。页面没有调用 LLM，模型调用由使用方接入。</p>
+<p>完整说明见 <a href="/formino/docs/ai-integration.html">AI / 低代码接入</a>。该 JSON 协议是受约束的可序列化子集；长表单与复杂函数联动使用完整 TypeScript API，不要求把函数塞进 JSON。</p>
+<h2 id="生成截图与复测">生成截图与复测</h2>
+<pre><code class="language-bash">npm run examples:screenshots
+npm run benchmark
+</code></pre>
+<p>两个命令都构建生产页面，使用独立 headless Chrome。第一条只验证并重截示例，第二条先测量，再截图；避免把截图开销混入计时。没有 Chrome 的环境可按<a href="/formino/docs/performance.html#%E5%A6%82%E4%BD%95%E5%A4%8D%E7%8E%B0">性能报告</a>使用 Playwright Chromium。</p>
+<p>这些截图验证了控件渲染、多级计算、条件校验、异步城市选择和最终提交；它们不替代你的业务接口、权限和实际大表单的验证。</p>
+</article><footer><a href="https://github.com/eugeneaiao-ui/formino/edit/main/docs/EXAMPLES.md">改进这页文档</a><a href="https://github.com/eugeneaiao-ui/formino/releases/latest">最新 Release</a><span>Formino 0.1.0 · MIT</span></footer></main></div></body></html>

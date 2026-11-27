@@ -1,0 +1,377 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>配置手册 | Formino</title><meta name="description" content="Formino 动态表单引擎：React / Ant Design 长表单、复杂字段联动、低代码与 AI 辅助开发。"><link rel="canonical" href="https://eugeneaiao-ui.github.io/formino/docs/configuration.html"><meta name="robots" content="index,follow"><meta property="og:type" content="website"><meta property="og:title" content="配置手册"><meta property="og:description" content="Formino 动态表单引擎：React / Ant Design 长表单、复杂字段联动、低代码与 AI 辅助开发。"><meta property="og:url" content="https://eugeneaiao-ui.github.io/formino/docs/configuration.html"><meta property="og:image" content="https://eugeneaiao-ui.github.io/formino/docs/images/long.png"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="/formino/site.css"><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Formino","description":"Formino 动态表单引擎：React / Ant Design 长表单、复杂字段联动、低代码与 AI 辅助开发。","url":"https://eugeneaiao-ui.github.io/formino/","codeRepository":"https://github.com/eugeneaiao-ui/formino","programmingLanguage":"TypeScript","softwareVersion":"0.1.0","license":"https://github.com/eugeneaiao-ui/formino/blob/main/LICENSE","downloadUrl":"https://www.npmjs.com/package/forminojs","keywords":"forminojs, formino, dynamic-form, form-builder, react, antd, typescript, schema, validation, low-code, schema-driven, ai-assisted-development, json-schema, config-driven, react-forms, long-form, field-dependencies"}</script><script src="/formino/site.js" defer></script></head><body><a class="skip" href="#content">跳到正文</a><header class="top"><a class="brand" href="/formino/"><span>F</span> Formino</a><nav aria-label="主导航"><a href="/formino/playground/">Playground</a><a href="/formino/en/">English</a><a href="https://www.npmjs.com/package/forminojs">npm ↗</a><a href="https://github.com/eugeneaiao-ui/formino">GitHub ↗</a></nav></header><div class="layout"><aside><form role="search"><label for="docs-search">搜索文档</label><input id="docs-search" type="search" placeholder="联动、数据源、校验…" autocomplete="off" aria-controls="search-results"><p id="search-status" role="status" class="search-status"></p><div id="search-results" hidden></div></form><nav aria-label="文档目录"><a href="/formino/docs/getting-started.html">快速开始</a><a href="/formino/docs/examples.html">图文示例</a><a aria-current="page" href="/formino/docs/configuration.html">配置手册</a><a href="/formino/docs/recipes.html">常用场景</a><a href="/formino/docs/api.html">API</a><a href="/formino/docs/ai-integration.html">AI / 低代码</a><a href="/formino/docs/performance.html">性能与测量</a><a href="/formino/docs/migration.html">迁移指南</a><a href="/formino/docs/faq.html">常见问题</a><a href="/formino/docs/releasing.html">版本与发布</a><a href="/formino/docs/contributing.html">贡献指南</a><a href="/formino/docs/security.html">安全反馈</a></nav><div class="install"><code>npm i forminojs</code><button type="button" id="copy-install" aria-label="复制安装命令">复制</button><span id="copy-status" role="status"></span></div><a class="discuss" href="https://github.com/eugeneaiao-ui/formino/discussions">提问与交流 ↗</a></aside><main id="content"><article><h1 id="配置手册">配置手册</h1>
+<p><a href="/formino/index.html">返回首页</a> · <a href="/formino/docs/getting-started.html">快速开始</a> · <a href="/formino/docs/recipes.html">常用场景</a> · <a href="/formino/docs/api.html">API</a></p>
+<p>图文操作见<a href="/formino/docs/examples.html">示例教程</a>，长表单实测见<a href="/formino/docs/performance.html">性能报告</a>。</p>
+<h2 id="1-一张表单的配置放在哪里">1. 一张表单的配置放在哪里？</h2>
+<pre><code class="language-text">template      字段顺序、类型、每行占几列
+fields        标签、校验、控件参数、数据源、联动
+middlewares   批量调整最终配置
+      ↓ useDynamicConfig
+formConfig    最终字段数组
+      ↓ FormComponent
+DynamicForm   维护表单数据、模式并处理校验和提交
+</code></pre>
+<p>先把静态配置放在组件外；配置依赖 props / state 时用 useMemo。组件内不要原地修改已有配置对象，应生成新的 template / fields 引用。</p>
+<h3 id="模板与字段如何合并">模板与字段如何合并？</h3>
+<pre><code class="language-tsx">import { FormFieldType } from &#39;forminojs&#39;;
+import type { FormConfigFields, FormTemplate } from &#39;forminojs&#39;;
+
+interface Values {
+  name: string;
+}
+const template: FormTemplate&lt;Values&gt; = [{ name: &#39;name&#39;, type: FormFieldType.Input, span: 12, label: &#39;Default label&#39; }];
+const fields: Record&lt;string, FormConfigFields&lt;Values&gt;&gt; = {
+  name: { label: &#39;Customer name&#39;, componentProps: { placeholder: &#39;Alex&#39; } },
+};
+</code></pre>
+<p>合并顺序：<strong>template 单项 → fields 同名定义 → middlewares</strong>。fields 不会新增 template 里不存在的字段；新增字段必须同时加入 template。</p>
+<p>合并是浅层的：fields.componentProps 会整体覆盖 template.componentProps。需要保留属性时显式展开旧值。中间件也应使用 <code>{ ...context.fieldProps.componentProps, ...patch }</code> 合并。</p>
+<h2 id="2-字段属性">2. 字段属性</h2>
+<table>
+<thead>
+<tr>
+<th>配置</th>
+<th>默认 / 约束</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>name</td>
+<td>普通控件必填</td>
+<td>顶层字段用字符串，嵌套字段用数组路径</td>
+</tr>
+<tr>
+<td>type</td>
+<td>模板必填</td>
+<td>使用 FormFieldType 枚举</td>
+</tr>
+<tr>
+<td>span</td>
+<td>24；整数 1–24</td>
+<td>每行总共 24，超过会自动换行</td>
+</tr>
+<tr>
+<td>label</td>
+<td>可选</td>
+<td>Form.Item 标签，支持 ReactNode</td>
+</tr>
+<tr>
+<td>rules</td>
+<td>可选</td>
+<td>Ant Design 校验规则数组</td>
+</tr>
+<tr>
+<td>tooltip / extra / help</td>
+<td>可选</td>
+<td>提示、说明、校验帮助</td>
+</tr>
+<tr>
+<td>hidden</td>
+<td>false</td>
+<td>隐藏 Form.Item，仍遵循 AntD 的数据保留与校验规则</td>
+</tr>
+<tr>
+<td>componentProps</td>
+<td>空对象</td>
+<td>控件自身属性，如 placeholder、options、disabled</td>
+</tr>
+<tr>
+<td>formItemProps</td>
+<td>可选</td>
+<td>额外 Form.Item 配置；name 由引擎管理</td>
+</tr>
+<tr>
+<td>dataSource</td>
+<td>可选</td>
+<td>内联描述或已注册的数据源名称</td>
+</tr>
+<tr>
+<td>dependenciesConfig</td>
+<td>可选</td>
+<td>单个或一组字段联动</td>
+</tr>
+<tr>
+<td>componentName</td>
+<td>Custom 时使用</td>
+<td>组件注册表中的名称</td>
+</tr>
+<tr>
+<td>previewRender</td>
+<td>可选</td>
+<td>单字段预览显示函数</td>
+</tr>
+<tr>
+<td>snapshotRender</td>
+<td>可选</td>
+<td>单字段快照显示函数</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>可选</td>
+<td>使用方自己的配置元数据，不传给控件</td>
+</tr>
+</tbody></table>
+<h3 id="字段类型">字段类型</h3>
+<table>
+<thead>
+<tr>
+<th>枚举</th>
+<th>渲染</th>
+<th>常用 componentProps</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Input</td>
+<td>Input</td>
+<td>placeholder、allowClear、maxLength</td>
+</tr>
+<tr>
+<td>NumberInput</td>
+<td>InputNumber</td>
+<td>min、max、precision、step</td>
+</tr>
+<tr>
+<td>Select</td>
+<td>Select</td>
+<td>options、mode、allowClear、showSearch、optionFilterProp</td>
+</tr>
+<tr>
+<td>RichTextSelect</td>
+<td>默认 Select</td>
+<td>可注册同名控件覆盖</td>
+</tr>
+<tr>
+<td>TextArea</td>
+<td>Input.TextArea</td>
+<td>rows、autoSize、maxLength、showCount</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>DatePicker</td>
+<td>format，默认 YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>Custom</td>
+<td>已注册组件</td>
+<td>与自定义组件约定的 props</td>
+</tr>
+<tr>
+<td>Span</td>
+<td>空白栅格</td>
+<td>不注册表单字段，可以不填 name</td>
+</tr>
+<tr>
+<td>Title</td>
+<td>小标题</td>
+<td>使用 label，可以不填 name</td>
+</tr>
+</tbody></table>
+<p>Select 静态选项格式为 <code>{ label, value, disabled?, children? }</code>，value 为字符串或数字。多选使用 <code>mode: &#39;multiple&#39;</code>；预览会将值转换成 label。</p>
+<p>TextArea 配置 maxLength 后按 UTF-16 计数，避免截断 emoji 的代理对；输入法组合完成后再限制长度。</p>
+<h3 id="布局和嵌套名称">布局和嵌套名称</h3>
+<pre><code class="language-tsx">import { fieldKey } from &#39;forminojs/core&#39;;
+
+const emailPath = [&#39;profile&#39;, &#39;email&#39;];
+// 模板项：{ name: emailPath, type: FormFieldType.Input, span: 16 }
+// 留白项：{ type: FormFieldType.Span, span: 8 }
+// 字段定义：
+const fields = { [fieldKey(emailPath)]: { label: &#39;Email&#39; } };
+</code></pre>
+<p>字符串 <code>&#39;profile.email&#39;</code> 是字面量字段名，不是嵌套路径。Span 用来明确保留空白位置；hidden 字段当前仍占外层 Col 的布局空间。若要同时移除控件和占位，应从 template 中过滤该项。表单条件字段的 required 规则也要同步调整，避免隐藏字段阻止提交。</p>
+<h2 id="3-表单级配置">3. 表单级配置</h2>
+<pre><code class="language-tsx">&lt;DynamicForm
+  initialValues={{ country: &#39;SG&#39; }}
+  size=&quot;small&quot;
+  layout=&quot;vertical&quot;
+  displayMode={FormMode.edit}
+  permission={true}
+  disabled={false}
+  onFinish={(values) =&gt; console.log(values)}
+  onError={(error) =&gt; console.error(error)}
+&gt;
+  &lt;Fields /&gt;
+&lt;/DynamicForm&gt;
+</code></pre>
+<p>此片段接在已定义 Fields 的页面中。根组件支持 AntD Form 的 initialValues、form、onFinish、onFinishFailed 等属性。</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>displayMode</td>
+<td>受控模式：FormMode.edit / preview / snapshot</td>
+</tr>
+<tr>
+<td>defaultDisplayMode</td>
+<td>非受控初始模式，默认 edit</td>
+</tr>
+<tr>
+<td>permission / defaultPermission</td>
+<td>是否允许编辑，默认 true</td>
+</tr>
+<tr>
+<td>disabled / defaultDisabled</td>
+<td>是否禁用控件，默认 false</td>
+</tr>
+<tr>
+<td>onDisplayModeChange / onPermissionChange / onDisabledChange</td>
+<td>Context setter 的变更通知</td>
+</tr>
+<tr>
+<td>registry</td>
+<td>ComponentRegistry 实例</td>
+</tr>
+<tr>
+<td>dataSources</td>
+<td>DataSourceManager 实例</td>
+</tr>
+<tr>
+<td>dataContext</td>
+<td>store、enums、dependencyData</td>
+</tr>
+<tr>
+<td>dateAdapter</td>
+<td>日期解析和格式化适配器</td>
+</tr>
+<tr>
+<td>onError</td>
+<td>异步数据源及依赖计算的错误回调</td>
+</tr>
+</tbody></table>
+<p>最终禁用状态是表单 disabled、无 permission 或控件 disabled 任一成立。permission 管理 UI 编辑状态，接口权限仍由使用方服务端处理。</p>
+<p>initialValues 用于初始化；详情接口异步回填使用 AntD form.setFieldsValue，不能通过重复修改 initialValues 刷新现有数据。模式是受控属性时，父组件也要更新对应状态。</p>
+<p>FormComponent 接收 formConfig、title、loading、rowsPerBatch（默认 3）、progressive（默认 false）。progressive 开启时逐批挂载，所有字段挂载前不要做整表校验或提交。</p>
+<h2 id="4-数据源">4. 数据源</h2>
+<p>内联描述直接写在字段上，或先注册，再通过名称引用。两种方式都由 Provider / DynamicForm 的 dataSources 解析。</p>
+<table>
+<thead>
+<tr>
+<th>枚举</th>
+<th>必填属性</th>
+<th>数据来自</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DataSourceType.INLINE</td>
+<td>options</td>
+<td>本地选项数组</td>
+</tr>
+<tr>
+<td>DataSourceType.API</td>
+<td>url</td>
+<td>默认 fetch，支持覆盖请求 resolver</td>
+</tr>
+<tr>
+<td>DataSourceType.STORE</td>
+<td>module</td>
+<td>dataContext.store[module]</td>
+</tr>
+<tr>
+<td>DataSourceType.CEPT</td>
+<td>enumName</td>
+<td>dataContext.enums[enumName]</td>
+</tr>
+</tbody></table>
+<p>API 额外属性：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>默认 / 作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>method</td>
+<td>GET；也支持 POST</td>
+</tr>
+<tr>
+<td>params</td>
+<td>对象或读取当前 values 的函数</td>
+</tr>
+<tr>
+<td>dependsOn</td>
+<td>params 依赖哪些表单字段；这些值改变会重新加载</td>
+</tr>
+<tr>
+<td>headers</td>
+<td>当前请求的 headers</td>
+</tr>
+<tr>
+<td>select</td>
+<td>将 unknown 响应转换成 SelectOption[]</td>
+</tr>
+</tbody></table>
+<p>默认 GET 将 params 编码到 query，POST 使用 JSON body。默认响应应直接为选项数组；其他结构用 select 映射。只配置 params 函数不会自动订阅字段，必须同时配置 dependsOn。</p>
+<pre><code class="language-tsx">const sources = new DataSourceManager();
+sources.register(&#39;departments&#39;, {
+  type: DataSourceType.STORE,
+  module: &#39;organization&#39;,
+  storeKey: [&#39;departments&#39;],
+});
+
+const dataContext = {
+  store: { organization: { departments: [{ label: &#39;Engineering&#39;, value: &#39;engineering&#39; }] } },
+  enums: { status: [{ label: &#39;Draft&#39;, value: &#39;draft&#39; }] },
+};
+// &lt;DynamicForm dataSources={sources} dataContext={dataContext}&gt;...&lt;/DynamicForm&gt;
+// 字段：{ label: &#39;Department&#39;, dataSource: &#39;departments&#39; }
+</code></pre>
+<p>同名注册项可更新，register 返回释放函数。源实例与 dataContext 应保持稳定；数据改变时生成新 dataContext。SSR 每个请求使用独立实例。请求取消需要自定义 resolver 透传 signal；即使 resolver 忽略取消，过期结果也不会应用。</p>
+<p>内置 resolver 不做跨表单请求缓存或自动重试，按需要在使用方请求客户端中实现。业务请求适配见<a href="/formino/docs/migration.html#%E4%B8%9A%E5%8A%A1%E8%AF%B7%E6%B1%82%E9%80%82%E9%85%8D">迁移指南</a>。</p>
+<h2 id="5-字段联动">5. 字段联动</h2>
+<pre><code class="language-tsx">const fields: Record&lt;string, FormConfigFields&gt; = {
+  total: {
+    dependenciesConfig: {
+      type: DependentTypeEnum.COMPUTE,
+      dependsOn: [&#39;quantity&#39;, &#39;price&#39;],
+      calculate: ([quantity, price]) =&gt; Number(quantity ?? 0) * Number(price ?? 0),
+    },
+  },
+};
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>配置</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>type</td>
+<td>ATTRIBUTE / COMPUTE / FETCH / STORE</td>
+</tr>
+<tr>
+<td>dependsOn</td>
+<td>依赖路径数组；按声明顺序传给 calculate</td>
+</tr>
+<tr>
+<td>calculate</td>
+<td>ATTRIBUTE 返回属性补丁，其他类型返回字段值或 Promise</td>
+</tr>
+<tr>
+<td>applyTo</td>
+<td>写入目标字段，默认当前字段</td>
+</tr>
+<tr>
+<td>triggerValidate</td>
+<td>true 校验写入目标；也可给需要校验的字段路径数组</td>
+</tr>
+</tbody></table>
+<p>ATTRIBUTE 的第二个参数是当前 componentProps；COMPUTE / FETCH / STORE 的第二个参数是 dataContext.dependencyData，未提供时使用 dataContext.store，第三个参数是 AbortSignal。后三种类型使用相同执行机制，不会根据 FETCH / STORE 名称自动请求接口或读取仓库。</p>
+<p>返回 undefined 表示不写入；返回 null 表示清空，0 / false / 空字符串都正常写入。函数初次挂载也会执行，编辑页不要无条件覆盖接口回填值。不要配置互相不断写入新值的循环依赖。</p>
+<h2 id="6-中间件">6. 中间件</h2>
+<pre><code class="language-tsx">import type { FormMiddlewareContext, Middleware } from &#39;forminojs&#39;;
+
+const compact: Middleware&lt;FormMiddlewareContext&gt; = (context, next) =&gt; {
+  context.fieldProps.componentProps = { size: &#39;small&#39;, ...context.fieldProps.componentProps };
+  next();
+};
+// useDynamicConfig({ template, fields, middlewares: [compact] })
+</code></pre>
+<p>中间件在渲染期间同步构建配置，应仅修改 fieldProps。不要发请求、调用 setState 或写表单值。异步工作放在数据源或依赖计算中。next 调用一次继续后续链，不调用则停止；重复调用会报错。</p>
+<h2 id="7-扩展和显示模式">7. 扩展和显示模式</h2>
+<p>自定义组件注册、非 value 绑定、受控模式、快照和纯 core 用法见<a href="/formino/docs/recipes.html">常用场景</a>。AntD 4 的 moment 适配见<a href="/formino/docs/migration.html#ant-design-4-%E6%97%A5%E6%9C%9F%E9%80%82%E9%85%8D">迁移指南</a>。</p>
+<p>兼容旧拼写 middlewaries、snapshootValues；新配置使用 middlewares、snapshotValues。</p>
+</article><footer><a href="https://github.com/eugeneaiao-ui/formino/edit/main/docs/CONFIGURATION.md">改进这页文档</a><a href="https://github.com/eugeneaiao-ui/formino/releases/latest">最新 Release</a><span>Formino 0.1.0 · MIT</span></footer></main></div></body></html>

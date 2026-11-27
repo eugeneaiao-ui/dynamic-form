@@ -1,0 +1,174 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>快速开始 | Formino</title><meta name="description" content="Formino 动态表单引擎：React / Ant Design 长表单、复杂字段联动、低代码与 AI 辅助开发。"><link rel="canonical" href="https://eugeneaiao-ui.github.io/formino/docs/getting-started.html"><meta name="robots" content="index,follow"><meta property="og:type" content="website"><meta property="og:title" content="快速开始"><meta property="og:description" content="Formino 动态表单引擎：React / Ant Design 长表单、复杂字段联动、低代码与 AI 辅助开发。"><meta property="og:url" content="https://eugeneaiao-ui.github.io/formino/docs/getting-started.html"><meta property="og:image" content="https://eugeneaiao-ui.github.io/formino/docs/images/long.png"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="/formino/site.css"><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Formino","description":"Formino 动态表单引擎：React / Ant Design 长表单、复杂字段联动、低代码与 AI 辅助开发。","url":"https://eugeneaiao-ui.github.io/formino/","codeRepository":"https://github.com/eugeneaiao-ui/formino","programmingLanguage":"TypeScript","softwareVersion":"0.1.0","license":"https://github.com/eugeneaiao-ui/formino/blob/main/LICENSE","downloadUrl":"https://www.npmjs.com/package/forminojs","keywords":"forminojs, formino, dynamic-form, form-builder, react, antd, typescript, schema, validation, low-code, schema-driven, ai-assisted-development, json-schema, config-driven, react-forms, long-form, field-dependencies"}</script><script src="/formino/site.js" defer></script></head><body><a class="skip" href="#content">跳到正文</a><header class="top"><a class="brand" href="/formino/"><span>F</span> Formino</a><nav aria-label="主导航"><a href="/formino/playground/">Playground</a><a href="/formino/en/">English</a><a href="https://www.npmjs.com/package/forminojs">npm ↗</a><a href="https://github.com/eugeneaiao-ui/formino">GitHub ↗</a></nav></header><div class="layout"><aside><form role="search"><label for="docs-search">搜索文档</label><input id="docs-search" type="search" placeholder="联动、数据源、校验…" autocomplete="off" aria-controls="search-results"><p id="search-status" role="status" class="search-status"></p><div id="search-results" hidden></div></form><nav aria-label="文档目录"><a aria-current="page" href="/formino/docs/getting-started.html">快速开始</a><a href="/formino/docs/examples.html">图文示例</a><a href="/formino/docs/configuration.html">配置手册</a><a href="/formino/docs/recipes.html">常用场景</a><a href="/formino/docs/api.html">API</a><a href="/formino/docs/ai-integration.html">AI / 低代码</a><a href="/formino/docs/performance.html">性能与测量</a><a href="/formino/docs/migration.html">迁移指南</a><a href="/formino/docs/faq.html">常见问题</a><a href="/formino/docs/releasing.html">版本与发布</a><a href="/formino/docs/contributing.html">贡献指南</a><a href="/formino/docs/security.html">安全反馈</a></nav><div class="install"><code>npm i forminojs</code><button type="button" id="copy-install" aria-label="复制安装命令">复制</button><span id="copy-status" role="status"></span></div><a class="discuss" href="https://github.com/eugeneaiao-ui/formino/discussions">提问与交流 ↗</a></aside><main id="content"><article><h1 id="快速开始">快速开始</h1>
+<p><a href="/formino/index.html">返回首页</a> · <a href="/formino/docs/configuration.html">配置手册</a> · <a href="/formino/docs/recipes.html">常用场景</a></p>
+<p>目标：在已有 React + TypeScript 项目中，用配置生成一张带必填校验的表单。以下默认 React 18 + AntD 5；兼容范围与 AntD 4 日期适配见<a href="/formino/docs/migration.html">迁移指南</a>。</p>
+<h2 id="第一步安装">第一步：安装</h2>
+<p>在使用方 React / TypeScript 项目运行：</p>
+<pre><code class="language-bash">npm install forminojs
+</code></pre>
+<p>npm 包名为 forminojs，GitHub 仓库名为 formino。无需在安装命令中添加维护者账号。</p>
+<p>已有 React / AntD 的项目沿用兼容版本。新项目可安装已验证组合：</p>
+<pre><code class="language-bash">npm install react@18.3.1 react-dom@18.3.1 antd@5.27.6
+npm install --save-dev typescript@5.9.3 @types/react@18 @types/react-dom@18
+</code></pre>
+<p>只用纯 TypeScript 引擎时，从 <code>forminojs/core</code> 导入，无需安装 UI peer。</p>
+<h2 id="第二步导入样式">第二步：导入样式</h2>
+<p>在使用方入口文件中导入：</p>
+<pre><code class="language-tsx">// AntD 5 的可选全局 reset；若宿主已有 reset，可沿用宿主设置。
+import &#39;antd/dist/reset.css&#39;;
+// 必须导入本库样式，供预览、快照等使用。
+import &#39;forminojs/style.css&#39;;
+</code></pre>
+<p>AntD 4 使用 <code>antd/dist/antd.css</code>，而不是上述 reset 路径。</p>
+<h2 id="第三步建立配置与表单组件">第三步：建立配置与表单组件</h2>
+<p>新增 src/ProfileForm.tsx。完整示例见<a href="https://github.com/eugeneaiao-ui/formino/blob/main/examples/quick-start/ProfileForm.tsx">仓库源码</a>，下面的示例与源码同步检查。仓库示例通过 ../../src 引用开发中的实现，使用方改用包名；下面的代码已完成这一替换。</p>
+<!-- example: examples/quick-start/ProfileForm.tsx --><pre><code class="language-tsx">import React from &#39;react&#39;;
+import { Button } from &#39;antd&#39;;
+import { DynamicForm, FormComponent, FormFieldType, useDynamicConfig } from &#39;forminojs&#39;;
+import type { FormConfigFields, FormTemplate } from &#39;forminojs&#39;;
+
+export interface ProfileValues {
+  name: string;
+  country: string;
+  notes?: string;
+}
+
+const template: FormTemplate&lt;ProfileValues&gt; = [
+  { name: &#39;name&#39;, type: FormFieldType.Input, span: 12 },
+  { name: &#39;country&#39;, type: FormFieldType.Select, span: 12 },
+  { name: &#39;notes&#39;, type: FormFieldType.TextArea },
+];
+
+const fields: Record&lt;string, FormConfigFields&lt;ProfileValues&gt;&gt; = {
+  name: {
+    label: &#39;Name&#39;,
+    rules: [{ required: true, message: &#39;Please enter your name.&#39; }],
+    componentProps: { placeholder: &#39;Alex&#39; },
+  },
+  country: {
+    label: &#39;Country&#39;,
+    rules: [{ required: true, message: &#39;Please select a country.&#39; }],
+    componentProps: {
+      allowClear: true,
+      options: [
+        { label: &#39;Singapore&#39;, value: &#39;SG&#39; },
+        { label: &#39;Philippines&#39;, value: &#39;PH&#39; },
+      ],
+    },
+  },
+  notes: {
+    label: &#39;Notes&#39;,
+    tooltip: &#39;Additional information, up to 200 UTF-16 code units.&#39;,
+    componentProps: { rows: 3, maxLength: 200, showCount: true },
+  },
+};
+
+function ProfileFields() {
+  const { formConfig } = useDynamicConfig&lt;ProfileValues&gt;({ template, fields });
+  return &lt;FormComponent formConfig={formConfig} /&gt;;
+}
+
+export function ProfileForm({ onSubmit }: { onSubmit: (values: ProfileValues) =&gt; void }) {
+  return (
+    &lt;DynamicForm&lt;ProfileValues&gt; initialValues={{ country: &#39;SG&#39; }} onFinish={onSubmit}&gt;
+      &lt;ProfileFields /&gt;
+      &lt;Button type=&quot;primary&quot; htmlType=&quot;submit&quot;&gt;
+        Submit
+      &lt;/Button&gt;
+    &lt;/DynamicForm&gt;
+  );
+}
+</code></pre>
+<p>这里有三层：</p>
+<ol>
+<li>template 控制字段顺序、类型和布局；span: 12 表示占一行的一半。</li>
+<li>fields 用相同名称补充标签、校验、选项及控件参数。</li>
+<li>子组件调用 useDynamicConfig，FormComponent 渲染结果；DynamicForm 提供 Context 与提交能力。</li>
+</ol>
+<p>不要在返回 DynamicForm 的同一层组件里提前调用依赖 Context 的 Hook，Context 必须由祖先提供。</p>
+<h2 id="第四步挂载与提交">第四步：挂载与提交</h2>
+<p>在现有页面挂载 ProfileForm：</p>
+<pre><code class="language-tsx">import React from &#39;react&#39;;
+import { ProfileForm } from &#39;./ProfileForm&#39;;
+
+export function App() {
+  return &lt;ProfileForm onSubmit={(values) =&gt; console.log(&#39;Validated values:&#39;, values)} /&gt;;
+}
+</code></pre>
+<p>点击 Submit 时先执行校验：未填写 Name 会提示错误，不会调用 onSubmit；填写后会得到类似结果：</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;Alex&quot;,
+  &quot;country&quot;: &quot;SG&quot;,
+  &quot;notes&quot;: &quot;Example note&quot;
+}
+</code></pre>
+<p>将 console.log 替换为你自己的保存接口调用。表单不会自动请求保存接口。</p>
+<h2 id="第五步验证常见修改">第五步：验证常见修改</h2>
+<table>
+<thead>
+<tr>
+<th>想修改什么</th>
+<th>改哪里</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一行放三个字段</td>
+<td>template 的 span 改成 8</td>
+</tr>
+<tr>
+<td>调整字段顺序</td>
+<td>调整 template 数组顺序</td>
+</tr>
+<tr>
+<td>添加必填项</td>
+<td>fields 对应字段的 rules</td>
+</tr>
+<tr>
+<td>修改输入框提示</td>
+<td>fields 对应字段的 componentProps.placeholder</td>
+</tr>
+<tr>
+<td>下拉框改成接口选项</td>
+<td>配置 dataSource，并注入 DataSourceManager</td>
+</tr>
+<tr>
+<td>增加字段</td>
+<td>扩展 Values、template 和 fields</td>
+</tr>
+<tr>
+<td>查看但不编辑</td>
+<td>DynamicForm 的 displayMode={FormMode.preview}</td>
+</tr>
+<tr>
+<td>回填接口结果</td>
+<td>给 DynamicForm 传 form，用 form.setFieldsValue</td>
+</tr>
+<tr>
+<td>通过外部按钮提交</td>
+<td>使用同一个 form 调用 form.submit()</td>
+</tr>
+</tbody></table>
+<p>可先在仓库 npm run dev 中体验完整 playground。上面最小示例是独立源码，不会默认替换 playground 页面。</p>
+<h2 id="typescript-配置">TypeScript 配置</h2>
+<p>库提供自己的声明，不需要额外安装 @types 包；React 的类型仍由使用方安装。现代 Vite / TS 5 项目可沿用现有配置，关键配置例如：</p>
+<pre><code class="language-json">{
+  &quot;compilerOptions&quot;: {
+    &quot;target&quot;: &quot;ES2020&quot;,
+    &quot;lib&quot;: [&quot;ES2020&quot;, &quot;DOM&quot;, &quot;DOM.Iterable&quot;],
+    &quot;module&quot;: &quot;ESNext&quot;,
+    &quot;moduleResolution&quot;: &quot;Bundler&quot;,
+    &quot;jsx&quot;: &quot;react-jsx&quot;,
+    &quot;strict&quot;: true,
+    &quot;esModuleInterop&quot;: true,
+    &quot;skipLibCheck&quot;: true,
+    &quot;noEmit&quot;: true
+  }
+}
+</code></pre>
+<p>TS 4.9 项目不支持 Bundler 解析策略，应沿用 Node 或 NodeNext 等受支持的 moduleResolution。顶层 name 会受 Values 键名约束；嵌套字段使用数组路径，见<a href="/formino/docs/configuration.html#%E5%B8%83%E5%B1%80%E5%92%8C%E5%B5%8C%E5%A5%97%E5%90%8D%E7%A7%B0">配置手册</a>。</p>
+<h2 id="下一步">下一步</h2>
+<ul>
+<li><a href="/formino/docs/configuration.html">配置手册</a>：查属性、默认值和规则。</li>
+<li><a href="/formino/docs/recipes.html">常用场景</a>：自动计算、级联、回填、扩展组件和快照。</li>
+<li><a href="/formino/docs/faq.html">常见问题</a>：查不刷新、样式、日期和校验问题。</li>
+</ul>
+</article><footer><a href="https://github.com/eugeneaiao-ui/formino/edit/main/docs/GETTING_STARTED.md">改进这页文档</a><a href="https://github.com/eugeneaiao-ui/formino/releases/latest">最新 Release</a><span>Formino 0.1.0 · MIT</span></footer></main></div></body></html>

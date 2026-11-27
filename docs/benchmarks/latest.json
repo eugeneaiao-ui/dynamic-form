@@ -1,0 +1,1204 @@
+{
+  "generatedAt": "2026-11-26T07:53:37.492Z",
+  "environment": {
+    "os": "win32 10.0.26100",
+    "architecture": "x64",
+    "cpu": "Intel(R) Core(TM) i7-10610U CPU @ 1.80GHz",
+    "logicalCpus": 8,
+    "memoryGiB": 16,
+    "node": "v22.16.0",
+    "react": "19.1.1",
+    "antd": "5.27.6",
+    "playwright": "1.65.1",
+    "libraryVersion": "0.1.0",
+    "browser": "157.0.8103.79",
+    "channel": "chrome",
+    "headless": true,
+    "viewport": {
+      "width": 1365,
+      "height": 900
+    },
+    "cpuThrottling": "none",
+    "network": "local Vite production preview; no data requests",
+    "build": "production; benchmark entry without React.StrictMode"
+  },
+  "source": {
+    "parentCommit": "78ab0a43df0c766ab914b79bebcfe81eb54345d5",
+    "dirty": true,
+    "sha256": "82449b1e67ebf95a3e7847b394c6b82931d8abca2801c611032f1549d1b510dc"
+  },
+  "methodology": {
+    "samples": 7,
+    "warmups": 1,
+    "rowsPerBatch": 3,
+    "columns": 3,
+    "fieldsPerBatch": 9,
+    "percentile": "nearest-rank",
+    "scope": "Warm-page fresh form mounts; fixture creation and bundle transfer excluded. Includes config generation, real AntD fields, DOM/layout and effect work before two-frame settling. Not FCP, LCP or INP."
+  },
+  "complete": true,
+  "cases": [
+    {
+      "count": 100,
+      "progressive": false,
+      "kind": "input",
+      "samples": [
+        {
+          "firstCommitMs": 215,
+          "allCommittedMs": 215,
+          "settledMs": 222.20000004768372,
+          "mountedFields": 100,
+          "registeredFields": 100,
+          "domNodes": 947,
+          "longTaskCount": 1,
+          "longestTaskMs": 214,
+          "totalLongTaskMs": 214,
+          "editSettledMs": 45.699999928474426,
+          "validationMs": 24.899999976158142
+        },
+        {
+          "firstCommitMs": 202.80000007152557,
+          "allCommittedMs": 202.80000007152557,
+          "settledMs": 210.10000002384186,
+          "mountedFields": 100,
+          "registeredFields": 100,
+          "domNodes": 947,
+          "longTaskCount": 1,
+          "longestTaskMs": 202,
+          "totalLongTaskMs": 202,
+          "editSettledMs": 35.699999928474426,
+          "validationMs": 27.299999952316284
+        },
+        {
+          "firstCommitMs": 179.69999992847443,
+          "allCommittedMs": 179.69999992847443,
+          "settledMs": 187.59999990463257,
+          "mountedFields": 100,
+          "registeredFields": 100,
+          "domNodes": 947,
+          "longTaskCount": 1,
+          "longestTaskMs": 179,
+          "totalLongTaskMs": 179,
+          "editSettledMs": 44.90000009536743,
+          "validationMs": 21.399999976158142
+        },
+        {
+          "firstCommitMs": 186.60000002384186,
+          "allCommittedMs": 186.60000002384186,
+          "settledMs": 194.10000002384186,
+          "mountedFields": 100,
+          "registeredFields": 100,
+          "domNodes": 947,
+          "longTaskCount": 1,
+          "longestTaskMs": 186,
+          "totalLongTaskMs": 186,
+          "editSettledMs": 39.699999928474426,
+          "validationMs": 23.299999952316284
+        },
+        {
+          "firstCommitMs": 227.30000007152557,
+          "allCommittedMs": 227.30000007152557,
+          "settledMs": 236.89999997615814,
+          "mountedFields": 100,
+          "registeredFields": 100,
+          "domNodes": 947,
+          "longTaskCount": 1,
+          "longestTaskMs": 227,
+          "totalLongTaskMs": 227,
+          "editSettledMs": 43.39999997615814,
+          "validationMs": 26.399999976158142
+        },
+        {
+          "firstCommitMs": 243.60000002384186,
+          "allCommittedMs": 243.60000002384186,
+          "settledMs": 251.5,
+          "mountedFields": 100,
+          "registeredFields": 100,
+          "domNodes": 947,
+          "longTaskCount": 1,
+          "longestTaskMs": 243,
+          "totalLongTaskMs": 243,
+          "editSettledMs": 34.700000047683716,
+          "validationMs": 23.100000023841858
+        },
+        {
+          "firstCommitMs": 189.39999997615814,
+          "allCommittedMs": 189.39999997615814,
+          "settledMs": 196.10000002384186,
+          "mountedFields": 100,
+          "registeredFields": 100,
+          "domNodes": 947,
+          "longTaskCount": 1,
+          "longestTaskMs": 189,
+          "totalLongTaskMs": 189,
+          "editSettledMs": 38.199999928474426,
+          "validationMs": 24.600000023841858
+        }
+      ],
+      "summary": {
+        "firstCommitMs": {
+          "median": 202.80000007152557,
+          "p95": 243.60000002384186,
+          "min": 179.69999992847443,
+          "max": 243.60000002384186
+        },
+        "allCommittedMs": {
+          "median": 202.80000007152557,
+          "p95": 243.60000002384186,
+          "min": 179.69999992847443,
+          "max": 243.60000002384186
+        },
+        "settledMs": {
+          "median": 210.10000002384186,
+          "p95": 251.5,
+          "min": 187.59999990463257,
+          "max": 251.5
+        },
+        "mountedFields": {
+          "median": 100,
+          "p95": 100,
+          "min": 100,
+          "max": 100
+        },
+        "registeredFields": {
+          "median": 100,
+          "p95": 100,
+          "min": 100,
+          "max": 100
+        },
+        "domNodes": {
+          "median": 947,
+          "p95": 947,
+          "min": 947,
+          "max": 947
+        },
+        "longTaskCount": {
+          "median": 1,
+          "p95": 1,
+          "min": 1,
+          "max": 1
+        },
+        "longestTaskMs": {
+          "median": 202,
+          "p95": 243,
+          "min": 179,
+          "max": 243
+        },
+        "totalLongTaskMs": {
+          "median": 202,
+          "p95": 243,
+          "min": 179,
+          "max": 243
+        },
+        "editSettledMs": {
+          "median": 39.699999928474426,
+          "p95": 45.699999928474426,
+          "min": 34.700000047683716,
+          "max": 45.699999928474426
+        },
+        "validationMs": {
+          "median": 24.600000023841858,
+          "p95": 27.299999952316284,
+          "min": 21.399999976158142,
+          "max": 27.299999952316284
+        }
+      }
+    },
+    {
+      "count": 100,
+      "progressive": true,
+      "kind": "input",
+      "samples": [
+        {
+          "firstCommitMs": 37.700000047683716,
+          "allCommittedMs": 541.2000000476837,
+          "settledMs": 550,
+          "mountedFields": 100,
+          "registeredFields": 100,
+          "domNodes": 947,
+          "longTaskCount": 2,
+          "longestTaskMs": 66,
+          "totalLongTaskMs": 119,
+          "editSettledMs": 36.39999997615814,
+          "validationMs": 23.200000047683716
+        },
+        {
+          "firstCommitMs": 42.200000047683716,
+          "allCommittedMs": 459.3000000715256,
+          "settledMs": 483.60000002384186,
+          "mountedFields": 100,
+          "registeredFields": 100,
+          "domNodes": 947,
+          "longTaskCount": 0,
+          "longestTaskMs": 0,
+          "totalLongTaskMs": 0,
+          "editSettledMs": 39.10000002384186,
+          "validationMs": 32.59999990463257
+        },
+        {
+          "firstCommitMs": 40.199999928474426,
+          "allCommittedMs": 479.09999990463257,
+          "settledMs": 500.39999997615814,
+          "mountedFields": 100,
+          "registeredFields": 100,
+          "domNodes": 947,
+          "longTaskCount": 2,
+          "longestTaskMs": 60,
+          "totalLongTaskMs": 113,
+          "editSettledMs": 38.799999952316284,
+          "validationMs": 24.100000023841858
+        },
+        {
+          "firstCommitMs": 47.60000002384186,
+          "allCommittedMs": 497.2000000476837,
+          "settledMs": 516.8999999761581,
+          "mountedFields": 100,
+          "registeredFields": 100,
+          "domNodes": 947,
+          "longTaskCount": 0,
+          "longestTaskMs": 0,
+          "totalLongTaskMs": 0,
+          "editSettledMs": 43.700000047683716,
+          "validationMs": 19.700000047683716
+        },
+        {
+          "firstCommitMs": 40.10000002384186,
+          "allCommittedMs": 506.8000000715256,
+          "settledMs": 533.7000000476837,
+          "mountedFields": 100,
+          "registeredFields": 100,
+          "domNodes": 947,
+          "longTaskCount": 2,
+          "longestTaskMs": 54,
+          "totalLongTaskMs": 107,
+          "editSettledMs": 37.89999997615814,
+          "validationMs": 23.5
+        },
+        {
+          "firstCommitMs": 49.699999928474426,
+          "allCommittedMs": 548,
+          "settledMs": 551.2999999523163,
+          "mountedFields": 100,
+          "registeredFields": 100,
+          "domNodes": 947,
+          "longTaskCount": 2,
+          "longestTaskMs": 54,
+          "totalLongTaskMs": 106,
+          "editSettledMs": 45.10000002384186,
+          "validationMs": 29.700000047683716
+        },
+        {
+          "firstCommitMs": 37.60000002384186,
+          "allCommittedMs": 504.7999999523163,
+          "settledMs": 533.7999999523163,
+          "mountedFields": 100,
+          "registeredFields": 100,
+          "domNodes": 947,
+          "longTaskCount": 2,
+          "longestTaskMs": 60,
+          "totalLongTaskMs": 110,
+          "editSettledMs": 39.200000047683716,
+          "validationMs": 31.899999976158142
+        }
+      ],
+      "summary": {
+        "firstCommitMs": {
+          "median": 40.199999928474426,
+          "p95": 49.699999928474426,
+          "min": 37.60000002384186,
+          "max": 49.699999928474426
+        },
+        "allCommittedMs": {
+          "median": 504.7999999523163,
+          "p95": 548,
+          "min": 459.3000000715256,
+          "max": 548
+        },
+        "settledMs": {
+          "median": 533.7000000476837,
+          "p95": 551.2999999523163,
+          "min": 483.60000002384186,
+          "max": 551.2999999523163
+        },
+        "mountedFields": {
+          "median": 100,
+          "p95": 100,
+          "min": 100,
+          "max": 100
+        },
+        "registeredFields": {
+          "median": 100,
+          "p95": 100,
+          "min": 100,
+          "max": 100
+        },
+        "domNodes": {
+          "median": 947,
+          "p95": 947,
+          "min": 947,
+          "max": 947
+        },
+        "longTaskCount": {
+          "median": 2,
+          "p95": 2,
+          "min": 0,
+          "max": 2
+        },
+        "longestTaskMs": {
+          "median": 54,
+          "p95": 66,
+          "min": 0,
+          "max": 66
+        },
+        "totalLongTaskMs": {
+          "median": 107,
+          "p95": 119,
+          "min": 0,
+          "max": 119
+        },
+        "editSettledMs": {
+          "median": 39.10000002384186,
+          "p95": 45.10000002384186,
+          "min": 36.39999997615814,
+          "max": 45.10000002384186
+        },
+        "validationMs": {
+          "median": 24.100000023841858,
+          "p95": 32.59999990463257,
+          "min": 19.700000047683716,
+          "max": 32.59999990463257
+        }
+      }
+    },
+    {
+      "count": 300,
+      "progressive": false,
+      "kind": "input",
+      "samples": [
+        {
+          "firstCommitMs": 507,
+          "allCommittedMs": 507,
+          "settledMs": 523,
+          "mountedFields": 300,
+          "registeredFields": 300,
+          "domNodes": 2835,
+          "longTaskCount": 1,
+          "longestTaskMs": 506,
+          "totalLongTaskMs": 506,
+          "editSettledMs": 29.700000047683716,
+          "validationMs": 85
+        },
+        {
+          "firstCommitMs": 473.10000002384186,
+          "allCommittedMs": 473.10000002384186,
+          "settledMs": 491,
+          "mountedFields": 300,
+          "registeredFields": 300,
+          "domNodes": 2835,
+          "longTaskCount": 1,
+          "longestTaskMs": 472,
+          "totalLongTaskMs": 472,
+          "editSettledMs": 45.39999997615814,
+          "validationMs": 93.60000002384186
+        },
+        {
+          "firstCommitMs": 620,
+          "allCommittedMs": 620,
+          "settledMs": 646.1000000238419,
+          "mountedFields": 300,
+          "registeredFields": 300,
+          "domNodes": 2835,
+          "longTaskCount": 1,
+          "longestTaskMs": 620,
+          "totalLongTaskMs": 620,
+          "editSettledMs": 34.5,
+          "validationMs": 97.90000009536743
+        },
+        {
+          "firstCommitMs": 619.2999999523163,
+          "allCommittedMs": 619.2999999523163,
+          "settledMs": 636.6000000238419,
+          "mountedFields": 300,
+          "registeredFields": 300,
+          "domNodes": 2835,
+          "longTaskCount": 1,
+          "longestTaskMs": 619,
+          "totalLongTaskMs": 619,
+          "editSettledMs": 30.5,
+          "validationMs": 96.69999992847443
+        },
+        {
+          "firstCommitMs": 571.6000000238419,
+          "allCommittedMs": 571.6000000238419,
+          "settledMs": 601.8999999761581,
+          "mountedFields": 300,
+          "registeredFields": 300,
+          "domNodes": 2835,
+          "longTaskCount": 1,
+          "longestTaskMs": 571,
+          "totalLongTaskMs": 571,
+          "editSettledMs": 41.700000047683716,
+          "validationMs": 101.79999995231628
+        },
+        {
+          "firstCommitMs": 510,
+          "allCommittedMs": 510,
+          "settledMs": 525.7999999523163,
+          "mountedFields": 300,
+          "registeredFields": 300,
+          "domNodes": 2835,
+          "longTaskCount": 1,
+          "longestTaskMs": 509,
+          "totalLongTaskMs": 509,
+          "editSettledMs": 32.799999952316284,
+          "validationMs": 80.39999997615814
+        },
+        {
+          "firstCommitMs": 501.10000002384186,
+          "allCommittedMs": 501.10000002384186,
+          "settledMs": 519.7000000476837,
+          "mountedFields": 300,
+          "registeredFields": 300,
+          "domNodes": 2835,
+          "longTaskCount": 1,
+          "longestTaskMs": 500,
+          "totalLongTaskMs": 500,
+          "editSettledMs": 37.200000047683716,
+          "validationMs": 90.90000009536743
+        }
+      ],
+      "summary": {
+        "firstCommitMs": {
+          "median": 510,
+          "p95": 620,
+          "min": 473.10000002384186,
+          "max": 620
+        },
+        "allCommittedMs": {
+          "median": 510,
+          "p95": 620,
+          "min": 473.10000002384186,
+          "max": 620
+        },
+        "settledMs": {
+          "median": 525.7999999523163,
+          "p95": 646.1000000238419,
+          "min": 491,
+          "max": 646.1000000238419
+        },
+        "mountedFields": {
+          "median": 300,
+          "p95": 300,
+          "min": 300,
+          "max": 300
+        },
+        "registeredFields": {
+          "median": 300,
+          "p95": 300,
+          "min": 300,
+          "max": 300
+        },
+        "domNodes": {
+          "median": 2835,
+          "p95": 2835,
+          "min": 2835,
+          "max": 2835
+        },
+        "longTaskCount": {
+          "median": 1,
+          "p95": 1,
+          "min": 1,
+          "max": 1
+        },
+        "longestTaskMs": {
+          "median": 509,
+          "p95": 620,
+          "min": 472,
+          "max": 620
+        },
+        "totalLongTaskMs": {
+          "median": 509,
+          "p95": 620,
+          "min": 472,
+          "max": 620
+        },
+        "editSettledMs": {
+          "median": 34.5,
+          "p95": 45.39999997615814,
+          "min": 29.700000047683716,
+          "max": 45.39999997615814
+        },
+        "validationMs": {
+          "median": 93.60000002384186,
+          "p95": 101.79999995231628,
+          "min": 80.39999997615814,
+          "max": 101.79999995231628
+        }
+      }
+    },
+    {
+      "count": 300,
+      "progressive": true,
+      "kind": "input",
+      "samples": [
+        {
+          "firstCommitMs": 48.299999952316284,
+          "allCommittedMs": 3018.1999999284744,
+          "settledMs": 3031.399999976158,
+          "mountedFields": 300,
+          "registeredFields": 300,
+          "domNodes": 2835,
+          "longTaskCount": 26,
+          "longestTaskMs": 154,
+          "totalLongTaskMs": 2598,
+          "editSettledMs": 38.5,
+          "validationMs": 87.59999990463257
+        },
+        {
+          "firstCommitMs": 44.5,
+          "allCommittedMs": 2906.7999999523163,
+          "settledMs": 2911.399999976158,
+          "mountedFields": 300,
+          "registeredFields": 300,
+          "domNodes": 2835,
+          "longTaskCount": 25,
+          "longestTaskMs": 142,
+          "totalLongTaskMs": 2461,
+          "editSettledMs": 44.299999952316284,
+          "validationMs": 89
+        },
+        {
+          "firstCommitMs": 49.5,
+          "allCommittedMs": 3171.9000000953674,
+          "settledMs": 3181.4000000953674,
+          "mountedFields": 300,
+          "registeredFields": 300,
+          "domNodes": 2835,
+          "longTaskCount": 24,
+          "longestTaskMs": 183,
+          "totalLongTaskMs": 2666,
+          "editSettledMs": 33.39999997615814,
+          "validationMs": 90.60000002384186
+        },
+        {
+          "firstCommitMs": 46.800000071525574,
+          "allCommittedMs": 2830.600000023842,
+          "settledMs": 2843.600000023842,
+          "mountedFields": 300,
+          "registeredFields": 300,
+          "domNodes": 2835,
+          "longTaskCount": 24,
+          "longestTaskMs": 154,
+          "totalLongTaskMs": 2345,
+          "editSettledMs": 39.200000047683716,
+          "validationMs": 85.39999997615814
+        },
+        {
+          "firstCommitMs": 44.5,
+          "allCommittedMs": 2754,
+          "settledMs": 2763.1999999284744,
+          "mountedFields": 300,
+          "registeredFields": 300,
+          "domNodes": 2835,
+          "longTaskCount": 23,
+          "longestTaskMs": 141,
+          "totalLongTaskMs": 2256,
+          "editSettledMs": 42.199999928474426,
+          "validationMs": 87.70000004768372
+        },
+        {
+          "firstCommitMs": 44.799999952316284,
+          "allCommittedMs": 3304.1999999284744,
+          "settledMs": 3317.7999999523163,
+          "mountedFields": 300,
+          "registeredFields": 300,
+          "domNodes": 2835,
+          "longTaskCount": 24,
+          "longestTaskMs": 222,
+          "totalLongTaskMs": 2791,
+          "editSettledMs": 33,
+          "validationMs": 102.79999995231628
+        },
+        {
+          "firstCommitMs": 46.299999952316284,
+          "allCommittedMs": 3472.399999976158,
+          "settledMs": 3478.5,
+          "mountedFields": 300,
+          "registeredFields": 300,
+          "domNodes": 2835,
+          "longTaskCount": 26,
+          "longestTaskMs": 263,
+          "totalLongTaskMs": 3008,
+          "editSettledMs": 36.699999928474426,
+          "validationMs": 112.79999995231628
+        }
+      ],
+      "summary": {
+        "firstCommitMs": {
+          "median": 46.299999952316284,
+          "p95": 49.5,
+          "min": 44.5,
+          "max": 49.5
+        },
+        "allCommittedMs": {
+          "median": 3018.1999999284744,
+          "p95": 3472.399999976158,
+          "min": 2754,
+          "max": 3472.399999976158
+        },
+        "settledMs": {
+          "median": 3031.399999976158,
+          "p95": 3478.5,
+          "min": 2763.1999999284744,
+          "max": 3478.5
+        },
+        "mountedFields": {
+          "median": 300,
+          "p95": 300,
+          "min": 300,
+          "max": 300
+        },
+        "registeredFields": {
+          "median": 300,
+          "p95": 300,
+          "min": 300,
+          "max": 300
+        },
+        "domNodes": {
+          "median": 2835,
+          "p95": 2835,
+          "min": 2835,
+          "max": 2835
+        },
+        "longTaskCount": {
+          "median": 24,
+          "p95": 26,
+          "min": 23,
+          "max": 26
+        },
+        "longestTaskMs": {
+          "median": 154,
+          "p95": 263,
+          "min": 141,
+          "max": 263
+        },
+        "totalLongTaskMs": {
+          "median": 2598,
+          "p95": 3008,
+          "min": 2256,
+          "max": 3008
+        },
+        "editSettledMs": {
+          "median": 38.5,
+          "p95": 44.299999952316284,
+          "min": 33,
+          "max": 44.299999952316284
+        },
+        "validationMs": {
+          "median": 89,
+          "p95": 112.79999995231628,
+          "min": 85.39999997615814,
+          "max": 112.79999995231628
+        }
+      }
+    },
+    {
+      "count": 1000,
+      "progressive": false,
+      "kind": "input",
+      "samples": [
+        {
+          "firstCommitMs": 1719.2999999523163,
+          "allCommittedMs": 1719.2999999523163,
+          "settledMs": 1770,
+          "mountedFields": 1000,
+          "registeredFields": 1000,
+          "domNodes": 9447,
+          "longTaskCount": 1,
+          "longestTaskMs": 1719,
+          "totalLongTaskMs": 1719,
+          "editSettledMs": 52.89999997615814,
+          "validationMs": 430.60000002384186
+        },
+        {
+          "firstCommitMs": 1788.1000000238419,
+          "allCommittedMs": 1788.1000000238419,
+          "settledMs": 1833.8999999761581,
+          "mountedFields": 1000,
+          "registeredFields": 1000,
+          "domNodes": 9447,
+          "longTaskCount": 1,
+          "longestTaskMs": 1787,
+          "totalLongTaskMs": 1787,
+          "editSettledMs": 44.299999952316284,
+          "validationMs": 439.2999999523163
+        },
+        {
+          "firstCommitMs": 1683.8000000715256,
+          "allCommittedMs": 1683.8000000715256,
+          "settledMs": 1737.2000000476837,
+          "mountedFields": 1000,
+          "registeredFields": 1000,
+          "domNodes": 9447,
+          "longTaskCount": 1,
+          "longestTaskMs": 1683,
+          "totalLongTaskMs": 1683,
+          "editSettledMs": 44.60000002384186,
+          "validationMs": 415.10000002384186
+        },
+        {
+          "firstCommitMs": 2111.3000000715256,
+          "allCommittedMs": 2111.3000000715256,
+          "settledMs": 2158.4000000953674,
+          "mountedFields": 1000,
+          "registeredFields": 1000,
+          "domNodes": 9447,
+          "longTaskCount": 1,
+          "longestTaskMs": 2111,
+          "totalLongTaskMs": 2111,
+          "editSettledMs": 48.5,
+          "validationMs": 457.7000000476837
+        },
+        {
+          "firstCommitMs": 1713.2999999523163,
+          "allCommittedMs": 1713.2999999523163,
+          "settledMs": 1758.6999999284744,
+          "mountedFields": 1000,
+          "registeredFields": 1000,
+          "domNodes": 9447,
+          "longTaskCount": 1,
+          "longestTaskMs": 1713,
+          "totalLongTaskMs": 1713,
+          "editSettledMs": 54.699999928474426,
+          "validationMs": 475.2000000476837
+        },
+        {
+          "firstCommitMs": 2154.4000000953674,
+          "allCommittedMs": 2154.4000000953674,
+          "settledMs": 2204.2000000476837,
+          "mountedFields": 1000,
+          "registeredFields": 1000,
+          "domNodes": 9447,
+          "longTaskCount": 1,
+          "longestTaskMs": 2154,
+          "totalLongTaskMs": 2154,
+          "editSettledMs": 52.299999952316284,
+          "validationMs": 422.39999997615814
+        },
+        {
+          "firstCommitMs": 1712.3999999761581,
+          "allCommittedMs": 1712.3999999761581,
+          "settledMs": 1759.3000000715256,
+          "mountedFields": 1000,
+          "registeredFields": 1000,
+          "domNodes": 9447,
+          "longTaskCount": 1,
+          "longestTaskMs": 1712,
+          "totalLongTaskMs": 1712,
+          "editSettledMs": 32.700000047683716,
+          "validationMs": 483.7999999523163
+        }
+      ],
+      "summary": {
+        "firstCommitMs": {
+          "median": 1719.2999999523163,
+          "p95": 2154.4000000953674,
+          "min": 1683.8000000715256,
+          "max": 2154.4000000953674
+        },
+        "allCommittedMs": {
+          "median": 1719.2999999523163,
+          "p95": 2154.4000000953674,
+          "min": 1683.8000000715256,
+          "max": 2154.4000000953674
+        },
+        "settledMs": {
+          "median": 1770,
+          "p95": 2204.2000000476837,
+          "min": 1737.2000000476837,
+          "max": 2204.2000000476837
+        },
+        "mountedFields": {
+          "median": 1000,
+          "p95": 1000,
+          "min": 1000,
+          "max": 1000
+        },
+        "registeredFields": {
+          "median": 1000,
+          "p95": 1000,
+          "min": 1000,
+          "max": 1000
+        },
+        "domNodes": {
+          "median": 9447,
+          "p95": 9447,
+          "min": 9447,
+          "max": 9447
+        },
+        "longTaskCount": {
+          "median": 1,
+          "p95": 1,
+          "min": 1,
+          "max": 1
+        },
+        "longestTaskMs": {
+          "median": 1719,
+          "p95": 2154,
+          "min": 1683,
+          "max": 2154
+        },
+        "totalLongTaskMs": {
+          "median": 1719,
+          "p95": 2154,
+          "min": 1683,
+          "max": 2154
+        },
+        "editSettledMs": {
+          "median": 48.5,
+          "p95": 54.699999928474426,
+          "min": 32.700000047683716,
+          "max": 54.699999928474426
+        },
+        "validationMs": {
+          "median": 439.2999999523163,
+          "p95": 483.7999999523163,
+          "min": 415.10000002384186,
+          "max": 483.7999999523163
+        }
+      }
+    },
+    {
+      "count": 1000,
+      "progressive": true,
+      "kind": "input",
+      "samples": [
+        {
+          "firstCommitMs": 147,
+          "allCommittedMs": 26854.5,
+          "settledMs": 26860.399999976158,
+          "mountedFields": 1000,
+          "registeredFields": 1000,
+          "domNodes": 9447,
+          "longTaskCount": 103,
+          "longestTaskMs": 568,
+          "totalLongTaskMs": 25847,
+          "editSettledMs": 37.300000071525574,
+          "validationMs": 433.39999997615814
+        },
+        {
+          "firstCommitMs": 230.89999997615814,
+          "allCommittedMs": 29468,
+          "settledMs": 29482,
+          "mountedFields": 1000,
+          "registeredFields": 1000,
+          "domNodes": 9447,
+          "longTaskCount": 101,
+          "longestTaskMs": 736,
+          "totalLongTaskMs": 28347,
+          "editSettledMs": 40.700000047683716,
+          "validationMs": 471.5
+        },
+        {
+          "firstCommitMs": 256.60000002384186,
+          "allCommittedMs": 28901.799999952316,
+          "settledMs": 28911.5,
+          "mountedFields": 1000,
+          "registeredFields": 1000,
+          "domNodes": 9447,
+          "longTaskCount": 103,
+          "longestTaskMs": 629,
+          "totalLongTaskMs": 27806,
+          "editSettledMs": 36.299999952316284,
+          "validationMs": 462.6999999284744
+        },
+        {
+          "firstCommitMs": 247.89999997615814,
+          "allCommittedMs": 28221.100000023842,
+          "settledMs": 28227,
+          "mountedFields": 1000,
+          "registeredFields": 1000,
+          "domNodes": 9447,
+          "longTaskCount": 103,
+          "longestTaskMs": 608,
+          "totalLongTaskMs": 27157,
+          "editSettledMs": 42.59999990463257,
+          "validationMs": 619.2000000476837
+        },
+        {
+          "firstCommitMs": 280.89999997615814,
+          "allCommittedMs": 29301.799999952316,
+          "settledMs": 29312.799999952316,
+          "mountedFields": 1000,
+          "registeredFields": 1000,
+          "domNodes": 9447,
+          "longTaskCount": 105,
+          "longestTaskMs": 714,
+          "totalLongTaskMs": 28269,
+          "editSettledMs": 38.39999997615814,
+          "validationMs": 470.5
+        },
+        {
+          "firstCommitMs": 262.39999997615814,
+          "allCommittedMs": 27468.100000023842,
+          "settledMs": 27482.600000023842,
+          "mountedFields": 1000,
+          "registeredFields": 1000,
+          "domNodes": 9447,
+          "longTaskCount": 104,
+          "longestTaskMs": 576,
+          "totalLongTaskMs": 26488,
+          "editSettledMs": 30.600000023841858,
+          "validationMs": 471.5
+        },
+        {
+          "firstCommitMs": 262.10000002384186,
+          "allCommittedMs": 28275.800000071526,
+          "settledMs": 28286,
+          "mountedFields": 1000,
+          "registeredFields": 1000,
+          "domNodes": 9447,
+          "longTaskCount": 103,
+          "longestTaskMs": 626,
+          "totalLongTaskMs": 27219,
+          "editSettledMs": 34.199999928474426,
+          "validationMs": 567.7000000476837
+        }
+      ],
+      "summary": {
+        "firstCommitMs": {
+          "median": 256.60000002384186,
+          "p95": 280.89999997615814,
+          "min": 147,
+          "max": 280.89999997615814
+        },
+        "allCommittedMs": {
+          "median": 28275.800000071526,
+          "p95": 29468,
+          "min": 26854.5,
+          "max": 29468
+        },
+        "settledMs": {
+          "median": 28286,
+          "p95": 29482,
+          "min": 26860.399999976158,
+          "max": 29482
+        },
+        "mountedFields": {
+          "median": 1000,
+          "p95": 1000,
+          "min": 1000,
+          "max": 1000
+        },
+        "registeredFields": {
+          "median": 1000,
+          "p95": 1000,
+          "min": 1000,
+          "max": 1000
+        },
+        "domNodes": {
+          "median": 9447,
+          "p95": 9447,
+          "min": 9447,
+          "max": 9447
+        },
+        "longTaskCount": {
+          "median": 103,
+          "p95": 105,
+          "min": 101,
+          "max": 105
+        },
+        "longestTaskMs": {
+          "median": 626,
+          "p95": 736,
+          "min": 568,
+          "max": 736
+        },
+        "totalLongTaskMs": {
+          "median": 27219,
+          "p95": 28347,
+          "min": 25847,
+          "max": 28347
+        },
+        "editSettledMs": {
+          "median": 37.300000071525574,
+          "p95": 42.59999990463257,
+          "min": 30.600000023841858,
+          "max": 42.59999990463257
+        },
+        "validationMs": {
+          "median": 471.5,
+          "p95": 619.2000000476837,
+          "min": 433.39999997615814,
+          "max": 619.2000000476837
+        }
+      }
+    },
+    {
+      "count": 100,
+      "progressive": false,
+      "kind": "linked",
+      "samples": [
+        {
+          "firstCommitMs": 305,
+          "allCommittedMs": 305.10000002384186,
+          "settledMs": 316,
+          "mountedFields": 100,
+          "registeredFields": 100,
+          "domNodes": 2047,
+          "longTaskCount": 1,
+          "longestTaskMs": 305,
+          "totalLongTaskMs": 305,
+          "editSettledMs": 234.20000004768372,
+          "validationMs": 40.60000002384186
+        },
+        {
+          "firstCommitMs": 326,
+          "allCommittedMs": 326,
+          "settledMs": 338.2999999523163,
+          "mountedFields": 100,
+          "registeredFields": 100,
+          "domNodes": 2047,
+          "longTaskCount": 1,
+          "longestTaskMs": 326,
+          "totalLongTaskMs": 326,
+          "editSettledMs": 199.70000004768372,
+          "validationMs": 33.200000047683716
+        },
+        {
+          "firstCommitMs": 258.60000002384186,
+          "allCommittedMs": 258.60000002384186,
+          "settledMs": 272.40000009536743,
+          "mountedFields": 100,
+          "registeredFields": 100,
+          "domNodes": 2047,
+          "longTaskCount": 1,
+          "longestTaskMs": 258,
+          "totalLongTaskMs": 258,
+          "editSettledMs": 168.89999997615814,
+          "validationMs": 33.800000071525574
+        },
+        {
+          "firstCommitMs": 216.39999997615814,
+          "allCommittedMs": 216.39999997615814,
+          "settledMs": 225.70000004768372,
+          "mountedFields": 100,
+          "registeredFields": 100,
+          "domNodes": 2047,
+          "longTaskCount": 1,
+          "longestTaskMs": 216,
+          "totalLongTaskMs": 216,
+          "editSettledMs": 163.60000002384186,
+          "validationMs": 28.700000047683716
+        },
+        {
+          "firstCommitMs": 219.80000007152557,
+          "allCommittedMs": 219.80000007152557,
+          "settledMs": 228.89999997615814,
+          "mountedFields": 100,
+          "registeredFields": 100,
+          "domNodes": 2047,
+          "longTaskCount": 1,
+          "longestTaskMs": 220,
+          "totalLongTaskMs": 220,
+          "editSettledMs": 171.30000007152557,
+          "validationMs": 34.60000002384186
+        },
+        {
+          "firstCommitMs": 210.79999995231628,
+          "allCommittedMs": 210.79999995231628,
+          "settledMs": 219.59999990463257,
+          "mountedFields": 100,
+          "registeredFields": 100,
+          "domNodes": 2047,
+          "longTaskCount": 1,
+          "longestTaskMs": 210,
+          "totalLongTaskMs": 210,
+          "editSettledMs": 159.70000004768372,
+          "validationMs": 35.199999928474426
+        },
+        {
+          "firstCommitMs": 230,
+          "allCommittedMs": 230,
+          "settledMs": 240,
+          "mountedFields": 100,
+          "registeredFields": 100,
+          "domNodes": 2047,
+          "longTaskCount": 1,
+          "longestTaskMs": 230,
+          "totalLongTaskMs": 230,
+          "editSettledMs": 152,
+          "validationMs": 25.600000023841858
+        }
+      ],
+      "summary": {
+        "firstCommitMs": {
+          "median": 230,
+          "p95": 326,
+          "min": 210.79999995231628,
+          "max": 326
+        },
+        "allCommittedMs": {
+          "median": 230,
+          "p95": 326,
+          "min": 210.79999995231628,
+          "max": 326
+        },
+        "settledMs": {
+          "median": 240,
+          "p95": 338.2999999523163,
+          "min": 219.59999990463257,
+          "max": 338.2999999523163
+        },
+        "mountedFields": {
+          "median": 100,
+          "p95": 100,
+          "min": 100,
+          "max": 100
+        },
+        "registeredFields": {
+          "median": 100,
+          "p95": 100,
+          "min": 100,
+          "max": 100
+        },
+        "domNodes": {
+          "median": 2047,
+          "p95": 2047,
+          "min": 2047,
+          "max": 2047
+        },
+        "longTaskCount": {
+          "median": 1,
+          "p95": 1,
+          "min": 1,
+          "max": 1
+        },
+        "longestTaskMs": {
+          "median": 230,
+          "p95": 326,
+          "min": 210,
+          "max": 326
+        },
+        "totalLongTaskMs": {
+          "median": 230,
+          "p95": 326,
+          "min": 210,
+          "max": 326
+        },
+        "editSettledMs": {
+          "median": 168.89999997615814,
+          "p95": 234.20000004768372,
+          "min": 152,
+          "max": 234.20000004768372
+        },
+        "validationMs": {
+          "median": 33.800000071525574,
+          "p95": 40.60000002384186,
+          "min": 25.600000023841858,
+          "max": 40.60000002384186
+        }
+      }
+    }
+  ]
+}

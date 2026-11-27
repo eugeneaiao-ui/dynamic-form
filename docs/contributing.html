@@ -1,0 +1,78 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Contributing | Formino</title><meta name="description" content="Formino 动态表单引擎：React / Ant Design 长表单、复杂字段联动、低代码与 AI 辅助开发。"><link rel="canonical" href="https://eugeneaiao-ui.github.io/formino/docs/contributing.html"><meta name="robots" content="index,follow"><meta property="og:type" content="website"><meta property="og:title" content="Contributing"><meta property="og:description" content="Formino 动态表单引擎：React / Ant Design 长表单、复杂字段联动、低代码与 AI 辅助开发。"><meta property="og:url" content="https://eugeneaiao-ui.github.io/formino/docs/contributing.html"><meta property="og:image" content="https://eugeneaiao-ui.github.io/formino/docs/images/long.png"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="/formino/site.css"><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Formino","description":"Formino 动态表单引擎：React / Ant Design 长表单、复杂字段联动、低代码与 AI 辅助开发。","url":"https://eugeneaiao-ui.github.io/formino/","codeRepository":"https://github.com/eugeneaiao-ui/formino","programmingLanguage":"TypeScript","softwareVersion":"0.1.0","license":"https://github.com/eugeneaiao-ui/formino/blob/main/LICENSE","downloadUrl":"https://www.npmjs.com/package/forminojs","keywords":"forminojs, formino, dynamic-form, form-builder, react, antd, typescript, schema, validation, low-code, schema-driven, ai-assisted-development, json-schema, config-driven, react-forms, long-form, field-dependencies"}</script><script src="/formino/site.js" defer></script></head><body><a class="skip" href="#content">跳到正文</a><header class="top"><a class="brand" href="/formino/"><span>F</span> Formino</a><nav aria-label="主导航"><a href="/formino/playground/">Playground</a><a href="/formino/en/">English</a><a href="https://www.npmjs.com/package/forminojs">npm ↗</a><a href="https://github.com/eugeneaiao-ui/formino">GitHub ↗</a></nav></header><div class="layout"><aside><form role="search"><label for="docs-search">搜索文档</label><input id="docs-search" type="search" placeholder="联动、数据源、校验…" autocomplete="off" aria-controls="search-results"><p id="search-status" role="status" class="search-status"></p><div id="search-results" hidden></div></form><nav aria-label="文档目录"><a href="/formino/docs/getting-started.html">快速开始</a><a href="/formino/docs/examples.html">图文示例</a><a href="/formino/docs/configuration.html">配置手册</a><a href="/formino/docs/recipes.html">常用场景</a><a href="/formino/docs/api.html">API</a><a href="/formino/docs/ai-integration.html">AI / 低代码</a><a href="/formino/docs/performance.html">性能与测量</a><a href="/formino/docs/migration.html">迁移指南</a><a href="/formino/docs/faq.html">常见问题</a><a href="/formino/docs/releasing.html">版本与发布</a><a aria-current="page" href="/formino/docs/contributing.html">贡献指南</a><a href="/formino/docs/security.html">安全反馈</a></nav><div class="install"><code>npm i forminojs</code><button type="button" id="copy-install" aria-label="复制安装命令">复制</button><span id="copy-status" role="status"></span></div><a class="discuss" href="https://github.com/eugeneaiao-ui/formino/discussions">提问与交流 ↗</a></aside><main id="content"><article><h1 id="contributing">Contributing</h1>
+<p>欢迎通过 Issue 或 Pull Request 改进 Formino。</p>
+<h2 id="开发环境">开发环境</h2>
+<p>使用 Node.js 22.12+ 和 npm。克隆仓库后安装依赖。</p>
+<pre><code class="language-bash">git clone https://github.com/eugeneaiao-ui/formino.git
+cd formino
+npm ci
+npm run dev
+</code></pre>
+<h2 id="目录">目录</h2>
+<table>
+<thead>
+<tr>
+<th>位置</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>src/core</td>
+<td>不依赖 React 的配置、布局、依赖和数据源引擎</td>
+</tr>
+<tr>
+<td>src/react</td>
+<td>Context、配置和异步加载 hooks</td>
+</tr>
+<tr>
+<td>src/antd</td>
+<td>Ant Design 渲染、控件注册和显示模式</td>
+</tr>
+<tr>
+<td>examples/basic</td>
+<td>交互演示</td>
+</tr>
+<tr>
+<td>examples/quick-start / examples/configuration</td>
+<td>文档配套的可编译示例</td>
+</tr>
+<tr>
+<td>docs</td>
+<td>接入、配置、场景、API 和迁移文档</td>
+</tr>
+<tr>
+<td>tests</td>
+<td>核心和 React 回归测试</td>
+</tr>
+<tr>
+<td>scripts</td>
+<td>样式复制、文档检查和隔离安装验证</td>
+</tr>
+</tbody></table>
+<h2 id="修改约定">修改约定</h2>
+<ul>
+<li>公共 API 改动同步更新文档与 CHANGELOG。</li>
+<li>core 不引入 React、AntD 或应用服务；业务能力通过适配器注入。</li>
+<li>保持现有 React / AntD 兼容范围；不要引入只在新版 React 可用的 hooks。</li>
+<li>配置使用不可变更新；异步任务接收 AbortSignal 并避免写入过期结果。</li>
+<li>新测试应验证真实行为与边界，不为格式调整或纯文档修改添加重复测试。</li>
+</ul>
+<p>提交前运行：</p>
+<pre><code class="language-bash">npm run format
+npm run check
+npm run check:docs
+</code></pre>
+<p>包导出、peer 范围、构建配置、日期适配或运行时兼容相关改动，还应执行 <code>npm run test:package</code>。该命令访问 npm registry，将 tarball 安装到临时消费项目，完成后清理临时目录。</p>
+<p>PR 应描述问题、变更后的行为、验证命令及涉及的兼容性。提交贡献表示你同意将贡献按本仓库 <a href="https://github.com/eugeneaiao-ui/formino/blob/main/LICENSE">MIT 许可证</a>提供。</p>
+<h2 id="反馈问题">反馈问题</h2>
+<p>请提供版本、React / AntD / TypeScript 组合、最小 template / fields、重现步骤及期望结果。避免包含访问令牌或真实业务数据。可从 <a href="https://github.com/eugeneaiao-ui/formino/blob/main/examples/quick-start/ProfileForm.tsx">ProfileForm</a> 精简重现。</p>
+<h2 id="维护者发布准备">维护者发布准备</h2>
+<p>npm 包名为 forminojs。这些步骤由维护者手动执行，不会由 CI 自动发布。</p>
+<ol>
+<li>更新版本和 CHANGELOG，确认 npm 包名可用且当前账号有发布权限。</li>
+<li>执行 npm ci、npm run check、npm run test:package。</li>
+<li>执行 npm pack --dry-run，检查 dist、类型声明、文档、LICENSE。</li>
+<li>执行 npm pack，在使用方实际安装生成的 tarball。</li>
+<li>确认后手动执行 npm publish --access public，并创建对应版本的 Git tag / release。Formino 首次发布使用 formino-v0.1.0，旧 scoped 包的 v0.1.0 标签保留。</li>
+</ol>
+<p>本仓库已有 publishConfig.access=public，明确使用公开访问级别，不会自动触发发布。发布记录应注明验证结果。远程 CI 因账号级限制无法启动时，应记录限制和本地验证结果，不能将未启动视作通过。</p>
+</article><footer><a href="https://github.com/eugeneaiao-ui/formino/edit/main/CONTRIBUTING.md">改进这页文档</a><a href="https://github.com/eugeneaiao-ui/formino/releases/latest">最新 Release</a><span>Formino 0.1.0 · MIT</span></footer></main></div></body></html>

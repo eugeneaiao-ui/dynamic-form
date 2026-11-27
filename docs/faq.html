@@ -1,0 +1,36 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>常见问题 | Formino</title><meta name="description" content="Formino 动态表单引擎：React / Ant Design 长表单、复杂字段联动、低代码与 AI 辅助开发。"><link rel="canonical" href="https://eugeneaiao-ui.github.io/formino/docs/faq.html"><meta name="robots" content="index,follow"><meta property="og:type" content="website"><meta property="og:title" content="常见问题"><meta property="og:description" content="Formino 动态表单引擎：React / Ant Design 长表单、复杂字段联动、低代码与 AI 辅助开发。"><meta property="og:url" content="https://eugeneaiao-ui.github.io/formino/docs/faq.html"><meta property="og:image" content="https://eugeneaiao-ui.github.io/formino/docs/images/long.png"><meta name="twitter:card" content="summary_large_image"><link rel="stylesheet" href="/formino/site.css"><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Formino","description":"Formino 动态表单引擎：React / Ant Design 长表单、复杂字段联动、低代码与 AI 辅助开发。","url":"https://eugeneaiao-ui.github.io/formino/","codeRepository":"https://github.com/eugeneaiao-ui/formino","programmingLanguage":"TypeScript","softwareVersion":"0.1.0","license":"https://github.com/eugeneaiao-ui/formino/blob/main/LICENSE","downloadUrl":"https://www.npmjs.com/package/forminojs","keywords":"forminojs, formino, dynamic-form, form-builder, react, antd, typescript, schema, validation, low-code, schema-driven, ai-assisted-development, json-schema, config-driven, react-forms, long-form, field-dependencies"}</script><script src="/formino/site.js" defer></script></head><body><a class="skip" href="#content">跳到正文</a><header class="top"><a class="brand" href="/formino/"><span>F</span> Formino</a><nav aria-label="主导航"><a href="/formino/playground/">Playground</a><a href="/formino/en/">English</a><a href="https://www.npmjs.com/package/forminojs">npm ↗</a><a href="https://github.com/eugeneaiao-ui/formino">GitHub ↗</a></nav></header><div class="layout"><aside><form role="search"><label for="docs-search">搜索文档</label><input id="docs-search" type="search" placeholder="联动、数据源、校验…" autocomplete="off" aria-controls="search-results"><p id="search-status" role="status" class="search-status"></p><div id="search-results" hidden></div></form><nav aria-label="文档目录"><a href="/formino/docs/getting-started.html">快速开始</a><a href="/formino/docs/examples.html">图文示例</a><a href="/formino/docs/configuration.html">配置手册</a><a href="/formino/docs/recipes.html">常用场景</a><a href="/formino/docs/api.html">API</a><a href="/formino/docs/ai-integration.html">AI / 低代码</a><a href="/formino/docs/performance.html">性能与测量</a><a href="/formino/docs/migration.html">迁移指南</a><a aria-current="page" href="/formino/docs/faq.html">常见问题</a><a href="/formino/docs/releasing.html">版本与发布</a><a href="/formino/docs/contributing.html">贡献指南</a><a href="/formino/docs/security.html">安全反馈</a></nav><div class="install"><code>npm i forminojs</code><button type="button" id="copy-install" aria-label="复制安装命令">复制</button><span id="copy-status" role="status"></span></div><a class="discuss" href="https://github.com/eugeneaiao-ui/formino/discussions">提问与交流 ↗</a></aside><main id="content"><article><h1 id="常见问题">常见问题</h1>
+<p><a href="/formino/index.html">返回首页</a> · <a href="/formino/docs/configuration.html">配置手册</a></p>
+<h2 id="npm-install-找不到包">npm install 找不到包？</h2>
+<p>使用 npm install forminojs，并检查 registry 是否为 <a href="https://registry.npmjs.org/%E3%80%82%E4%BB%8E%E6%97%A7%E5%8C%85">https://registry.npmjs.org/。从旧包</a> @eugenedfsfsvg/dynamic-form 迁移时，同步替换 import 和样式路径，详见<a href="/formino/docs/migration.html">迁移指南</a>。本地试用未发布改动时，可 npm run build、npm pack 后安装 .tgz。</p>
+<h2 id="hook-提示必须在-dynamicform--provider-内">Hook 提示必须在 DynamicForm / Provider 内？</h2>
+<p>React Context 只对其子组件生效。不要在同一个组件里先调用 Hook 再返回 Provider 包裹它：</p>
+<pre><code class="language-tsx">function Fields() {
+  const { formConfig } = useDynamicConfig({ template, fields });
+  return &lt;FormComponent formConfig={formConfig} /&gt;;
+}
+// 父组件返回 &lt;DynamicForm&gt;&lt;Fields /&gt;&lt;/DynamicForm&gt;
+</code></pre>
+<p>useDynamicConfig 单独使用可以生成配置，但读取表单 Context 的其他 hooks 与渲染组件必须处于 Provider 内。外部页面需要表单实例时，可用 DynamicFormProvider 包裹页面。</p>
+<h2 id="改了-fields为什么没有变化">改了 fields，为什么没有变化？</h2>
+<p>不要修改原对象中的属性。创建新 fields / template 引用，依赖 props 时用 useMemo；不要手动改 builderRef 来驱动 React 页面。</p>
+<h2 id="initialvalues-为什么不跟着接口变化">initialValues 为什么不跟着接口变化？</h2>
+<p>initialValues 只初始化。异步详情用同一个 form 实例调用 setFieldsValue，参见<a href="/formino/docs/recipes.html#3-%E6%8E%A5%E5%8F%A3%E8%AF%A6%E6%83%85%E5%9B%9E%E5%A1%AB%E4%B8%8E%E6%8F%90%E4%BA%A4">回填示例</a>。</p>
+<h2 id="改国家后城市不刷新或者还选中旧城市">改国家后城市不刷新，或者还选中旧城市？</h2>
+<p>在城市源上声明 dependsOn: [&#39;country&#39;]，只写 params 函数不会建立订阅。选项更新不会自动清空当前值，使用 onValuesChange 处理用户切换，并在程序回填时显式维护一致性。</p>
+<h2 id="切换字段后已编辑的值被覆盖">切换字段后已编辑的值被覆盖？</h2>
+<p>依赖 calculate 在初次挂载也会执行。对于只应由用户操作触发的清空逻辑，使用 onValuesChange；计算型字段则需要保证 calculate 返回值就是希望保存的值。</p>
+<h2 id="为什么隐藏字段还挡住提交">为什么隐藏字段还挡住提交？</h2>
+<p>hidden 遵循 Ant Design 的保留与校验语义。同步移除 required 规则，或从 template 中移除字段；如果需要卸载后移除数据，再设置 preserve: false。隐藏字段外层 Col 仍占空间，完全移除布局要过滤模板项。</p>
+<h2 id="样式没有加载">样式没有加载？</h2>
+<p>导入 <code>forminojs/style.css</code>。AntD 自身样式按宿主配置：AntD 5 可按需导入 antd/dist/reset.css；AntD 4 导入 antd/dist/antd.css。只有本库样式不足以替代 AntD 样式。</p>
+<h2 id="日期控件报错或值类型不对">日期控件报错，或值类型不对？</h2>
+<p>AntD 5 默认用 dayjs；AntD 4 默认用 moment，必须注入对应 dateAdapter。Date 字段存储值通常为格式化字符串，编辑时才转换成日期对象。<a href="/formino/docs/migration.html#ant-design-4-%E6%97%A5%E6%9C%9F%E9%80%82%E9%85%8D">日期适配</a>。</p>
+<h2 id="数据源一直重新请求">数据源一直重新请求？</h2>
+<p>保持 DataSourceManager、source 描述与 dataContext 引用稳定。使用 useMemo，不要在每次渲染时创建新实例或新内联 source。数据变化才替换 dataContext。</p>
+<h2 id="能把完整配置保存成后端-json-吗">能把完整配置保存成后端 JSON 吗？</h2>
+<p>字段名、枚举值、布局和普通属性可以序列化。calculate、select、中间件和 ReactNode 是代码，不能直接 JSON 序列化；在宿主通过受控名称映射到已注册函数和控件，不要对远程配置使用 eval。远程配置的类型、字段及组件名称由宿主校验。</p>
+<h2 id="是否自带权限接口上传接口或请求缓存">是否自带权限接口、上传接口或请求缓存？</h2>
+<p>这些由宿主通过 registry / dataSources / dataContext 注入。permission 控制控件编辑状态，不能代替后端鉴权；缓存和重试可放在自定义 resolver 中。</p>
+<h2 id="ssr-要注意什么">SSR 要注意什么？</h2>
+<p>每个请求创建独立注册表和数据源实例，避免全局写入用户数据。不要在配置生成的中间件里读 window 或发请求。SSR 不执行 effects，异步选项需要客户端加载，或宿主提前准备好数据再注入。</p>
+</article><footer><a href="https://github.com/eugeneaiao-ui/formino/edit/main/docs/FAQ.md">改进这页文档</a><a href="https://github.com/eugeneaiao-ui/formino/releases/latest">最新 Release</a><span>Formino 0.1.0 · MIT</span></footer></main></div></body></html>

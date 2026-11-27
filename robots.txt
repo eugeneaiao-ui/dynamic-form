@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://eugeneaiao-ui.github.io/formino/sitemap.xml
