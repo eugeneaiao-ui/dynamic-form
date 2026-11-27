@@ -2,7 +2,7 @@
 
 [Overview](../README.en.md) · [配置手册](CONFIGURATION.md) · [JSON Schema](../schemas/form-definition.schema.json) · [Example adapter](../examples/ai/parse-definition.ts)
 
-Dynamic Form is a TypeScript form engine for React and Ant Design. Use it as a rendering layer in a low-code application, as a target for AI-generated form definitions, or as a typed form API for an AI coding assistant.
+Formino is a TypeScript form engine for React and Ant Design. Use it as a rendering layer in a low-code application, as a target for AI-generated form definitions, or as a typed form API for an AI coding assistant.
 
 ## What is supported?
 
@@ -13,7 +13,7 @@ Dynamic Form is a TypeScript form engine for React and Ant Design. Use it as a r
 | A low-code application stores form definitions                | Store the JSON subset; let application code approve data sources and provide initial values            |
 | A form needs calculations, custom uploads or richer rendering | Extend the validated configuration in trusted TypeScript; use middleware / dependencies / registry     |
 
-The project does not include a drag-and-drop editor, an LLM backend, or an importer for arbitrary JSON Schema documents. The supplied JSON Schema describes **Dynamic Form configuration**, not the values submitted by a user.
+The project does not include a drag-and-drop editor, an LLM backend, or an importer for arbitrary JSON Schema documents. The supplied JSON Schema describes **Formino configuration**, not the values submitted by a user.
 
 ## Working example
 
@@ -73,7 +73,7 @@ JSON Schema dialects and model provider subsets vary. A provider's structured-ou
 
 ### Use in your application
 
-Install the library tarball as described in the [quick start](GETTING_STARTED.md). Copy parse-definition.ts and JsonFormExample.tsx from the example, replace their local ../../src imports with the package root and ../../src/core with the /core entry. Install Ajv in the host:
+Install forminojs as described in the [quick start](GETTING_STARTED.md). Copy parse-definition.ts and JsonFormExample.tsx from the example, replace their local ../../src imports with the package root and ../../src/core with the /core entry. Install Ajv in the host:
 
 ```bash
 npm install ajv@8.17.1
@@ -82,7 +82,7 @@ npm install ajv@8.17.1
 The schema is included in the package:
 
 ```tsx
-import schema from '@eugeneaiao-ui/dynamic-form/schemas/form-definition.schema.json';
+import schema from 'forminojs/schemas/form-definition.schema.json';
 ```
 
 This JSON import example assumes a bundler / TypeScript configuration with resolveJsonModule. Adapt JSON loading to the host module system. The example adapter is **not exported by the library**; copy it as application code and adjust its schema import to the package path.
@@ -104,7 +104,7 @@ Changing the whole JSON document resets the example's form data intentionally. A
 ## Prompt starter
 
 ```text
-Generate a Dynamic Form configuration for the following user requirements:
+Generate a Formino configuration for the following user requirements:
 <insert field labels, types, layout and validation requirements here>
 
 Use the provided form-definition.schema.json and service-request.json.
@@ -126,4 +126,4 @@ Handle an unsupported-requirement response separately from a successful JSON res
 - [Public API](API.md): typed API reference.
 - [Discoverability notes](DISCOVERY.md): repository metadata, indexing and remaining publication steps.
 
-Raw main-branch URLs become available when this PR is merged. These documents help retrieval and integration; they do not guarantee that any search engine or AI assistant will index or recommend the project.
+These documents help retrieval and integration; they do not guarantee that any search engine or AI assistant will index or recommend the project.

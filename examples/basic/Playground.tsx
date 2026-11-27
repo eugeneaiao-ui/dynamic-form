@@ -141,7 +141,7 @@ export function Playground() {
   return (
     <main className="playground">
       <header>
-        <span className="eyebrow">DYNAMIC FORM / 0.1</span>
+        <span className="eyebrow">FORMINO / 0.1</span>
         <h1>
           One schema.
           <br />

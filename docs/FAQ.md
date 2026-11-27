@@ -4,7 +4,7 @@
 
 ## npm install 找不到包？
 
-当前包尚未发布到 npm。先在仓库 npm ci、npm run build、npm pack，再在使用方安装生成的 .tgz。不要直接依赖未构建的 Git 源码目录；包入口指向 dist。
+使用 npm install forminojs，并检查 registry 是否为 https://registry.npmjs.org/。从旧包 @eugenedfsfsvg/dynamic-form 迁移时，同步替换 import 和样式路径，详见[迁移指南](MIGRATION.md)。本地试用未发布改动时，可 npm run build、npm pack 后安装 .tgz。
 
 ## Hook 提示必须在 DynamicForm / Provider 内？
 
@@ -42,7 +42,7 @@ hidden 遵循 Ant Design 的保留与校验语义。同步移除 required 规则
 
 ## 样式没有加载？
 
-导入 `@eugeneaiao-ui/dynamic-form/style.css`。AntD 自身样式按宿主配置：AntD 5 可按需导入 antd/dist/reset.css；AntD 4 导入 antd/dist/antd.css。只有本库样式不足以替代 AntD 样式。
+导入 `forminojs/style.css`。AntD 自身样式按宿主配置：AntD 5 可按需导入 antd/dist/reset.css；AntD 4 导入 antd/dist/antd.css。只有本库样式不足以替代 AntD 样式。
 
 ## 日期控件报错，或值类型不对？
 

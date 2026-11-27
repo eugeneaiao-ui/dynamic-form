@@ -1,6 +1,6 @@
 # 长表单渲染性能
 
-[图文示例](EXAMPLES.md) · [原始数据](benchmarks/latest.json) · [测量脚本](https://github.com/eugeneaiao-ui/dynamic-form/blob/main/scripts/benchmark.mjs)
+[图文示例](EXAMPLES.md) · [原始数据](benchmarks/latest.json) · [测量脚本](https://github.com/eugeneaiao-ui/formino/blob/main/scripts/benchmark.mjs)
 
 本报告测量真实 Chrome 中的生产构建。它描述当前版本在这台机器上的结果，不代表所有设备，也不与未测量的其他库比较。
 
@@ -49,7 +49,7 @@ requestAnimationFrame 回调发生在重绘前，两帧是这里的稳定观察�
 - 100 字段 / 99 个直接计算目标的编辑稳定中位数为 168.9 ms。这是 NumberInput、表单通知和计算写入共同产生的成本，不是纯计算函数耗时。
 - 当前版本保持 progressive=false 为默认值。需要尽快完整可用时优先评估完整挂载；非常大的业务表单还应考虑合理分组 / 分步，不能把当前分批模式理解为虚拟滚动。
 
-以上解读对应本次记录。以后复测更新原始数据时，请同时检查本段；数值不代表冷启动、移动设备或不同字段组合。
+以上解读对应本次记录。项目更名为 Formino、包名调整为 forminojs；历史测量数据与原始指纹保持不变，未因更名重新计时。以后复测更新原始数据时，请同时检查本段；数值不代表冷启动、移动设备或不同字段组合。
 
 ## 如何复现
 

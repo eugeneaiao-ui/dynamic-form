@@ -4,26 +4,15 @@
 
 目标：在已有 React + TypeScript 项目中，用配置生成一张带必填校验的表单。以下默认 React 18 + AntD 5；兼容范围与 AntD 4 日期适配见[迁移指南](MIGRATION.md)。
 
-## 第一步：获取安装包
+## 第一步：安装
 
-本库当前未发布 npm。先在库仓库构建：
-
-```bash
-git clone https://github.com/eugeneaiao-ui/dynamic-form.git
-cd dynamic-form
-# 文档与 AI 接入 PR 合并前，先执行：git checkout codex/ai-low-code-discovery
-npm ci
-npm run build
-npm pack
-```
-
-当前版本会生成 eugeneaiao-ui-dynamic-form-0.1.0.tgz，使用终端输出的实际文件名。npm pack 也会通过 prepack 重新构建，避免打包过期产物。
-
-回到使用方项目：
+在使用方 React / TypeScript 项目运行：
 
 ```bash
-npm install /absolute/path/eugeneaiao-ui-dynamic-form-0.1.0.tgz
+npm install forminojs
 ```
+
+npm 包名为 forminojs，GitHub 仓库名为 formino。无需在安装命令中添加维护者账号。
 
 已有 React / AntD 的项目沿用兼容版本。新项目可安装已验证组合：
 
@@ -32,7 +21,7 @@ npm install react@18.3.1 react-dom@18.3.1 antd@5.27.6
 npm install --save-dev typescript@5.9.3 @types/react@18 @types/react-dom@18
 ```
 
-只用纯 TypeScript 引擎时，从 `@eugeneaiao-ui/dynamic-form/core` 导入，无需安装 UI peer。
+只用纯 TypeScript 引擎时，从 `forminojs/core` 导入，无需安装 UI peer。
 
 ## 第二步：导入样式
 
@@ -42,7 +31,7 @@ npm install --save-dev typescript@5.9.3 @types/react@18 @types/react-dom@18
 // AntD 5 的可选全局 reset；若宿主已有 reset，可沿用宿主设置。
 import 'antd/dist/reset.css';
 // 必须导入本库样式，供预览、快照等使用。
-import '@eugeneaiao-ui/dynamic-form/style.css';
+import 'forminojs/style.css';
 ```
 
 AntD 4 使用 `antd/dist/antd.css`，而不是上述 reset 路径。
@@ -56,8 +45,8 @@ AntD 4 使用 `antd/dist/antd.css`，而不是上述 reset 路径。
 ```tsx
 import React from 'react';
 import { Button } from 'antd';
-import { DynamicForm, FormComponent, FormFieldType, useDynamicConfig } from '@eugeneaiao-ui/dynamic-form';
-import type { FormConfigFields, FormTemplate } from '@eugeneaiao-ui/dynamic-form';
+import { DynamicForm, FormComponent, FormFieldType, useDynamicConfig } from 'forminojs';
+import type { FormConfigFields, FormTemplate } from 'forminojs';
 
 export interface ProfileValues {
   name: string;
