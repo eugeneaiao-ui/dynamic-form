@@ -39,4 +39,18 @@ llms.txt 是辅助文档入口的[提议格式](https://llmstxt.org/)，不能�
 
 Google 对其 AI 搜索功能沿用基础 SEO 指引，没有保证出现的专用标记，见 [AI features and your website](https://developers.google.com/search/docs/appearance/ai-features)。这一说明不代表其他平台采用同样规则。
 
-npm 包入口为 https://www.npmjs.com/package/forminojs。后续可发布独立静态文档站，再为实际站点配置 sitemap / 搜索站长工具。当前没有独立文档站或统计排名。GitHub Actions 账号限制需要解除后才能验证远程构建或自动部署。
+[npm 包](https://www.npmjs.com/package/forminojs)和[公开文档站](https://eugeneaiao-ui.github.io/formino/)提供安装、静态 HTML 文档、全文检索与在线示例。仓库 About 指向文档站，README 和 Release 提供安装、文档和示例入口。
+
+## 已提供的检索入口
+
+- [sitemap.xml](https://eugeneaiao-ui.github.io/formino/sitemap.xml)：公开文档与示例地址。
+- [robots.txt](https://eugeneaiao-ui.github.io/formino/robots.txt)：允许抓取并声明 sitemap。
+- [llms.txt](https://eugeneaiao-ui.github.io/formino/llms.txt)：指向可直接读取的 Markdown、Schema 和示例配置。
+- 每页包含 canonical、描述、Open Graph 与 SoftwareSourceCode 结构化数据，正文无需执行 JavaScript 才能读取。
+- GitHub Topics 和 npm keywords 覆盖 React、动态表单、长表单、字段联动、低代码与 AI 辅助开发。
+
+## 后续推广与收录
+
+维护者可在 Google Search Console / Bing Webmaster Tools 完成站点所有权验证后提交 sitemap；验证码或验证文件应由实际账户生成。分享时优先提供接入文档、一个能运行的示例及有测量条件的性能报告。不要把发布到 npm、配置 sitemap 或提供 llms.txt 当作排名或 AI 引用保证。
+
+本项目不提供搜索排名统计。常规 Actions 若仍受账号 billing 限制，应修复账号限制后再确认自动构建；现有文档可通过独立 gh-pages 发布流程维护。

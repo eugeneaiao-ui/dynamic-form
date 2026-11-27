@@ -141,6 +141,11 @@ export function Playground() {
   return (
     <main className="playground">
       <header>
+        <nav className="project-links" aria-label="Project links">
+          <a href="https://eugeneaiao-ui.github.io/formino/">Documentation</a>
+          <a href="https://github.com/eugeneaiao-ui/formino">GitHub</a>
+          <a href="https://www.npmjs.com/package/forminojs">npm i forminojs</a>
+        </nav>
         <span className="eyebrow">FORMINO / 0.1</span>
         <h1>
           One schema.

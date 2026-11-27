@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Add a searchable static documentation site, online playground, sitemap, canonical/structured metadata and AI-readable documentation.
+- Add release/download links, adoption and support guidance, community issue routing, dependency maintenance and private security reporting.
+- Add reproducible site build, validation, desktop/mobile browser checks and Pages deployment. The published 0.1.0 package and historical benchmarks are unchanged.
+
 ## forminojs 0.1.0 — 2026-11-26
 
 - Rename the project and GitHub repository to Formino; publish the unscoped package forminojs. npm rejected formino because of its similarity to existing package names.

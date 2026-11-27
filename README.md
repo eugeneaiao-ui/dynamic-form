@@ -1,5 +1,9 @@
 # Formino — 低代码与 AI 辅助开发的动态表单引擎
 
+[![npm version](https://img.shields.io/npm/v/forminojs?color=315efb)](https://www.npmjs.com/package/forminojs) [![MIT license](https://img.shields.io/github/license/eugeneaiao-ui/formino)](https://github.com/eugeneaiao-ui/formino/blob/main/LICENSE) [![GitHub release](https://img.shields.io/github/v/release/eugeneaiao-ui/formino)](https://github.com/eugeneaiao-ui/formino/releases/latest)
+
+[在线文档](https://eugeneaiao-ui.github.io/formino/) · [在线示例](https://eugeneaiao-ui.github.io/formino/playground/) · [Release](https://github.com/eugeneaiao-ui/formino/releases/latest) · [Discussions](https://github.com/eugeneaiao-ui/formino/discussions) · [Support](https://github.com/eugeneaiao-ui/formino/blob/main/SUPPORT.md) · [Adoption guide](https://github.com/eugeneaiao-ui/formino/blob/main/docs/ADOPTION.md)
+
 [English](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/README.en.md) · [快速开始](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/docs/GETTING_STARTED.md) · [配置手册](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/docs/CONFIGURATION.md) · [常用场景](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/docs/RECIPES.md) · [API](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/docs/API.md)
 
 面向 React / Ant Design 的 TypeScript 动态表单引擎，支持长表单、多级字段联动、低代码应用的表单渲染和 AI 辅助生成配置。用 TypeScript 或受约束的 JSON 配置表单结构、校验、选项和字段联动。独立 core 引擎负责生成配置，React / Ant Design 适配器负责渲染编辑、预览与快照。

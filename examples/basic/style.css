@@ -57,3 +57,15 @@ footer {
 .ant-tabs-content .form-card {
   margin-bottom: 24px;
 }
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 28px;
+  font-size: 13px;
+}
+.project-links a {
+  color: #315efb;
+  text-underline-offset: 3px;
+}

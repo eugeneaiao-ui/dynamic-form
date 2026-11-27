@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const ignored = new Set(['node_modules', '.git', 'dist', 'demo-dist', 'coverage', '.artifacts']);
+const ignored = new Set(['node_modules', '.git', 'dist', 'demo-dist', 'site-dist', 'coverage', '.artifacts']);
 function markdownFiles(directory) {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
     if (ignored.has(entry.name)) return [];

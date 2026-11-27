@@ -50,7 +50,9 @@
     "schemas",
     "examples/ai",
     "examples/advanced",
-    "examples/performance/fixtures.ts"
+    "examples/performance/fixtures.ts",
+    "SUPPORT.md",
+    "SECURITY.md"
   ],
   "sideEffects": [
     "**/*.css"
@@ -78,7 +80,11 @@
     "prepack": "npm run build",
     "benchmark": "node scripts/benchmark.mjs",
     "benchmark:smoke": "node scripts/benchmark.mjs --smoke",
-    "examples:screenshots": "node scripts/benchmark.mjs --screenshots-only"
+    "examples:screenshots": "node scripts/benchmark.mjs --screenshots-only",
+    "build:site": "node scripts/build-site.mjs",
+    "check:site": "node scripts/check-site.mjs",
+    "deploy:site": "npm run build:site && npm run check:site && node scripts/deploy-site.mjs",
+    "test:site": "node scripts/smoke-site.mjs"
   },
   "engines": {
     "node": ">=20.19.0"
@@ -116,6 +122,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "globals": "^16.4.0",
     "jsdom": "^26.1.0",
+    "marked": "18.3.0",
     "playwright": "1.65.1",
     "prettier": "3.6.2",
     "react": "19.1.1",
@@ -126,7 +133,7 @@
     "vite": "^7.1.7",
     "vitest": "^3.2.4"
   },
-  "homepage": "https://github.com/eugeneaiao-ui/formino#readme",
+  "homepage": "https://eugeneaiao-ui.github.io/formino/",
   "keywords": [
     "forminojs",
     "formino",
@@ -144,9 +151,17 @@
     "config-driven",
     "react-forms",
     "long-form",
-    "field-dependencies"
+    "field-dependencies",
+    "form-engine",
+    "dynamic-forms",
+    "complex-forms",
+    "conditional-fields"
   ],
   "publishConfig": {
     "access": "public"
+  },
+  "author": {
+    "name": "eugeneaiao-ui",
+    "url": "https://github.com/eugeneaiao-ui"
   }
 }

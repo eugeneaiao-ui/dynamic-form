@@ -4,3 +4,4 @@ demo-dist/
 coverage/
 .artifacts/
 package-lock.json
+site-dist/

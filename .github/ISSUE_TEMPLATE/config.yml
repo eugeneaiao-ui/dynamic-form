@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions and usage / 使用提问
+    url: https://github.com/eugeneaiao-ui/formino/discussions
+    about: Ask about configuration, integration, data sources and field dependencies.
+  - name: Documentation / 接入与配置文档
+    url: https://github.com/eugeneaiao-ui/formino/blob/main/docs/GETTING_STARTED.md
+    about: Start with installation, configuration and runnable examples.
+  - name: Private security report / 私密安全反馈
+    url: https://github.com/eugeneaiao-ui/formino/security/advisories/new
+    about: Report a potential security vulnerability privately.
