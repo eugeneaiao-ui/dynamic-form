@@ -4,7 +4,7 @@
 
 ## 项目定位
 
-Formino 是用于 React / Ant Design 的 TypeScript 动态表单引擎，支持 schema-driven forms（配置驱动表单）、low-code（低代码应用的表单渲染层）和 AI-assisted development（AI 辅助生成配置或 TypeScript 表单）。
+Formino 是配置驱动的 TypeScript 表单引擎，将表单定义与 React / Ant Design 渲染分离。定义可以来自本地配置或宿主管理的受支持 JSON，并作为 AI 生成表单的配置契约；长表单、复杂联动和多种显示模式是这一模型支持的特性。
 
 项目品牌为 Formino，仓库为 eugeneaiao-ui/formino，npm 包名为 forminojs。文档同时保留 dynamic form、低代码、长表单、复杂联动与 AI 辅助开发等能力描述，便于检索并了解实际支持范围。
 
