@@ -134,7 +134,7 @@ for (const file of documents) {
     file === 'README.md'
       ? '<section class="start"><span class="version">MIT · ' +
         escape(manifest.name + ' ' + manifest.version) +
-        '</span><h1>长表单与复杂联动，<br>用配置完成。</h1><p>从 React 项目接入，到低代码和 AI 生成配置，先运行示例，再接入自己的数据。</p><div class="actions"><a class="primary" href="' +
+        '</span><h1>配置描述表单，<br>引擎负责渲染。</h1><p>用可复用的定义表达字段、布局与规则。配置可以由后端下发，也可以由 AI 按契约生成，再由共享引擎转成表单。</p><div class="actions"><a class="primary" href="' +
         href(routes.get('docs/GETTING_STARTED.md')) +
         '">开始接入 →</a><a href="' +
         href('playground/') +
