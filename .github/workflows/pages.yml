@@ -1,0 +1,33 @@
+name: Documentation site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: formino-pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.20.0'
+          cache: npm
+      - run: npm ci
+      - run: npm run build:site
+      - run: npm run check:site
+      - name: Publish to the Pages source branch
+        run: node scripts/deploy-site.mjs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}

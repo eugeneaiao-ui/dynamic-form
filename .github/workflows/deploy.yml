@@ -23,7 +23,7 @@ jobs:
       - run: npm run test:package
       - uses: actions/upload-artifact@v4
         with:
-          name: dynamic-form-library-and-demo
+          name: formino-library-and-demo
           path: |
             dist/
             demo-dist/

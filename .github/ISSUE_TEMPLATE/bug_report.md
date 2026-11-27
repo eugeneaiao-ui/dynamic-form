@@ -2,13 +2,13 @@
 name: Bug report
 about: Report a reproducible problem
 title: ''
-labels: ''
+labels: bug
 assignees: ''
 ---
 
 ## Environment
 
-- dynamic-form:
+- forminojs:
 - React / ReactDOM:
 - Ant Design:
 - TypeScript:

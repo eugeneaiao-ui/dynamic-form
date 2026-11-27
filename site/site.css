@@ -1,0 +1,391 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+body {
+  margin: 0;
+  color: #19213b;
+  background: #fff;
+  font:
+    15px/1.8 system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+}
+a {
+  color: #315efb;
+  text-underline-offset: 3px;
+}
+a:hover {
+  text-decoration: underline;
+}
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid #90a9ff;
+  outline-offset: 3px;
+}
+button,
+input {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+}
+.skip {
+  position: absolute;
+  left: 12px;
+  top: -100px;
+  z-index: 4;
+  padding: 8px;
+  background: #fff;
+}
+.skip:focus {
+  top: 10px;
+}
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  height: 72px;
+  border-bottom: 1px solid #e5e8f1;
+  background: rgba(255, 255, 255, 0.97);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 max(24px, calc((100vw - 1400px) / 2));
+  gap: 24px;
+}
+.brand {
+  font-size: 23px;
+  font-weight: 750;
+  color: #19213b;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.brand span {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: #315efb;
+  color: #fff;
+  font-size: 20px;
+}
+.top nav {
+  display: flex;
+  gap: 24px;
+  font-size: 14px;
+}
+.top nav a {
+  color: #56617a;
+  text-decoration: none;
+}
+.layout {
+  max-width: 1400px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 246px minmax(0, 1fr);
+}
+aside {
+  padding: 30px 22px;
+  position: sticky;
+  top: 72px;
+  height: calc(100vh - 72px);
+  overflow: auto;
+  border-right: 1px solid #e5e8f1;
+}
+aside label {
+  display: block;
+  font-size: 12px;
+  font-weight: 650;
+  color: #677086;
+  margin-bottom: 6px;
+}
+input[type='search'] {
+  width: 100%;
+  padding: 9px 10px;
+  border: 1px solid #dbe0ec;
+  border-radius: 7px;
+  background: #f8f9fc;
+}
+aside nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 20px;
+}
+aside nav a {
+  padding: 7px 12px;
+  border-radius: 6px;
+  color: #56617a;
+  text-decoration: none;
+  font-size: 14px;
+}
+aside nav a:hover,
+aside nav a[aria-current] {
+  background: #edf1ff;
+  color: #315efb;
+}
+.install {
+  margin-top: 24px;
+  padding: 12px;
+  background: #f6f7fb;
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.install code {
+  padding: 0;
+  font-size: 12px;
+}
+.install button {
+  border: 0;
+  background: transparent;
+  color: #315efb;
+  font-size: 12px;
+}
+.install span {
+  font-size: 12px;
+  color: #677086;
+}
+.discuss {
+  display: block;
+  font-size: 13px;
+  margin: 18px 4px;
+}
+.search-status {
+  font-size: 12px;
+  margin: 5px 0;
+  color: #677086;
+}
+#search-results a {
+  display: block;
+  font-size: 13px;
+  padding: 8px;
+  border-bottom: 1px solid #e5e8f1;
+}
+main {
+  padding: 40px 56px 30px;
+  min-width: 0;
+}
+article {
+  max-width: 920px;
+}
+h1,
+h2,
+h3 {
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+  color: #19213b;
+}
+h1 {
+  font-size: 32px;
+  margin: 0 0 24px;
+}
+h2 {
+  font-size: 24px;
+  margin: 44px 0 18px;
+  border-bottom: 1px solid #e5e8f1;
+  padding-bottom: 10px;
+}
+h3 {
+  font-size: 19px;
+  margin: 28px 0 12px;
+}
+p,
+ul,
+ol {
+  margin: 15px 0;
+}
+li {
+  margin: 5px 0;
+}
+pre,
+code {
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+code {
+  font-size: 0.88em;
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: #f0f2f8;
+  overflow-wrap: anywhere;
+}
+pre {
+  padding: 20px 22px;
+  overflow: auto;
+  border: 1px solid #e1e6f0;
+  border-radius: 10px;
+  background: #f6f8fc;
+  font-size: 13px;
+  line-height: 1.65;
+}
+pre code {
+  padding: 0;
+  background: none;
+  overflow-wrap: normal;
+}
+table {
+  display: block;
+  max-width: 100%;
+  overflow: auto;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+th,
+td {
+  text-align: left;
+  padding: 10px 13px;
+  border: 1px solid #e1e6f0;
+  vertical-align: top;
+}
+th {
+  background: #f6f8fc;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+blockquote {
+  margin: 20px 0;
+  padding: 6px 20px;
+  border-left: 3px solid #315efb;
+  background: #f6f8ff;
+  color: #56617a;
+}
+.start {
+  padding: 10px 0 40px;
+  margin-bottom: 34px;
+  border-bottom: 1px solid #e5e8f1;
+}
+.start h1 {
+  font-size: clamp(34px, 4.5vw, 56px);
+  letter-spacing: -0.06em;
+  margin: 18px 0;
+}
+.start p {
+  color: #677086;
+  font-size: 17px;
+  max-width: 640px;
+}
+.version {
+  font-size: 12px;
+  font-weight: 650;
+  color: #315efb;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 26px 0 0;
+}
+.actions a {
+  padding: 10px 18px;
+  border: 1px solid #dbe0ec;
+  border-radius: 8px;
+  text-decoration: none;
+}
+.actions a.primary {
+  background: #315efb;
+  border-color: #315efb;
+  color: #fff;
+}
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 24px 0;
+  margin-top: 50px;
+  border-top: 1px solid #e5e8f1;
+  font-size: 12px;
+  color: #677086;
+}
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 205px minmax(0, 1fr);
+  }
+  main {
+    padding: 32px 26px;
+  }
+  .top nav {
+    gap: 16px;
+  }
+}
+@media (max-width: 640px) {
+  .top {
+    height: auto;
+    min-height: 68px;
+    padding: 14px 18px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .brand {
+    font-size: 20px;
+  }
+  .top nav {
+    font-size: 12px;
+    gap: 16px;
+  }
+  .layout {
+    display: block;
+  }
+  aside {
+    position: static;
+    height: auto;
+    padding: 18px;
+    border-right: 0;
+    border-bottom: 1px solid #e5e8f1;
+  }
+  aside nav {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 3px;
+    margin-top: 14px;
+  }
+  aside nav a {
+    padding: 6px;
+    font-size: 12px;
+  }
+  .install,
+  .discuss {
+    display: none;
+  }
+  main {
+    padding: 28px 20px;
+  }
+  h1 {
+    font-size: 27px;
+  }
+  .start h1 {
+    font-size: 37px;
+  }
+  pre {
+    padding: 16px;
+    font-size: 12px;
+  }
+  footer {
+    gap: 12px;
+  }
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 9px;
+  margin-right: 5px;
+  border: 1px solid #dbe0ec;
+  border-radius: 5px;
+  background: #f6f8fc;
+  color: #56617a;
+  font-size: 12px;
+}

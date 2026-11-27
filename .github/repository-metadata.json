@@ -1,6 +1,6 @@
 {
   "description": "Formino: a TypeScript dynamic form engine for React and Ant Design, with long forms, complex dependencies, low-code and AI-assisted development.",
-  "homepage": "https://github.com/eugeneaiao-ui/formino#readme",
+  "homepage": "https://eugeneaiao-ui.github.io/formino/",
   "topics": [
     "formino",
     "dynamic-form",
@@ -16,6 +16,11 @@
     "config-driven",
     "react-forms",
     "long-form",
-    "field-dependencies"
+    "field-dependencies",
+    "forminojs",
+    "form-engine",
+    "dynamic-forms",
+    "complex-forms",
+    "conditional-fields"
   ]
 }

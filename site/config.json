@@ -1,0 +1,6 @@
+{
+  "url": "https://eugeneaiao-ui.github.io/formino/",
+  "repository": "https://github.com/eugeneaiao-ui/formino",
+  "package": "https://www.npmjs.com/package/forminojs",
+  "description": "Formino 动态表单引擎：React / Ant Design 长表单、复杂字段联动、低代码与 AI 辅助开发。"
+}
