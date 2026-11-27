@@ -139,13 +139,15 @@ The detailed guides are currently in Chinese. The [quick-start source](https://g
 
 ## Development
 
+Contribute through **Fork → short-lived branch → PR to main → review → squash merge**. Start with [CONTRIBUTING](https://github.com/eugeneaiao-ui/formino/blob/main/CONTRIBUTING.md) and the [branch/review workflow](https://github.com/eugeneaiao-ui/formino/blob/main/docs/CONTRIBUTION_WORKFLOW.md).
+
 ```bash
 npm run check
 npm run check:docs
 npm run test:package
 ```
 
-See [CONTRIBUTING](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/CONTRIBUTING.md) for the development and manual release process, and [CHANGELOG](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/CHANGELOG.md) for changes. CI does not publish npm packages.
+See [CONTRIBUTING](https://github.com/eugeneaiao-ui/formino/blob/main/CONTRIBUTING.md) for the development and manual release process, and [CHANGELOG](https://github.com/eugeneaiao-ui/formino/blob/formino-v0.1.0/CHANGELOG.md) for changes. CI does not publish npm packages.
 
 ## License
 
